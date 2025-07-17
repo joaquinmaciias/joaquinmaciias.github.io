@@ -1,0 +1,167 @@
+/* Fuente base y ajustes generales */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    color: #222;               /* Texto en color gris oscuro */
+    background-color: #f9f9f9; /* Fondo muy clarito para secciones */
+    scroll-behavior: smooth;   /* Desplazamiento suave al hacer clic en los enlaces de navegación */
+  }
+  
+  /* Estilos del encabezado y menú de navegación */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: #ffffff;
+    border-bottom: 2px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1000;
+  }
+  
+  /* Logo (nombre del sitio) */
+  header .logo a {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #000;
+    text-decoration: none;
+  }
+  
+  /* Navegación principal */
+  header nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+  }
+  header nav ul li a {
+    text-decoration: none;
+    color: #000;
+    font-weight: 500;
+  }
+  header nav ul li a:hover {
+    color: #0077b6; /* Color de énfasis al pasar el cursor (azul oscuro en este ejemplo) */
+  }
+  
+  /* Botón de menú hamburguesa (por defecto oculto en desktop) */
+  .menu-toggle {
+    display: none;
+    font-size: 1.5em;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Secciones de contenido */
+  section {
+    max-width: 800px;
+    margin: 80px auto 40px auto;  /* centrado, con margen superior para dejar espacio al header fijo */
+    padding: 0 20px;
+  }
+  section h2 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+    border-bottom: 2px solid #0077b6;
+    display: inline-block;
+    padding-bottom: 4px;
+  }
+  section p {
+    line-height: 1.6;
+    margin-bottom: 1em;
+  }
+  
+  /* Imagen de perfil en Sobre mí */
+  .perfil {
+    float: right;
+    width: 150px;
+    border-radius: 50%;
+    margin: 0 0 1em 1em;
+  }
+  
+  /* Proyectos */
+  .projects {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .project {
+    flex: 1 1 300px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+  }
+  .project img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  .project h3 {
+    font-size: 1.25em;
+    margin: 0.5em 0;
+  }
+  .project p {
+    font-size: 0.95em;
+    color: #555;
+  }
+  
+  /* Redes Sociales - íconos */
+  .social-icons {
+    font-size: 1.5em;
+  }
+  .social-icons a {
+    margin-right: 15px;
+    color: #222;
+    text-decoration: none;
+  }
+  .social-icons a:hover {
+    color: #0077b6;
+  }
+  
+  /* Adaptaciones responsive para móviles */
+  @media (max-width: 600px) {
+    /* Mostrar botón de menú y ocultar items del nav en móviles */
+    .menu-toggle {
+      display: block;
+      color: #000;
+    }
+    header nav ul {
+      display: none; /* oculto por defecto en móvil (se mostrará al activar menú) */
+      flex-direction: column;
+      background: #fff;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 100%;
+      border-bottom: 2px solid #eee;
+    }
+    header nav ul.open {
+      display: flex; /* mostrar menú cuando tenga la clase .open */
+    }
+    header nav ul li {
+      padding: 15px 20px;
+      border-top: 1px solid #eee;
+    }
+    header nav ul li a {
+      display: block;
+    }
+    /* Ajustar secciones en móvil (márgenes más pequeños) */
+    section {
+      margin: 100px auto 20px auto;
+      padding: 0 15px;
+    }
+    .projects {
+      flex-direction: column;
+    }
+    .project {
+      margin-bottom: 20px;
+    }
+  }
+  
