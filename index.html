@@ -3,31 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Es una plataforma educativa que brinda formación práctica y accesible para emprendedores, ayudándolos a desarrollar habilidades y conocimientos clave." />
-  <title>Euge Oller – Emprendedor y creador de contenido</title>
-  <!-- Preconexión a Google Fonts (fuentes de texto) -->
+  <meta name="description" content="Portfolio de Joaquín Mir Macias (ICAI – Ingeniería Matemática e IA). Proyectos de Machine Learning, Visión por Computador y análisis de datos." />
+  <title>Joaquín Mir Macias – Ingeniería Matemática e IA</title>
+
+  <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Fuente Montserrat (puedes cambiarla si lo deseas) -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
-  <!-- Hoja de estilos CSS -->
+
+  <!-- Estilos -->
   <link rel="stylesheet" href="style.css" />
-  <!-- Íconos de FontAwesome para redes sociales (CDN) -->
+
+  <!-- Íconos FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-d7lPH6+cqXng5IfXN8GTL8XUA0Cyh3+2O5v5Z6e5c8a3cXRD5axp7iw5dPhiIDXNF63Z9y8dy3g8mZIm+7mBJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body id="top">
   <!-- Header / Navegación -->
   <header>
-    <div class="logo"><a href="#top">Euge Oller</a></div>
+    <div class="logo"><a href="#top">Joaquín Mir Macias</a></div>
     <nav>
       <ul>
         <li><a href="#sobre-mi">Sobre mí</a></li>
         <li><a href="#proyectos">Proyectos</a></li>
-        <li><a href="#redes-sociales">Redes&nbsp;Sociales</a></li>
+        <li><a href="#experiencia">Experiencia</a></li>
+        <li><a href="#educacion">Educación</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#contacto">Contacto</a></li>
       </ul>
     </nav>
-    <!-- Botón de menú para móviles (hamburguesa) -->
-    <button id="menuToggle" class="menu-toggle">
+    <button id="menuToggle" class="menu-toggle" aria-label="Abrir menú">
       <i class="fa-solid fa-bars"></i>
     </button>
   </header>
@@ -35,50 +39,88 @@
   <!-- Sección Sobre mí -->
   <section id="sobre-mi">
     <h2>Sobre mí</h2>
-    <!-- Imagen de perfil -->
-    <img src="tu-foto.jpg" alt="Foto de Euge Oller" class="perfil" />
-    <!-- Descripción personal -->
-    <p>Soy Euge Oller, emprendedor, creador y aprendiz constante. Desde joven me obsesionó entender cómo funciona el mundo, cómo funcionan los negocios y, sobre todo, cómo funcionamos las personas. Esa curiosidad me llevó a fundar <strong>Emprende Aprendiendo</strong> y otros proyectos con un objetivo claro: compartir lo que aprendo mientras construyo empresas que me permiten vivir con libertad y propósito.</p>
-    <p>Me apasiona enseñar, pero no desde la teoría sino desde la trinchera. Hablo de hábitos, mentalidad, productividad, inversión y filosofía práctica porque son las herramientas que he usado —y sigo usando— para pasar de cero recursos a crear negocios rentables y una comunidad global. Creo que emprender no es solo hacer dinero: es diseñar tu vida y vivir con intención. Por eso siempre digo: <em>"Primero vive como nadie quiere, para luego vivir como nadie puede"</em>. Además de crear contenido, invierto activamente en proyectos en los que creo, como <strong>North Planner</strong>, y participo en el pódcast <strong>Spicy4Tuna</strong>, donde junto a mi equipo exploramos ideas, negocios y tendencias con una visión crítica, directa y sin filtros. Para mí, todo se resume en una cosa: aprender, aplicar y compartir.</p>
+    <img src="tu-foto.jpg" alt="Foto de Joaquín Mir Macias" class="perfil" />
+    <p>
+      Soy <strong>Joaquín Mir Macias</strong>, estudiante de <strong>Ingeniería Matemática y de la IA</strong> en la
+      <strong>Universidad Pontificia Comillas (ICAI)</strong> (2021–2025). Me interesan el
+      <em>Machine Learning</em>, <em>Deep Learning</em> y la <em>Visión por Computador</em>, así como el análisis de datos aplicado a problemas reales.
+    </p>
+    <p>
+      Actualmente desarrollo mi <strong>Trabajo de Fin de Grado</strong> sobre <strong>detección y segmentación de tumores y lesiones renales en TAC</strong>,
+      en colaboración con SYCAI, comparando y mejorando modelos de <em>Deep Learning</em> para apoyar el diagnóstico automatizado.
+    </p>
+    <p>
+      Aquí puedes <a href="CV_Joaquin_Mir_Macias.pdf" target="_blank" rel="noopener noreferrer">descargar mi CV en PDF</a>.
+    </p>
   </section>
 
   <!-- Sección Proyectos -->
   <section id="proyectos">
     <h2>Proyectos</h2>
     <div class="projects">
-      <!-- Proyecto 1: Emprende Aprendiendo -->
+      <!-- Proyecto TFG -->
       <div class="project">
-        <a href="https://emprendeaprendiendo.com" target="_blank">
-          <img src="logo-emprende.png" alt="Logo Emprende Aprendiendo" />
-          <h3>Emprende Aprendiendo</h3>
-        </a>
-        <p>Plataforma educativa para emprendedores (Fundador).</p>
+        <img src="proyecto-tfg.jpg" alt="TFG – Detección de tumores renales en TAC" />
+        <h3>TFG: Detección y segmentación de tumores renales en TAC</h3>
+        <p><em>En curso (sep 2024 – actualidad)</em>. Comparativa y mejora de modelos de <strong>Deep Learning</strong> para diagnóstico asistido.</p>
       </div>
-      <!-- Proyecto 2: Spicy4Tuna -->
+      <!-- SocialTech Challenge -->
       <div class="project">
-        <a href="https://www.youtube.com/@Spicy4tuna" target="_blank">
-          <img src="logo-spicy.png" alt="Logo Spicy4Tuna" />
-          <h3>Spicy4Tuna Podcast</h3>
-        </a>
-        <p>Pódcast sobre negocios y tendencias (Co-anfitrión).</p>
+        <img src="socialtech.jpg" alt="SocialTech Challenge – Silla de ruedas autónoma" />
+        <h3>SocialTech Challenge – Silla de ruedas autónoma</h3>
+        <p><em>oct 2023 – jun 2024</em>. Diseño y fabricación de una silla de ruedas autónoma con sistemas electrónicos y <strong>Machine Learning</strong>.</p>
       </div>
     </div>
   </section>
 
-  <!-- Sección Redes Sociales -->
-  <section id="redes-sociales">
-    <h2>Redes Sociales</h2>
-    <p>Sígueme en mis redes sociales:</p>
-    <div class="social-icons">
-      <a href="https://instagram.com/euge.oller" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-      <a href="https://twitter.com/TechEuge" target="_blank" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
-      <a href="https://facebook.com/EugeOller" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
-      <a href="https://www.linkedin.com/in/eugeoller" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-      <a href="https://www.youtube.com/c/EmprendeAprendiendo" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-    </div>
+  <!-- Sección Experiencia -->
+  <section id="experiencia">
+    <h2>Experiencia</h2>
+    <p><strong>BBVA – Intern Auditoría Interna</strong> (feb 2025 – ago 2025, Madrid). Soporte en la ejecución de auditorías del área corporativa: evaluación de procesos, análisis de riesgos y controles, elaboración de informes y colaboración con distintas unidades, utilizando herramientas de análisis de datos.</p>
+    <p><strong>Redsys – Data Analyst (Intern)</strong> (jun 2024 – ago 2024, Madrid). Extracción de datos con Hue, tratamiento con bases de datos relacionales y <strong>QlikSense</strong>, creación de <em>dashboards</em> y visualizaciones para empresas.</p>
+    <p><strong>Universidad Pontificia Comillas – ICAI</strong> (oct 2023 – jun 2024). Miembro de proyecto <em>SocialTech Challenge</em> para una silla de ruedas autónoma.</p>
   </section>
 
-  <!-- Archivo JavaScript -->
+  <!-- Sección Educación -->
+  <section id="educacion">
+    <h2>Educación</h2>
+    <p><strong>Universidad Pontificia Comillas – ICAI</strong> (Madrid). <em>Grado en Ingeniería Matemática y de la IA</em> (2021 – 2025).</p>
+    <p>Asignaturas relevantes: <em>Machine Learning, Deep Learning, Visión por Computador, NLP, Series Temporales, Optimización y Simulación, Big Data Architecture, Ciberseguridad, Desarrollo de aplicaciones y servicios</em>.</p>
+    <p><strong>IES Juan Antonio Pérez Mercader</strong> (Huelva). <em>Bachillerato Tecnológico</em> (2019 – 2021, nota 9.6/10).</p>
+    <p><strong>Cursos y certificados</strong>: <em>Machine Learning</em> (Stanford/Coursera), <em>English for Career Development</em> (UPenn/Coursera), TOEFL iBT, certificados de comunicación para ingenieros.</p>
+  </section>
+
+  <!-- Sección Habilidades -->
+  <section id="habilidades">
+    <h2>Habilidades</h2>
+    <ul>
+      <li><strong>Programación:</strong> Python, R, HTML, JavaScript, React, Django, MATLAB.</li>
+      <li><strong>Frameworks/paquetes:</strong> NumPy, PyTorch, OpenCV.</li>
+      <li><strong>Datos y bases de datos:</strong> MySQL, MongoDB, Neo4j, NiFi, Kafka, Kibana, Spark, Hue, QlikSense, Ada.</li>
+      <li><strong>BI/Ofimática:</strong> Power BI, Tableau, MS Office.</li>
+      <li><strong>Idiomas:</strong> Español (nativo), Inglés (C1).</li>
+      <li><strong>Soft skills:</strong> comunicación, gestión del tiempo, trabajo en equipo, creatividad.</li>
+    </ul>
+  </section>
+
+  <!-- Sección Contacto / Redes -->
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p>
+      <a href="mailto:joaquinmirma@gmail.com" aria-label="Correo"><i class="fa-solid fa-envelope"></i> joaquinmirma@gmail.com</a>
+      <br />
+      <a href="https://www.linkedin.com/in/joaquin-mir-macias-59a9a2230/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <i class="fa-brands fa-linkedin"></i> LinkedIn
+      </a>
+      <br />
+      <!-- Sustituye # por tu URL real de GitHub -->
+      <a href="#" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <i class="fa-brands fa-github"></i> GitHub
+      </a>
+    </p>
+  </section>
+
+  <!-- JavaScript -->
   <script src="script.js"></script>
 </body>
 </html>
