@@ -1,167 +1,90 @@
-/* Fuente base y ajustes generales */
-body {
-    font-family: 'Montserrat', sans-serif;
-    margin: 0;
-    color: #222;               /* Texto en color gris oscuro */
-    background-color: #f9f9f9; /* Fondo muy clarito para secciones */
-    scroll-behavior: smooth;   /* Desplazamiento suave al hacer clic en los enlaces de navegación */
-  }
-  
-  /* Estilos del encabezado y menú de navegación */
-  header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background: #ffffff;
-    border-bottom: 2px solid #eee;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    z-index: 1000;
-  }
-  
-  /* Logo (nombre del sitio) */
-  header .logo a {
-    font-size: 1.2em;
-    font-weight: 700;
-    color: #000;
-    text-decoration: none;
-  }
-  
-  /* Navegación principal */
-  header nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    gap: 20px;
-  }
-  header nav ul li a {
-    text-decoration: none;
-    color: #000;
-    font-weight: 500;
-  }
-  header nav ul li a:hover {
-    color: #0077b6; /* Color de énfasis al pasar el cursor (azul oscuro en este ejemplo) */
-  }
-  
-  /* Botón de menú hamburguesa (por defecto oculto en desktop) */
-  .menu-toggle {
-    display: none;
-    font-size: 1.5em;
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  /* Secciones de contenido */
-  section {
-    max-width: 800px;
-    margin: 80px auto 40px auto;  /* centrado, con margen superior para dejar espacio al header fijo */
-    padding: 0 20px;
-  }
-  section h2 {
-    font-size: 2em;
-    margin-bottom: 0.5em;
-    border-bottom: 2px solid #0077b6;
-    display: inline-block;
-    padding-bottom: 4px;
-  }
-  section p {
-    line-height: 1.6;
-    margin-bottom: 1em;
-  }
-  
-  /* Imagen de perfil en Sobre mí */
-  .perfil {
-    float: right;
-    width: 150px;
-    border-radius: 50%;
-    margin: 0 0 1em 1em;
-  }
-  
-  /* Proyectos */
-  .projects {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  .project {
-    flex: 1 1 300px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    text-align: center;
-  }
-  .project img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 4px;
-    margin-bottom: 10px;
-  }
-  .project h3 {
-    font-size: 1.25em;
-    margin: 0.5em 0;
-  }
-  .project p {
-    font-size: 0.95em;
-    color: #555;
-  }
-  
-  /* Redes Sociales - íconos */
-  .social-icons {
-    font-size: 1.5em;
-  }
-  .social-icons a {
-    margin-right: 15px;
-    color: #222;
-    text-decoration: none;
-  }
-  .social-icons a:hover {
-    color: #0077b6;
-  }
-  
-  /* Adaptaciones responsive para móviles */
-  @media (max-width: 600px) {
-    /* Mostrar botón de menú y ocultar items del nav en móviles */
-    .menu-toggle {
-      display: block;
-      color: #000;
-    }
-    header nav ul {
-      display: none; /* oculto por defecto en móvil (se mostrará al activar menú) */
-      flex-direction: column;
-      background: #fff;
-      position: absolute;
-      top: 60px;
-      right: 0;
-      width: 100%;
-      border-bottom: 2px solid #eee;
-    }
-    header nav ul.open {
-      display: flex; /* mostrar menú cuando tenga la clase .open */
-    }
-    header nav ul li {
-      padding: 15px 20px;
-      border-top: 1px solid #eee;
-    }
-    header nav ul li a {
-      display: block;
-    }
-    /* Ajustar secciones en móvil (márgenes más pequeños) */
-    section {
-      margin: 100px auto 20px auto;
-      padding: 0 15px;
-    }
-    .projects {
-      flex-direction: column;
-    }
-    .project {
-      margin-bottom: 20px;
-    }
-  }
-  
+:root{
+  --bg:#0b0b0b;         /* fondo general casi negro */
+  --panel:#111111;       /* paneles y tarjetas */
+  --text:#fafafa;        /* texto principal */
+  --muted:#a1a1aa;       /* texto secundario */
+  --border:#232323;      /* bordes sutiles */
+  --hover:#1a1a1a;       /* hover en paneles/botones */
+  --accent:#ffffff;      /* acentos claros */
+  --radius:16px;         /* radios consistentes */
+  --container:1100px;    /* ancho de contenido */
+}
+
+/* Tipografía base */
+html,body{ height:100%; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Poppins', sans-serif;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  scroll-behavior:smooth;
+}
+
+/* Utilidades */
+.container{ max-width:var(--container); margin:0 auto; padding:0 20px; }
+.section{ padding:120px 0 80px; }
+.overline{ letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); font-weight:600; font-size:0.9rem; }
+
+/* Header */
+header{
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  backdrop-filter:saturate(180%) blur(8px);
+  background:rgba(11,11,11,.6);
+  border-bottom:1px solid var(--border);
+}
+header .wrap{ display:flex; align-items:center; justify-content:space-between; height:72px; }
+.logo a{ color:var(--text); text-decoration:none; font-weight:800; letter-spacing:.02em; }
+nav ul{ list-style:none; display:flex; gap:28px; margin:0; padding:0; }
+nav a{ color:#eaeaea; text-decoration:none; font-weight:600; opacity:.9; }
+nav a:hover{ opacity:1; }
+.menu-toggle{ display:none; background:none; border:0; color:var(--text); font-size:1.4rem; }
+
+/* Hero (si tu primera sección es ‘sobre-mi’) */
+#sobre-mi{ padding-top:140px; }
+#sobre-mi h1{ font-family:'Poppins', Inter, sans-serif; font-weight:800; font-size:clamp(2.4rem, 6vw, 4rem); line-height:1.1; margin:.3em 0 .6em; }
+#sobre-mi p{ color:#dedede; max-width:70ch; font-size:1.05rem; }
+#sobre-mi .perfil{
+  width:320px; max-width:100%; display:block; border-radius:20px; filter:grayscale(100%);
+  box-shadow:0 0 0 1px var(--border), 0 10px 30px rgba(0,0,0,.5);
+}
+
+/* Secciones genéricas */
+section h2{ font-family:'Poppins', Inter, sans-serif; font-weight:700; font-size:1rem; letter-spacing:.25em; color:var(--muted); text-transform:uppercase; margin:0 0 24px; }
+section h3{ font-family:'Poppins', Inter, sans-serif; font-size:1.25rem; margin:.2em 0 .4em; }
+section p{ color:#d4d4d8; }
+
+/* Tarjetas de proyectos */
+.projects{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px; }
+.project{ background:var(--panel); border:1px solid var(--border); border-radius:var(--radius); padding:18px; transition:transform .2s ease, border-color .2s ease, background .2s ease; }
+.project:hover{ transform:translateY(-2px); border-color:#2e2e2e; background:var(--hover); }
+.project img{ width:100%; height:180px; object-fit:cover; border-radius:12px; margin-bottom:12px; filter:grayscale(100%); }
+.project p{ color:#cfcfd6; }
+
+/* Listas/link tipo ‘Medios y redes’ */
+.links-list{ display:grid; gap:12px; margin-top:10px; }
+.links-list a{ display:flex; align-items:center; justify-content:space-between; padding:14px 16px; border:1px solid var(--border); border-radius:14px; background:var(--panel); color:var(--text); text-decoration:none; transition:transform .15s ease, border-color .15s ease, background .15s ease; }
+.links-list a:hover{ background:var(--hover); border-color:#2e2e2e; transform:translateY(-1px); }
+.links-list a span{ color:var(--muted); font-weight:600; }
+
+/* Botones */
+.btn{ display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border:1px solid var(--border); border-radius:9999px; background:transparent; color:var(--text); text-decoration:none; font-weight:600; }
+.btn:hover{ background:var(--hover); border-color:#2e2e2e; }
+
+/* Sección contacto */
+#contacto a{ color:#e5e5e5; text-decoration:none; }
+#contacto a:hover{ text-decoration:underline; }
+
+/* Footer simple (si lo usas) */
+footer{ color:var(--muted); border-top:1px solid var(--border); background:rgba(0,0,0,.15); }
+footer .wrap{ height:80px; display:flex; align-items:center; justify-content:space-between; }
+
+/* Responsive */
+@media (max-width: 900px){
+  nav ul{ display:none; position:absolute; right:20px; top:72px; background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:14px; flex-direction:column; width: 220px; }
+  nav ul.open{ display:flex; }
+  .menu-toggle{ display:block; }
+  #sobre-mi{ padding-top:110px; }
+}
