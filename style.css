@@ -125,3 +125,28 @@ body { isolation: isolate; }
 @media (hover: none) and (pointer: coarse){
   .cursor-dot{ display:none; }
 }
+
+/* ==== Highlight dinámico en proyectos ==== */
+.project {
+  position: relative;
+  overflow: hidden;
+}
+
+.project::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  padding: 2px; /* grosor del halo */
+  background: linear-gradient(90deg, #ffffff, #00ffff, #ffffff);
+  background-size: 200% 200%;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.project.highlight::before {
+  opacity: 1;
+}
+

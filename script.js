@@ -51,3 +51,24 @@ if (y) { y.textContent = new Date().getFullYear(); }
   }
   tick();
 })();
+
+// ==== Iluminación de bordes de proyectos al acercar el cursor ====
+(() => {
+  const projects = document.querySelectorAll('.project');
+  const threshold = 80; // distancia en px para empezar a iluminar
+
+  window.addEventListener('mousemove', (e) => {
+    projects.forEach(project => {
+      const rect = project.getBoundingClientRect();
+      const dx = Math.max(rect.left - e.clientX, 0, e.clientX - rect.right);
+      const dy = Math.max(rect.top - e.clientY, 0, e.clientY - rect.bottom);
+      const distance = Math.sqrt(dx*dx + dy*dy);
+
+      if (distance < threshold) {
+        project.classList.add('highlight');
+      } else {
+        project.classList.remove('highlight');
+      }
+    });
+  });
+})();
