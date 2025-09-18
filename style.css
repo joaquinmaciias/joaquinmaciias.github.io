@@ -52,6 +52,7 @@ nav a:hover{opacity:1}
   display:grid; place-items:center; background:var(--panel);
   border:1px solid var(--border); border-radius:22px; padding:18px;
   box-shadow:0 0 0 1px var(--border), 0 10px 30px rgba(0,0,0,.55);
+  background: #0b0b0b;
 }
 .perfil{width:100%; max-width:380px; border-radius:16px; filter:grayscale(100%); display:block}
 
