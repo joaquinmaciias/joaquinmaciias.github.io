@@ -98,3 +98,25 @@ footer .wrap{height:80px; display:flex; align-items:center; justify-content:spac
   .menu-toggle{display:block}
   #sobre-mi{padding-top:110px}
 }
+
+/* ===== Cursor seguidor ===== */
+.cursor-dot{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;          /* bola blanca opaca */
+  opacity: 0.95;
+  pointer-events: none;       /* no bloquea clics */
+  transform: translate3d(-50%,-50%,0) scale(1);
+  transition: transform 120ms ease;
+  z-index: 9999;              /* por encima de todo */
+  will-change: transform;
+}
+
+/* Ocultar en pantallas táctiles */
+@media (hover: none) and (pointer: coarse){
+  .cursor-dot{ display:none; }
+}
