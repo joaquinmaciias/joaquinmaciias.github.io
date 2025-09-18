@@ -114,10 +114,12 @@ footer .wrap{height:80px; display:flex; align-items:center; justify-content:spac
   transition: transform 120ms ease;
   z-index: 9999;
   will-change: transform;
+  mix-blend-mode: difference;
 }
 
-/* (Opcional) sustituir el cursor nativo */
-/* body { cursor: none; } */
+/* Aislar el cursor para que no se mezcle con otros elementos */
+body { isolation: isolate; }
+
 
 /* Ocultar en pantallas táctiles */
 @media (hover: none) and (pointer: coarse){

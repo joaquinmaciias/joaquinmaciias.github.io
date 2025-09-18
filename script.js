@@ -26,7 +26,7 @@ if (y) { y.textContent = new Date().getFullYear(); }
   let currentX = targetX;
   let currentY = targetY;
   let scale = 1;
-  const easing = 0.15; // menor = más lento
+  const easing = 0.20; // menor = más lento
 
   window.addEventListener('mousemove', (e) => {
     targetX = e.clientX;
@@ -34,7 +34,7 @@ if (y) { y.textContent = new Date().getFullYear(); }
   });
 
   window.addEventListener('mousedown', (e) => {
-    if (e.button === 0) scale = 1.6; // crece al mantener click izq.
+    if (e.button === 0) scale = 2; // crece al mantener click izq.
   });
   window.addEventListener('mouseup', (e) => {
     if (e.button === 0) scale = 1;
