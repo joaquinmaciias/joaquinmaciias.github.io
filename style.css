@@ -142,7 +142,8 @@ body { isolation: isolate; }
   z-index:3;
 
   /* Tamaño del foco del halo (ajústalo si quieres) */
-  --gsize: 140px;
+  --gsize: 200px;             /* tamaño del halo (antes ~120–140) */
+  --halo-width: 4px;          /* grosor del borde iluminado (antes 2px) */
 
   /* El halo sigue las variables --gx / --gy que ponemos desde JS */
   background:
@@ -153,7 +154,7 @@ body { isolation: isolate; }
     );
 
   /* Recortamos para que SOLO se vea en el borde (ancho = padding) */
-  padding: 2px; /* grosor visible del halo en el borde */
+  padding: var(--halo-width);
   -webkit-mask:
       linear-gradient(#000 0 0) content-box,
       linear-gradient(#000 0 0);
