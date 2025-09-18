@@ -99,7 +99,18 @@ footer .wrap{height:80px; display:flex; align-items:center; justify-content:spac
   #sobre-mi{padding-top:110px}
 }
 
-/* ===== Cursor seguidor ===== */
+/* Link color */
+a {
+  color: #d4d4d8; /* soft grey */
+  text-decoration: none;
+}
+
+a:hover {
+  color: #ffffff; /* white on hover */
+  text-decoration: underline; /* underline on hover */
+}
+
+/* Cursor follower */
 .cursor-dot{
   position: fixed;
   top: 0;
@@ -107,9 +118,9 @@ footer .wrap{height:80px; display:flex; align-items:center; justify-content:spac
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #fff;      /* bola blanca opaca */
+  background: #fff; /* white color */
   opacity: 1;
-  pointer-events: none;  /* no bloquea clics */
+  pointer-events: none; 
   transform: translate3d(-50%, -50%, 0) scale(1);
   transition: transform 120ms ease;
   z-index: 9999;
@@ -117,35 +128,35 @@ footer .wrap{height:80px; display:flex; align-items:center; justify-content:spac
   mix-blend-mode: difference;
 }
 
-/* Aislar el cursor para que no se mezcle con otros elementos */
+/* Isolation to prevent blending issues */
 body { isolation: isolate; }
 
 
-/* Ocultar en pantallas táctiles */
+/* Hide cursor follower on touch devices */
 @media (hover: none) and (pointer: coarse){
   .cursor-dot{ display:none; }
 }
 
-/* ==== Highlight dinámico y localizado en los bordes de .project ==== */
+/* ==== Halo effect on project cards ==== */
 .project{
   position: relative;
   overflow: hidden;
 }
 
-/* Capa que dibuja el halo SOLO en la zona de borde */
+/* Halo effect */
 .project::before{
   content:"";
   position:absolute;
-  inset:-1px; /* cubre también el borde */
+  inset:-1px;
   border-radius: calc(var(--radius) + 1px);
   pointer-events:none;
   z-index:3;
 
-  /* Tamaño del foco del halo (ajústalo si quieres) */
-  --gsize: 200px;             /* tamaño del halo (antes ~120–140) */
-  --halo-width: 4px;          /* grosor del borde iluminado (antes 2px) */
+  /* Size and opacity of the halo */
+  --gsize: 200px;
+  --halo-width: 4px;
 
-  /* El halo sigue las variables --gx / --gy que ponemos desde JS */
+  /* Gradient */
   background:
     radial-gradient(
       circle var(--gsize) at var(--gx, -100px) var(--gy, -100px),
@@ -153,7 +164,7 @@ body { isolation: isolate; }
       rgba(255,255,255, 0) 60%
     );
 
-  /* Recortamos para que SOLO se vea en el borde (ancho = padding) */
+  /* Cutout to create the halo effect */
   padding: var(--halo-width);
   -webkit-mask:
       linear-gradient(#000 0 0) content-box,
@@ -165,7 +176,7 @@ body { isolation: isolate; }
   transition: opacity .1s linear;
 }
 
-/* Fallback simple si el navegador no soporta el mask (se verá “suave” encima) */
+/* For browsers that do not support mask-composite */
 @supports not ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
   .project::before{
     padding:0;
