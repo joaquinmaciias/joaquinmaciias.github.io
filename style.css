@@ -107,14 +107,17 @@ footer .wrap{height:80px; display:flex; align-items:center; justify-content:spac
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #fff;          /* bola blanca opaca */
+  background: #fff;      /* bola blanca opaca */
   opacity: 0.95;
-  pointer-events: none;       /* no bloquea clics */
-  transform: translate3d(-50%,-50%,0) scale(1);
+  pointer-events: none;  /* no bloquea clics */
+  transform: translate3d(-50%, -50%, 0) scale(1);
   transition: transform 120ms ease;
-  z-index: 9999;              /* por encima de todo */
+  z-index: 9999;
   will-change: transform;
 }
+
+/* (Opcional) sustituir el cursor nativo */
+/* body { cursor: none; } */
 
 /* Ocultar en pantallas táctiles */
 @media (hover: none) and (pointer: coarse){
