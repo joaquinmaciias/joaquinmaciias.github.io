@@ -126,27 +126,50 @@ body { isolation: isolate; }
   .cursor-dot{ display:none; }
 }
 
-/* ==== Highlight dinámico en proyectos ==== */
-.project {
+/* ==== Highlight dinámico y localizado en los bordes de .project ==== */
+.project{
   position: relative;
   overflow: hidden;
 }
 
-.project::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius);
-  padding: 2px; /* grosor del halo */
-  background: linear-gradient(90deg, #ffffff, #00ffff, #ffffff);
-  background-size: 200% 200%;
-  opacity: 0;
-  transition: opacity 0.15s ease;
-  pointer-events: none;
-  z-index: 2;
+/* Capa que dibuja el halo SOLO en la zona de borde */
+.project::before{
+  content:"";
+  position:absolute;
+  inset:-1px; /* cubre también el borde */
+  border-radius: calc(var(--radius) + 1px);
+  pointer-events:none;
+  z-index:3;
+
+  /* Tamaño del foco del halo (ajústalo si quieres) */
+  --gsize: 140px;
+
+  /* El halo sigue las variables --gx / --gy que ponemos desde JS */
+  background:
+    radial-gradient(
+      circle var(--gsize) at var(--gx, -100px) var(--gy, -100px),
+      rgba(255,255,255, var(--gopacity,0)) 0%,
+      rgba(255,255,255, 0) 60%
+    );
+
+  /* Recortamos para que SOLO se vea en el borde (ancho = padding) */
+  padding: 2px; /* grosor visible del halo en el borde */
+  -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+
+  opacity: var(--gopacity, 0);
+  transition: opacity .1s linear;
 }
 
-.project.highlight::before {
-  opacity: 1;
+/* Fallback simple si el navegador no soporta el mask (se verá “suave” encima) */
+@supports not ((-webkit-mask-composite: xor) or (mask-composite: exclude)) {
+  .project::before{
+    padding:0;
+    -webkit-mask:none;
+            mask:none;
+  }
 }
 

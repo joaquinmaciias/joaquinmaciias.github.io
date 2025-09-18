@@ -54,21 +54,53 @@ if (y) { y.textContent = new Date().getFullYear(); }
 
 // ==== Iluminación de bordes de proyectos al acercar el cursor ====
 (() => {
-  const projects = document.querySelectorAll('.project');
-  const threshold = 80; // distancia en px para empezar a iluminar
+  const cards = document.querySelectorAll('.project');
+  const THRESH_OUT = 120; // radio de activación cuando el cursor está fuera
+  const THRESH_IN  = 80;  // distancia al borde (desde dentro) para activar
+
+  const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
 
   window.addEventListener('mousemove', (e) => {
-    projects.forEach(project => {
-      const rect = project.getBoundingClientRect();
-      const dx = Math.max(rect.left - e.clientX, 0, e.clientX - rect.right);
-      const dy = Math.max(rect.top - e.clientY, 0, e.clientY - rect.bottom);
-      const distance = Math.sqrt(dx*dx + dy*dy);
+    const mx = e.clientX;
+    const my = e.clientY;
 
-      if (distance < threshold) {
-        project.classList.add('highlight');
+    cards.forEach(card => {
+      const r = card.getBoundingClientRect();
+      const inside = mx >= r.left && mx <= r.right && my >= r.top && my <= r.bottom;
+
+      // Punto del borde más cercano (en coords del elemento)
+      let px = clamp(mx, r.left, r.right) - r.left;
+      let py = clamp(my, r.top, r.bottom) - r.top;
+
+      let opacity;
+
+      if (inside) {
+        // Distancias a cada borde (desde dentro)
+        const dL = mx - r.left;
+        const dR = r.right - mx;
+        const dT = my - r.top;
+        const dB = r.bottom - my;
+        const minD = Math.min(dL, dR, dT, dB);
+
+        // Proyecta el foco al borde más cercano
+        if (minD === dL) px = 0;
+        else if (minD === dR) px = r.width;
+        else if (minD === dT) py = 0;
+        else if (minD === dB) py = r.height;
+
+        // Intensidad en función de lo cerca que esté del borde
+        opacity = Math.max(0, 1 - (minD / THRESH_IN));
       } else {
-        project.classList.remove('highlight');
+        // Distancia mínima al rectángulo cuando el cursor está fuera
+        const dx = Math.max(r.left - mx, 0, mx - r.right);
+        const dy = Math.max(r.top - my, 0, my - r.bottom);
+        const dist = Math.hypot(dx, dy);
+        opacity = Math.max(0, 1 - (dist / THRESH_OUT));
       }
+
+      card.style.setProperty('--gx', `${px}px`);
+      card.style.setProperty('--gy', `${py}px`);
+      card.style.setProperty('--gopacity', opacity.toFixed(3));
     });
   });
 })();
