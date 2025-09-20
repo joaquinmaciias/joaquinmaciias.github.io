@@ -24,7 +24,7 @@ body{
   scroll-behavior:smooth;
 }
 .container{max-width:var(--container); margin:0 auto; padding:0 22px}
-.section{padding:110px 0 80px}
+.section{padding:90px 0 60px}
 .overline{letter-spacing:.22em; text-transform:uppercase; color:var(--muted); font-weight:700; font-size:.9rem}
 .accent{color:#fff}
 
@@ -54,7 +54,7 @@ nav a:hover{opacity:1}
   box-shadow:0 0 0 1px var(--border), 0 10px 30px rgba(0,0,0,.55);
   background: #0b0b0b;
 }
-.perfil{width:100%; max-width:380px; border-radius:16px; filter:grayscale(100%); display:block}
+.perfil{width:100%; max-width:380px; border-radius:16px; display:block} /* filter:grayscale(100%) */
 
 /* Secciones */
 section h2{font-family:'Poppins',Inter,sans-serif; font-weight:700; font-size:1rem; letter-spacing:.25em; color:var(--muted); text-transform:uppercase; margin:0 0 24px}
