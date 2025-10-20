@@ -298,10 +298,10 @@ if (y) { y.textContent = new Date().getFullYear(); }
     // Botón de idioma
     const langBtn = ensureLangButton();
     if (langBtn) {
-      langBtn.textContent = lang.toUpperCase();
+      langBtn.textContent = (lang === 'es') ? 'English' : 'Español';
       langBtn.setAttribute('aria-label', __t(lang === 'es' ? 'ui.switchToEN' : 'ui.switchToES'));
     }
-
+    
     // ===== Mapeo de selectores -> claves =====
     const map = [
       // Menú
