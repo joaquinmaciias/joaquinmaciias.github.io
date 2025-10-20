@@ -82,6 +82,13 @@ section p{color:#d4d4d8}
 .btn:hover{background:var(--hover); border-color:#2e2e2e}
 .btn.ghost{opacity:.9}
 .btn.sm{padding:8px 14px; font-weight:600}
+.lang-toggle{
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  min-width: 52px;
+  justify-content: center;
+}
 
 /* Footer */
 footer{color:var(--muted); border-top:1px solid var(--border); background:rgba(0,0,0,.15)}

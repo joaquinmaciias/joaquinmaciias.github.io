@@ -1,9 +1,14 @@
-// Menú hamburguesa
+// Menú hamburguesa (con aria-label traducible)
 const menuToggle = document.getElementById('menuToggle');
 const navUl = document.querySelector('header nav ul');
 menuToggle.addEventListener('click', () => {
   navUl.classList.toggle('open');
+  const isOpen = navUl.classList.contains('open');
+  // Si el i18n ya está cargado usamos sus textos; si no, fallback.
+  const label = (window.__t ? window.__t(isOpen ? 'menu.close' : 'menu.open') : (isOpen ? 'Cerrar menú' : 'Abrir menú'));
+  menuToggle.setAttribute('aria-label', label);
 });
+
 
 // Año en el footer
 const y = document.getElementById('year');
@@ -102,5 +107,326 @@ if (y) { y.textContent = new Date().getFullYear(); }
       card.style.setProperty('--gy', `${py}px`);
       card.style.setProperty('--gopacity', opacity.toFixed(3));
     });
+  });
+})();
+
+// ===================== I18N (ES / EN) =====================
+(function(){
+  const i18n = {
+    es: {
+      // Meta
+      title: 'Joaquín Mir Macias — Web Personal',
+      metaDesc: 'Web personal de Joaquín Mir Macias. Perfil junior orientado a IA, Ciencia de Datos y Desarrollo.',
+      // UI & navegación
+      'nav.aria': 'Principal',
+      'nav.sobreMi': 'Sobre mí',
+      'nav.proyectos': 'Proyectos',
+      'nav.experiencia': 'Experiencia',
+      'nav.educacion': 'Educación',
+      'nav.habilidades': 'Habilidades',
+      'nav.contacto': 'Contacto',
+      'menu.open': 'Abrir menú',
+      'menu.close': 'Cerrar menú',
+      'ui.switchToEN': 'Cambiar a inglés',
+      'ui.switchToES': 'Cambiar a español',
+      // Secciones
+      'sec.about': 'Sobre mí',
+      'sec.projects': 'Proyectos',
+      'sec.experience': 'Experiencia',
+      'sec.education': 'Educación',
+      'sec.skills': 'Habilidades',
+      'sec.contact': 'Contacto',
+      // HERO
+      'hero.h1': 'Soy Joaquín Mir, <span class="accent">ingeniero en Matemáticas e Inteligencia Artificial</span> y estudiante de máster en <span class="accent">IA Avanzada</span>.',
+      'hero.lead': 'Me apasiona transformar datos en soluciones inteligentes. He participado en proyectos de <em>Computer Vision</em> para la detección de tumores, en el desarrollo de una <em>silla de ruedas autónoma</em> y en prácticas de análisis de datos en <strong>Redsys</strong> y <strong>BBVA</strong>. Busco mi primera experiencia a tiempo completo donde aportar mis conocimientos en <span class="accent">Machine Learning, análisis de datos y desarrollo de sistemas inteligentes</span>, mientras sigo aprendiendo y creando impacto real.',
+      'cta.cv': 'Ver CV',
+      'cta.carta': 'Carta de Recomendación BBVA',
+      'cta.tfg': 'Trabajo Fin de Grado',
+      'img.altPerfil': 'Foto de Joaquín Mir Macias',
+      // BIO
+      'bio.h2': 'Sobre mí',
+      'bio.p1': 'Soy <strong>Joaquín Mir</strong>, graduado en <em>Ingeniería Matemática e Inteligencia Artificial</em> y actualmente estudiante del <strong>Máster en Inteligencia Artificial Avanzada</strong> en la Universidad Pontificia Comillas – ICAI. Mi formación combina una sólida base matemática con experiencia práctica en proyectos de <em>Machine Learning</em>, <em>Visión por Computador</em> y <em>Análisis de Datos</em>.',
+      'bio.p2': 'He trabajado en proyectos como la <strong>detección de tumores renales con Deep Learning</strong>, el desarrollo de una <strong>silla de ruedas autónoma</strong> y prácticas profesionales en <strong>Redsys</strong> y <strong>BBVA</strong>, donde apliqué análisis de datos y técnicas de auditoría interna.',
+      'bio.p3': 'Busco mi primera experiencia a tiempo completo en el ámbito de la <strong>IA y Ciencia de Datos</strong>, con el objetivo de aportar soluciones innovadoras, crecer profesionalmente y generar impacto real en las organizaciones.',
+      // PROYECTOS
+      'projects.h2': 'Proyectos',
+      'projects.1.title': 'Segmentación de imágenes médicas',
+      'projects.1.desc': 'Entrenamiento de modelos U-Net y evaluación con métricas IoU/Dice. Pipeline de preprocesado y data augmentation.',
+      'projects.1.alt': 'Proyecto 1',
+      'projects.2.title': 'Dashboard de analítica',
+      'projects.2.desc': 'Extracción, modelado y visualización de KPIs con SQL + Python + Power BI para seguimiento de negocio.',
+      'projects.2.alt': 'Proyecto 2',
+      'projects.3.title': 'Clasificador de texto',
+      'projects.3.desc': 'Fine-tuning de modelos de lenguaje para clasificación multiclase; trazabilidad y evaluación con MLflow.',
+      'projects.3.alt': 'Proyecto 3',
+      // EXPERIENCIA
+      'exp.h2': 'Experiencia',
+      'exp.p1': '<strong>Universidad Pontificia de Comillas – ICAI</strong>, Madrid, España<br><em>Project Member – SocialTech Challenge</em> · Octubre 2023 – Junio 2024',
+      'exp.p1.li1': 'Colaboración con el área de Sistemas Inteligentes en el diseño y fabricación de una silla de ruedas autónoma utilizando sistemas electrónicos y Machine Learning.',
+      'exp.p2': '<strong>Redsys</strong>, Madrid, España<br><em>Internship – Data Analyst Department</em> · Junio 2024 – Agosto 2024',
+      'exp.p2.li1': 'Extracción de datos con Hue, filtrado de información en bases de datos relacionales con QlikSense.',
+      'exp.p2.li2': 'Creación de dashboards dirigidos para visualización de datos de empresas.',
+      'exp.p3': '<strong>BBVA</strong>, Madrid, España<br><em>Internship – Internal Audit</em> · Febrero 2025 – Agosto 2025',
+      'exp.p3.li1': 'Apoyo en la ejecución de auditorías internas en el área corporativa.',
+      'exp.p3.li2': 'Participación en la evaluación de procesos clave, análisis de riesgos y controles.',
+      'exp.p3.li3': 'Elaboración de informes con hallazgos y recomendaciones.',
+      'exp.p3.li4': 'Uso de herramientas de análisis de datos y colaboración con distintas unidades para garantizar cumplimiento normativo y de políticas internas.',
+      // EDUCACIÓN
+      'edu.h2': 'Educación',
+      'edu.master': 'Máster de Inteligencia Artificial Avanzada',
+      'edu.degree': 'Ingeniería Matemática Inteligencia Artificial',
+      // HABILIDADES
+      'skills.h2': 'Habilidades',
+      'skills.l1': '<strong>Lenguajes:</strong> Python, SQL, R, HTML/CSS/JS.',
+      'skills.l2': '<strong>ML/DL:</strong> NumPy, pandas, scikit-learn, PyTorch, OpenCV.',
+      'skills.l3': '<strong>Datos:</strong> MySQL, MongoDB, ETL, APIs.',
+      'skills.l4': '<strong>BI:</strong> Power BI, Tableau.',
+      'skills.l5': '<strong>Otros:</strong> Git, Linux, control de versiones, comunicación y trabajo en equipo.',
+      // CONTACTO
+      'contact.h2': 'Contacto',
+      'contact.email': 'Correo',
+      'contact.linkedin': 'LinkedIn',
+      'contact.github': 'Github',
+      // FOOTER
+      'footer.back': 'Volver arriba'
+    },
+    en: {
+      // Meta
+      title: 'Joaquín Mir Macias — Personal Website',
+      metaDesc: 'Personal website of Joaquín Mir Macias. Junior profile focused on AI, Data Science and Development.',
+      // UI & navegación
+      'nav.aria': 'Main',
+      'nav.sobreMi': 'About',
+      'nav.proyectos': 'Projects',
+      'nav.experiencia': 'Experience',
+      'nav.educacion': 'Education',
+      'nav.habilidades': 'Skills',
+      'nav.contacto': 'Contact',
+      'menu.open': 'Open menu',
+      'menu.close': 'Close menu',
+      'ui.switchToEN': 'Switch to English',
+      'ui.switchToES': 'Cambiar a español',
+      // Secciones
+      'sec.about': 'About',
+      'sec.projects': 'Projects',
+      'sec.experience': 'Experience',
+      'sec.education': 'Education',
+      'sec.skills': 'Skills',
+      'sec.contact': 'Contact',
+      // HERO
+      'hero.h1': "I'm Joaquín Mir, <span class=\"accent\">Mathematics & AI engineer</span> and master's student in <span class=\"accent\">Advanced AI</span>.",
+      'hero.lead': 'I love turning data into intelligent solutions. I have worked on <em>Computer Vision</em> for tumor detection, built an <em>autonomous wheelchair</em>, and completed data analytics internships at <strong>Redsys</strong> and <strong>BBVA</strong>. I am seeking my first full-time role to contribute in <span class="accent">Machine Learning, data analysis, and intelligent systems</span> while continuing to learn and create real impact.',
+      'cta.cv': 'View CV',
+      'cta.carta': 'BBVA Letter of Recommendation',
+      'cta.tfg': 'Bachelor Thesis',
+      'img.altPerfil': 'Photo of Joaquín Mir Macias',
+      // BIO
+      'bio.h2': 'About',
+      'bio.p1': 'I am <strong>Joaquín Mir</strong>, graduate in <em>Mathematical Engineering and Artificial Intelligence</em> and currently a student of the <strong>MSc in Advanced Artificial Intelligence</strong> at Universidad Pontificia Comillas – ICAI. My background combines a solid mathematical foundation with hands-on experience in <em>Machine Learning</em>, <em>Computer Vision</em>, and <em>Data Analysis</em> projects.',
+      'bio.p2': 'I have worked on <strong>kidney tumor detection with Deep Learning</strong>, developed an <strong>autonomous wheelchair</strong>, and completed internships at <strong>Redsys</strong> and <strong>BBVA</strong>, applying data analysis and internal audit techniques.',
+      'bio.p3': 'I am looking for my first full-time opportunity in <strong>AI and Data Science</strong> to deliver innovative solutions, grow professionally, and generate real impact.',
+      // PROJECTS
+      'projects.h2': 'Projects',
+      'projects.1.title': 'Medical image segmentation',
+      'projects.1.desc': 'Training U-Net models and evaluating with IoU/Dice. Pre-processing pipeline and data augmentation.',
+      'projects.1.alt': 'Project 1',
+      'projects.2.title': 'Analytics dashboard',
+      'projects.2.desc': 'KPI extraction, modeling and visualization with SQL + Python + Power BI for business tracking.',
+      'projects.2.alt': 'Project 2',
+      'projects.3.title': 'Text classifier',
+      'projects.3.desc': 'Fine-tuning language models for multi-class classification; tracking and evaluation with MLflow.',
+      'projects.3.alt': 'Project 3',
+      // EXPERIENCE
+      'exp.h2': 'Experience',
+      'exp.p1': '<strong>Universidad Pontificia de Comillas – ICAI</strong>, Madrid, Spain<br><em>Project Member – SocialTech Challenge</em> · October 2023 – June 2024',
+      'exp.p1.li1': 'Worked with the Intelligent Systems area to design and build an autonomous wheelchair using electronics and Machine Learning.',
+      'exp.p2': '<strong>Redsys</strong>, Madrid, Spain<br><em>Internship – Data Analyst Department</em> · June 2024 – August 2024',
+      'exp.p2.li1': 'Data extraction with Hue and filtering of information in relational databases using QlikSense.',
+      'exp.p2.li2': 'Built targeted dashboards for enterprise data visualization.',
+      'exp.p3': '<strong>BBVA</strong>, Madrid, Spain<br><em>Internship – Internal Audit</em> · February 2025 – August 2025',
+      'exp.p3.li1': 'Supported the execution of internal audits in the corporate area.',
+      'exp.p3.li2': 'Contributed to assessment of key processes, risk analysis and controls.',
+      'exp.p3.li3': 'Prepared reports with findings and recommendations.',
+      'exp.p3.li4': 'Used data analysis tools and collaborated across units to ensure compliance with regulations and internal policies.',
+      // EDUCATION
+      'edu.h2': 'Education',
+      'edu.master': 'Master in Advanced Artificial Intelligence',
+      'edu.degree': 'BSc in Mathematical Engineering & Artificial Intelligence',
+      // SKILLS
+      'skills.h2': 'Skills',
+      'skills.l1': '<strong>Languages:</strong> Python, SQL, R, HTML/CSS/JS.',
+      'skills.l2': '<strong>ML/DL:</strong> NumPy, pandas, scikit-learn, PyTorch, OpenCV.',
+      'skills.l3': '<strong>Data:</strong> MySQL, MongoDB, ETL, APIs.',
+      'skills.l4': '<strong>BI:</strong> Power BI, Tableau.',
+      'skills.l5': '<strong>Other:</strong> Git, Linux, version control, communication & teamwork.',
+      // CONTACT
+      'contact.h2': 'Contact',
+      'contact.email': 'Email',
+      'contact.linkedin': 'LinkedIn',
+      'contact.github': 'Github',
+      // FOOTER
+      'footer.back': 'Back to top'
+    }
+  };
+
+  // Exponer un pequeño helper para otros handlers
+  window.__t = (k) => {
+    const lang = window.__lang || 'es';
+    return (i18n[lang] && i18n[lang][k]) || i18n.es[k] || '';
+  };
+
+  function applyTranslations(lang){
+    window.__lang = lang;
+    // <html lang="">
+    document.documentElement.setAttribute('lang', lang);
+
+    // <title> y <meta name="description">
+    document.title = __t('title');
+    const md = document.querySelector('meta[name="description"]');
+    if (md) md.setAttribute('content', __t('metaDesc'));
+
+    // Nav y controles ARIA
+    const navEl = document.querySelector('header nav');
+    if (navEl) navEl.setAttribute('aria-label', __t('nav.aria'));
+
+    const menuBtn = document.getElementById('menuToggle');
+    if (menuBtn) {
+      const isOpen = document.querySelector('header nav ul').classList.contains('open');
+      menuBtn.setAttribute('aria-label', __t(isOpen ? 'menu.close' : 'menu.open'));
+    }
+
+    // Botón de idioma
+    const langBtn = ensureLangButton();
+    if (langBtn) {
+      langBtn.textContent = lang.toUpperCase();
+      langBtn.setAttribute('aria-label', __t(lang === 'es' ? 'ui.switchToEN' : 'ui.switchToES'));
+    }
+
+    // ===== Mapeo de selectores -> claves =====
+    const map = [
+      // Menú
+      {sel:'header nav ul li:nth-child(1) a', key:'nav.sobreMi'},
+      {sel:'header nav ul li:nth-child(2) a', key:'nav.proyectos'},
+      {sel:'header nav ul li:nth-child(3) a', key:'nav.experiencia'},
+      {sel:'header nav ul li:nth-child(4) a', key:'nav.educacion'},
+      {sel:'header nav ul li:nth-child(5) a', key:'nav.habilidades'},
+      {sel:'header nav ul li:nth-child(6) a', key:'nav.contacto'},
+
+      // HERO
+      {sel:'#sobre-mi h1', key:'hero.h1', html:true},
+      {sel:'#sobre-mi .lead', key:'hero.lead', html:true},
+      {sel:'.cta a:nth-child(1)', key:'cta.cv'},
+      {sel:'.cta a:nth-child(2)', key:'cta.carta'},
+      {sel:'.cta a:nth-child(3)', key:'cta.tfg'},
+      {sel:'.perfil', key:'img.altPerfil', attr:'alt'},
+
+      // Encabezados de secciones
+      {sel:'#bio h2', key:'bio.h2'},
+      {sel:'#proyectos h2', key:'projects.h2'},
+      {sel:'#experiencia h2', key:'exp.h2'},
+      {sel:'#educacion h2', key:'edu.h2'},
+      {sel:'#habilidades h2', key:'skills.h2'},
+      {sel:'#contacto h2', key:'contact.h2'},
+
+      // BIO párrafos
+      {sel:'#bio p:nth-of-type(1)', key:'bio.p1', html:true},
+      {sel:'#bio p:nth-of-type(2)', key:'bio.p2', html:true},
+      {sel:'#bio p:nth-of-type(3)', key:'bio.p3', html:true},
+
+      // PROYECTOS (3 tarjetas)
+      {sel:'.projects .project:nth-child(1) h3', key:'projects.1.title'},
+      {sel:'.projects .project:nth-child(1) p', key:'projects.1.desc'},
+      {sel:'.projects .project:nth-child(1) img', key:'projects.1.alt', attr:'alt'},
+
+      {sel:'.projects .project:nth-child(2) h3', key:'projects.2.title'},
+      {sel:'.projects .project:nth-child(2) p', key:'projects.2.desc'},
+      {sel:'.projects .project:nth-child(2) img', key:'projects.2.alt', attr:'alt'},
+
+      {sel:'.projects .project:nth-child(3) h3', key:'projects.3.title'},
+      {sel:'.projects .project:nth-child(3) p', key:'projects.3.desc'},
+      {sel:'.projects .project:nth-child(3) img', key:'projects.3.alt', attr:'alt'},
+
+      // EXPERIENCIA (tres bloques p + sus listas)
+      {sel:'#experiencia p:nth-of-type(1)', key:'exp.p1', html:true},
+      {sel:'#experiencia ul:nth-of-type(1) li:nth-child(1)', key:'exp.p1.li1'},
+
+      {sel:'#experiencia p:nth-of-type(2)', key:'exp.p2', html:true},
+      {sel:'#experiencia ul:nth-of-type(2) li:nth-child(1)', key:'exp.p2.li1'},
+      {sel:'#experiencia ul:nth-of-type(2) li:nth-child(2)', key:'exp.p2.li2'},
+
+      {sel:'#experiencia p:nth-of-type(3)', key:'exp.p3', html:true},
+      {sel:'#experiencia ul:nth-of-type(3) li:nth-child(1)', key:'exp.p3.li1'},
+      {sel:'#experiencia ul:nth-of-type(3) li:nth-child(2)', key:'exp.p3.li2'},
+      {sel:'#experiencia ul:nth-of-type(3) li:nth-child(3)', key:'exp.p3.li3'},
+      {sel:'#experiencia ul:nth-of-type(3) li:nth-child(4)', key:'exp.p3.li4'},
+
+      // EDUCACIÓN (texto de los <strong> dentro de los <a>)
+      {sel:'#educacion p:nth-of-type(1) a strong', key:'edu.master'},
+      {sel:'#educacion p:nth-of-type(2) a strong', key:'edu.degree'},
+
+      // HABILIDADES (5 elementos)
+      {sel:'#habilidades .skills li:nth-child(1)', key:'skills.l1', html:true},
+      {sel:'#habilidades .skills li:nth-child(2)', key:'skills.l2', html:true},
+      {sel:'#habilidades .skills li:nth-child(3)', key:'skills.l3', html:true},
+      {sel:'#habilidades .skills li:nth-child(4)', key:'skills.l4', html:true},
+      {sel:'#habilidades .skills li:nth-child(5)', key:'skills.l5', html:true},
+
+      // CONTACTO (texto visible de los <span>)
+      {sel:'#contacto .links-list a:nth-child(1) span', key:'contact.email'},
+      {sel:'#contacto .links-list a:nth-child(2) span', key:'contact.linkedin'},
+      {sel:'#contacto .links-list a:nth-child(3) span', key:'contact.github'},
+
+      // FOOTER
+      {sel:'footer a.btn.sm', key:'footer.back'}
+    ];
+
+    // Aplicar todas las traducciones
+    for (const item of map){
+      const el = document.querySelector(item.sel);
+      if (!el) continue;
+      if (item.attr){
+        el.setAttribute(item.attr, __t(item.key));
+      } else if (item.html){
+        el.innerHTML = __t(item.key);
+      } else {
+        el.textContent = __t(item.key);
+      }
+    }
+  }
+
+  function ensureLangButton(){
+    let btn = document.getElementById('langToggle');
+    if (!btn){
+      // Si no existe (por si no se tocó el HTML), lo creamos en .logo
+      const logo = document.querySelector('.logo');
+      if (!logo) return null;
+      btn = document.createElement('button');
+      btn.id = 'langToggle';
+      btn.className = 'btn sm lang-toggle';
+      logo.innerHTML = '';
+      logo.appendChild(btn);
+    }
+    // Click para alternar
+    if (!btn.__bound){
+      btn.addEventListener('click', () => {
+        const next = (window.__lang === 'es') ? 'en' : 'es';
+        setLang(next);
+      });
+      btn.__bound = true;
+    }
+    return btn;
+  }
+
+  function setLang(lang){
+    localStorage.setItem('lang', lang);
+    applyTranslations(lang);
+  }
+
+  // Inicialización
+  document.addEventListener('DOMContentLoaded', () => {
+    const userPref = localStorage.getItem('lang');
+    const fallback = (navigator.language || 'es').toLowerCase().startsWith('es') ? 'es' : 'en';
+    const startLang = userPref || fallback;
+    setLang(startLang);
   });
 })();
