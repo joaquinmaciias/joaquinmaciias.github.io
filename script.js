@@ -149,16 +149,25 @@ if (y) { y.textContent = new Date().getFullYear(); }
       'bio.p2': 'He trabajado en proyectos como la <strong>detección de tumores renales con Deep Learning</strong>, el desarrollo de una <strong>silla de ruedas autónoma</strong> y prácticas profesionales en <strong>Redsys</strong> y <strong>BBVA</strong>, donde apliqué análisis de datos y técnicas de auditoría interna.',
       'bio.p3': 'Busco mi primera experiencia a tiempo completo en el ámbito de la <strong>IA y Ciencia de Datos</strong>, con el objetivo de aportar soluciones innovadoras, crecer profesionalmente y generar impacto real en las organizaciones.',
       // PROYECTOS
-      'projects.h2': 'Proyectos',
-      'projects.1.title': 'Segmentación de imágenes médicas',
-      'projects.1.desc': 'Entrenamiento de modelos U-Net y evaluación con métricas IoU/Dice. Pipeline de preprocesado y data augmentation.',
-      'projects.1.alt': 'Proyecto 1',
-      'projects.2.title': 'Dashboard de analítica',
-      'projects.2.desc': 'Extracción, modelado y visualización de KPIs con SQL + Python + Power BI para seguimiento de negocio.',
-      'projects.2.alt': 'Proyecto 2',
-      'projects.3.title': 'Clasificador de texto',
-      'projects.3.desc': 'Fine-tuning de modelos de lenguaje para clasificación multiclase; trazabilidad y evaluación con MLflow.',
-      'projects.3.alt': 'Proyecto 3',
+      'projects.1.title': 'Kidney Tumor Detection (CT)',
+      'projects.1.desc':  'Segmentación automática de tumores renales en TC con CNNs.',
+      'projects.1.aria':  'Segmentación automática de tumores renales en TC con CNNs.',
+
+      'projects.2.title': 'Init RNNs & LSTM',
+      'projects.2.desc':  'Impacto de la inicialización de pesos en RNN/LSTM sobre estabilidad y convergencia.',
+      'projects.2.aria':  'Impacto de la inicialización de pesos en RNN/LSTM sobre estabilidad y convergencia.',
+
+      'projects.3.title': 'Llama 3.1 Fine-Tuning',
+      'projects.3.desc':  'Fine-tuning de Llama 3.1 para tareas instruccionales con guías reproducibles.',
+      'projects.3.aria':  'Fine-tuning de Llama 3.1 para tareas instruccionales con guías reproducibles.',
+
+      'projects.4.title': 'Latent Diffusion (LDM)',
+      'projects.4.desc':  'Implementación del pipeline de Latent Diffusion con Diffusers paso a paso.',
+      'projects.4.aria':  'Implementación del pipeline de Latent Diffusion con Diffusers paso a paso.',
+
+      'projects.5.title': 'DDPM (Diffusers)',
+      'projects.5.desc':  'Entrenamiento y muestreo con DDPM; comparación con DDIM y análisis de calidad.',
+      'projects.5.aria':  'Entrenamiento y muestreo con DDPM; comparación con DDIM y análisis de calidad.',
       // EXPERIENCIA
       'exp.h2': 'Experiencia',
       'exp.p1': '<strong>Universidad Pontificia de Comillas – ICAI</strong>, Madrid, España<br><em>Project Member – SocialTech Challenge</em> · Octubre 2023 – Junio 2024',
@@ -226,16 +235,25 @@ if (y) { y.textContent = new Date().getFullYear(); }
       'bio.p2': 'I have worked on <strong>kidney tumor detection with Deep Learning</strong>, developed an <strong>autonomous wheelchair</strong>, and completed internships at <strong>Redsys</strong> and <strong>BBVA</strong>, applying data analysis and internal audit techniques.',
       'bio.p3': 'I am looking for my first full-time opportunity in <strong>AI and Data Science</strong> to deliver innovative solutions, grow professionally, and generate real impact.',
       // PROJECTS
-      'projects.h2': 'Projects',
-      'projects.1.title': 'Medical image segmentation',
-      'projects.1.desc': 'Training U-Net models and evaluating with IoU/Dice. Pre-processing pipeline and data augmentation.',
-      'projects.1.alt': 'Project 1',
-      'projects.2.title': 'Analytics dashboard',
-      'projects.2.desc': 'KPI extraction, modeling and visualization with SQL + Python + Power BI for business tracking.',
-      'projects.2.alt': 'Project 2',
-      'projects.3.title': 'Text classifier',
-      'projects.3.desc': 'Fine-tuning language models for multi-class classification; tracking and evaluation with MLflow.',
-      'projects.3.alt': 'Project 3',
+      'projects.1.title': 'Kidney Tumor Detection (CT)',
+      'projects.1.desc':  'Automatic kidney tumor segmentation in CT using CNNs.',
+      'projects.1.aria':  'Automatic kidney tumor segmentation in CT using CNNs.',
+
+      'projects.2.title': 'Init RNNs & LSTM',
+      'projects.2.desc':  'Impact of weight initialization in RNN/LSTM on stability and convergence.',
+      'projects.2.aria':  'Impact of weight initialization in RNN/LSTM on stability and convergence.',
+
+      'projects.3.title': 'Llama 3.1 Fine-Tuning',
+      'projects.3.desc':  'Fine-tuning Llama 3.1 for instruction-based tasks with reproducible guides.',
+      'projects.3.aria':  'Fine-tuning Llama 3.1 for instruction-based tasks with reproducible guides.',
+
+      'projects.4.title': 'Latent Diffusion (LDM)',
+      'projects.4.desc':  'Step-by-step implementation of the Latent Diffusion pipeline with Diffusers.',
+      'projects.4.aria':  'Step-by-step implementation of the Latent Diffusion pipeline with Diffusers.',
+
+      'projects.5.title': 'DDPM (Diffusers)',
+      'projects.5.desc':  'Training and sampling with DDPM; comparison with DDIM and quality analysis.',
+      'projects.5.aria':  'Training and sampling with DDPM; comparison with DDIM and quality analysis.',
       // EXPERIENCE
       'exp.h2': 'Experience',
       'exp.p1': '<strong>Universidad Pontificia de Comillas – ICAI</strong>, Madrid, Spain<br><em>Project Member – SocialTech Challenge</em> · October 2023 – June 2024',
@@ -333,18 +351,26 @@ if (y) { y.textContent = new Date().getFullYear(); }
       {sel:'#bio p:nth-of-type(2)', key:'bio.p2', html:true},
       {sel:'#bio p:nth-of-type(3)', key:'bio.p3', html:true},
 
-      // PROYECTOS (3 tarjetas)
-      {sel:'.projects .project:nth-child(1) h3', key:'projects.1.title'},
-      {sel:'.projects .project:nth-child(1) p', key:'projects.1.desc'},
-      {sel:'.projects .project:nth-child(1) img', key:'projects.1.alt', attr:'alt'},
+      // PROYECTOS (5 tarjetas) – títulos, descripciones y aria-labels
+      {sel: '.projects a:nth-child(1) h3', key: 'projects.1.title'},
+      {sel: '.projects a:nth-child(1) p',  key: 'projects.1.desc'},
+      {sel: '.projects a:nth-child(1)',    key: 'projects.1.aria', attr: 'aria-label'},
 
-      {sel:'.projects .project:nth-child(2) h3', key:'projects.2.title'},
-      {sel:'.projects .project:nth-child(2) p', key:'projects.2.desc'},
-      {sel:'.projects .project:nth-child(2) img', key:'projects.2.alt', attr:'alt'},
+      {sel: '.projects a:nth-child(2) h3', key: 'projects.2.title'},
+      {sel: '.projects a:nth-child(2) p',  key: 'projects.2.desc'},
+      {sel: '.projects a:nth-child(2)',    key: 'projects.2.aria', attr: 'aria-label'},
 
-      {sel:'.projects .project:nth-child(3) h3', key:'projects.3.title'},
-      {sel:'.projects .project:nth-child(3) p', key:'projects.3.desc'},
-      {sel:'.projects .project:nth-child(3) img', key:'projects.3.alt', attr:'alt'},
+      {sel: '.projects a:nth-child(3) h3', key: 'projects.3.title'},
+      {sel: '.projects a:nth-child(3) p',  key: 'projects.3.desc'},
+      {sel: '.projects a:nth-child(3)',    key: 'projects.3.aria', attr: 'aria-label'},
+
+      {sel: '.projects a:nth-child(4) h3', key: 'projects.4.title'},
+      {sel: '.projects a:nth-child(4) p',  key: 'projects.4.desc'},
+      {sel: '.projects a:nth-child(4)',    key: 'projects.4.aria', attr: 'aria-label'},
+
+      {sel: '.projects a:nth-child(5) h3', key: 'projects.5.title'},
+      {sel: '.projects a:nth-child(5) p',  key: 'projects.5.desc'},
+      {sel: '.projects a:nth-child(5)',    key: 'projects.5.aria', attr: 'aria-label'},
 
       // EXPERIENCIA (tres bloques p + sus listas)
       {sel:'#experiencia p:nth-of-type(1)', key:'exp.p1', html:true},
