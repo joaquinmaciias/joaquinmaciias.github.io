@@ -117,6 +117,7 @@ if (y) { y.textContent = new Date().getFullYear(); }
       // Meta
       title: 'Joaquín Mir Macias — Web Personal',
       metaDesc: 'Web personal de Joaquín Mir Macias. Perfil junior orientado a IA, Ciencia de Datos y Desarrollo.',
+      
       // UI & navegación
       'nav.aria': 'Principal',
       'nav.sobreMi': 'Sobre mí',
@@ -129,6 +130,7 @@ if (y) { y.textContent = new Date().getFullYear(); }
       'menu.close': 'Cerrar menú',
       'ui.switchToEN': 'Cambiar a inglés',
       'ui.switchToES': 'Cambiar a español',
+
       // Secciones
       'sec.about': 'Sobre mí',
       'sec.projects': 'Proyectos',
@@ -136,6 +138,7 @@ if (y) { y.textContent = new Date().getFullYear(); }
       'sec.education': 'Educación',
       'sec.skills': 'Habilidades',
       'sec.contact': 'Contacto',
+
       // HERO
       'hero.h1': 'Soy Joaquín Mir, <span class="accent">ingeniero en Matemáticas e Inteligencia Artificial</span> y estudiante de máster en <span class="accent">IA Avanzada</span>.',
       'hero.lead': 'Me apasiona transformar datos en soluciones inteligentes. He participado en proyectos de <em>Computer Vision</em> para la detección de tumores, en el desarrollo de una <em>silla de ruedas autónoma</em> y en prácticas de análisis de datos en <strong>Redsys</strong> y <strong>BBVA</strong>. Busco mi primera experiencia a tiempo completo donde aportar mis conocimientos en <span class="accent">Machine Learning, análisis de datos y desarrollo de sistemas inteligentes</span>, mientras sigo aprendiendo y creando impacto real.',
@@ -143,11 +146,13 @@ if (y) { y.textContent = new Date().getFullYear(); }
       'cta.carta': 'Carta de Recomendación BBVA',
       'cta.tfg': 'Trabajo Fin de Grado',
       'img.altPerfil': 'Foto de Joaquín Mir Macias',
+
       // BIO
       'bio.h2': 'Sobre mí',
       'bio.p1': 'Soy <strong>Joaquín Mir</strong>, graduado en <em>Ingeniería Matemática e Inteligencia Artificial</em> y actualmente estudiante del <strong>Máster en Inteligencia Artificial Avanzada</strong> en la Universidad Pontificia Comillas – ICAI. Mi formación combina una sólida base matemática con experiencia práctica en proyectos de <em>Machine Learning</em>, <em>Visión por Computador</em> y <em>Análisis de Datos</em>.',
       'bio.p2': 'He trabajado en proyectos como la <strong>detección de tumores renales con Deep Learning</strong>, el desarrollo de una <strong>silla de ruedas autónoma</strong> y prácticas profesionales en <strong>Redsys</strong> y <strong>BBVA</strong>, donde apliqué análisis de datos y técnicas de auditoría interna.',
       'bio.p3': 'Busco mi primera experiencia a tiempo completo en el ámbito de la <strong>IA y Ciencia de Datos</strong>, con el objetivo de aportar soluciones innovadoras, crecer profesionalmente y generar impacto real en las organizaciones.',
+
       // PROYECTOS
       'projects.1.title': 'Kidney Tumor Detection (CT)',
       'projects.1.desc':  'Segmentación automática de tumores renales en TC con CNNs.',
@@ -168,6 +173,11 @@ if (y) { y.textContent = new Date().getFullYear(); }
       'projects.5.title': 'DDPM (Diffusers)',
       'projects.5.desc':  'Entrenamiento y muestreo con DDPM; comparación con DDIM y análisis de calidad.',
       'projects.5.aria':  'Entrenamiento y muestreo con DDPM; comparación con DDIM y análisis de calidad.',
+
+      'projects.6.title': 'Vision Transformer (ViT)',
+      'projects.6.desc':  'Implementación desde cero de Vision Transformers (ViT) con PyTorch.',
+      'projects.6.aria':  'Implementación desde cero de Vision Transformers (ViT) con PyTorch.',
+
       // EXPERIENCIA
       'exp.h2': 'Experiencia',
       'exp.p1': '<strong>Universidad Pontificia de Comillas – ICAI</strong>, Madrid, España<br><em>Project Member – SocialTech Challenge</em> · Octubre 2023 – Junio 2024',
@@ -180,10 +190,12 @@ if (y) { y.textContent = new Date().getFullYear(); }
       'exp.p3.li2': 'Participación en la evaluación de procesos clave, análisis de riesgos y controles.',
       'exp.p3.li3': 'Elaboración de informes con hallazgos y recomendaciones.',
       'exp.p3.li4': 'Uso de herramientas de análisis de datos y colaboración con distintas unidades para garantizar cumplimiento normativo y de políticas internas.',
+
       // EDUCACIÓN
       'edu.h2': 'Educación',
       'edu.master': 'Máster de Inteligencia Artificial Avanzada',
       'edu.degree': 'Ingeniería Matemática Inteligencia Artificial',
+
       // HABILIDADES
       'skills.h2': 'Habilidades',
       'skills.l1': '<strong>Lenguajes:</strong> Python, SQL, R, HTML/CSS/JS.',
@@ -191,11 +203,13 @@ if (y) { y.textContent = new Date().getFullYear(); }
       'skills.l3': '<strong>Datos:</strong> MySQL, MongoDB, ETL, APIs.',
       'skills.l4': '<strong>BI:</strong> Power BI, Tableau.',
       'skills.l5': '<strong>Otros:</strong> Git, Linux, control de versiones, comunicación y trabajo en equipo.',
+
       // CONTACTO
       'contact.h2': 'Contacto',
       'contact.email': 'Correo',
       'contact.linkedin': 'LinkedIn',
       'contact.github': 'Github',
+
       // FOOTER
       'footer.back': 'Volver arriba'
     },
@@ -215,6 +229,7 @@ if (y) { y.textContent = new Date().getFullYear(); }
       'menu.close': 'Close menu',
       'ui.switchToEN': 'Switch to English',
       'ui.switchToES': 'Cambiar a español',
+
       // Secciones
       'sec.about': 'About',
       'sec.projects': 'Projects',
@@ -222,6 +237,7 @@ if (y) { y.textContent = new Date().getFullYear(); }
       'sec.education': 'Education',
       'sec.skills': 'Skills',
       'sec.contact': 'Contact',
+
       // HERO
       'hero.h1': "I'm Joaquín Mir, <span class=\"accent\">Mathematics & AI engineer</span> and master's student in <span class=\"accent\">Advanced AI</span>.",
       'hero.lead': 'I love turning data into intelligent solutions. I have worked on <em>Computer Vision</em> for tumor detection, built an <em>autonomous wheelchair</em>, and completed data analytics internships at <strong>Redsys</strong> and <strong>BBVA</strong>. I am seeking my first full-time role to contribute in <span class="accent">Machine Learning, data analysis, and intelligent systems</span> while continuing to learn and create real impact.',
@@ -229,11 +245,13 @@ if (y) { y.textContent = new Date().getFullYear(); }
       'cta.carta': 'BBVA Letter of Recommendation',
       'cta.tfg': 'Bachelor Thesis',
       'img.altPerfil': 'Photo of Joaquín Mir Macias',
+
       // BIO
       'bio.h2': 'About',
       'bio.p1': 'I am <strong>Joaquín Mir</strong>, graduate in <em>Mathematical Engineering and Artificial Intelligence</em> and currently a student of the <strong>MSc in Advanced Artificial Intelligence</strong> at Universidad Pontificia Comillas – ICAI. My background combines a solid mathematical foundation with hands-on experience in <em>Machine Learning</em>, <em>Computer Vision</em>, and <em>Data Analysis</em> projects.',
       'bio.p2': 'I have worked on <strong>kidney tumor detection with Deep Learning</strong>, developed an <strong>autonomous wheelchair</strong>, and completed internships at <strong>Redsys</strong> and <strong>BBVA</strong>, applying data analysis and internal audit techniques.',
       'bio.p3': 'I am looking for my first full-time opportunity in <strong>AI and Data Science</strong> to deliver innovative solutions, grow professionally, and generate real impact.',
+
       // PROJECTS
       'projects.1.title': 'Kidney Tumor Detection (CT)',
       'projects.1.desc':  'Automatic kidney tumor segmentation in CT using CNNs.',
@@ -254,6 +272,11 @@ if (y) { y.textContent = new Date().getFullYear(); }
       'projects.5.title': 'DDPM (Diffusers)',
       'projects.5.desc':  'Training and sampling with DDPM; comparison with DDIM and quality analysis.',
       'projects.5.aria':  'Training and sampling with DDPM; comparison with DDIM and quality analysis.',
+
+      'projects.6.title': 'Vision Transformer (ViT)',
+      'projects.6.desc':  'Vision Transformer (ViT) built from scratch using PyTorch.',
+      'projects.6.aria':  'Vision Transformer (ViT) built from scratch using PyTorch.',
+
       // EXPERIENCE
       'exp.h2': 'Experience',
       'exp.p1': '<strong>Universidad Pontificia de Comillas – ICAI</strong>, Madrid, Spain<br><em>Project Member – SocialTech Challenge</em> · October 2023 – June 2024',
@@ -266,10 +289,12 @@ if (y) { y.textContent = new Date().getFullYear(); }
       'exp.p3.li2': 'Contributed to assessment of key processes, risk analysis and controls.',
       'exp.p3.li3': 'Prepared reports with findings and recommendations.',
       'exp.p3.li4': 'Used data analysis tools and collaborated across units to ensure compliance with regulations and internal policies.',
+
       // EDUCATION
       'edu.h2': 'Education',
       'edu.master': 'Master in Advanced Artificial Intelligence',
       'edu.degree': 'BSc in Mathematical Engineering & Artificial Intelligence',
+
       // SKILLS
       'skills.h2': 'Skills',
       'skills.l1': '<strong>Languages:</strong> Python, SQL, R, HTML/CSS/JS.',
@@ -277,11 +302,13 @@ if (y) { y.textContent = new Date().getFullYear(); }
       'skills.l3': '<strong>Data:</strong> MySQL, MongoDB, ETL, APIs.',
       'skills.l4': '<strong>BI:</strong> Power BI, Tableau.',
       'skills.l5': '<strong>Other:</strong> Git, Linux, version control, communication & teamwork.',
+
       // CONTACT
       'contact.h2': 'Contact',
       'contact.email': 'Email',
       'contact.linkedin': 'LinkedIn',
       'contact.github': 'Github',
+
       // FOOTER
       'footer.back': 'Back to top'
     }
@@ -371,6 +398,10 @@ if (y) { y.textContent = new Date().getFullYear(); }
       {sel: '.projects a:nth-child(5) h3', key: 'projects.5.title'},
       {sel: '.projects a:nth-child(5) p',  key: 'projects.5.desc'},
       {sel: '.projects a:nth-child(5)',    key: 'projects.5.aria', attr: 'aria-label'},
+
+      {sel: '.projects a:nth-child(6) h3', key: 'projects.6.title'},
+      {sel: '.projects a:nth-child(6) p',  key: 'projects.6.desc'},
+      {sel: '.projects a:nth-child(6)',    key: 'projects.6.aria', attr: 'aria-label'},
 
       // EXPERIENCIA (tres bloques p + sus listas)
       {sel:'#experiencia p:nth-of-type(1)', key:'exp.p1', html:true},

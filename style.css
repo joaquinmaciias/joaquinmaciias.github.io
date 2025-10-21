@@ -196,7 +196,17 @@ body { isolation: isolate; }
 .projects{
   display: grid;
   gap: 1.25rem;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+  /* Cada tarjeta ocupa entre 260 y 320px.
+     Al no estirarse a 1fr, el grid no “rellena” todo el ancho
+     y podemos centrar las columnas como bloque. */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 320px));
+
+  /* Centra el conjunto de columnas en el contenedor */
+  justify-content: center;
+
+  /* Evita que las filas se repartan verticalmente */
+  align-content: start;
 }
 
 /* Tarjeta clicable */
