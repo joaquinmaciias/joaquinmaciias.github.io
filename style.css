@@ -45,8 +45,9 @@ nav a:hover{opacity:1}
 /* HERO */
 #sobre-mi{padding-top:142px}
 .hero-grid {display: block;}
-#sobre-mi h1{font-family:'Poppins',Inter,sans-serif; font-weight:400; font-size:clamp(2.3rem,6vw,4rem); line-height:1.08; margin:.25em 0 .5em}
-#sobre-mi .lead{color:#dedede; max-width:68ch; font-size:1.05rem}
+#sobre-mi h1 {font-family: 'Poppins', Inter, sans-serif;font-weight: 700;font-size: clamp(2rem, 5vw, 3rem);line-height: 1.25;margin: .25em 0 .5em;}
+.accent-line {display: block;font-weight: 400;color: #d4d4d8;margin-top: 4px;
+}#sobre-mi .lead{color:#dedede; max-width:68ch; font-size:1.05rem}
 .cta{display:flex; gap:12px; margin-top:18px; flex-wrap:wrap}
 .photo-frame{
   display:grid; place-items:center; background:var(--panel);
