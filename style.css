@@ -46,8 +46,8 @@ nav a:hover{opacity:1}
 #sobre-mi{padding-top:142px}
 .hero-grid {display: block;}
 #sobre-mi h1 {font-family: 'Poppins', Inter, sans-serif;font-weight: 700;font-size: clamp(2rem, 5vw, 3rem);line-height: 1.25;margin: .25em 0 .5em;}
-.accent-line {display: block;font-weight: 500;color: #d4d4d8;margin-top: 2px;font-size: 0.95em}
-#heroTitle {font-family: 'Poppins', Inter, sans-serif;font-weight: 700;font-size: clamp(2.4rem, 6vw, 3.6rem); /* un poco más grande que antes */line-height: 1.15;margin: 0.25em 0 0.5em;}
+.accent-line {display: block;font-weight: 500;color: #d4d4d8;font-size: 0.95em}
+#heroTitle {font-family: 'Poppins', Inter, sans-serif;font-weight: 700;font-size: clamp(2.4rem, 6vw, 3.6rem);line-height: 1.15;margin: 0.25em 0 0.5em;}
 #sobre-mi .lead {color: #dedede;font-size: 1.05rem;max-width: none; /* ocupa todo el ancho */width: 100%;margin: 0 auto;text-align: center; /* centra el texto */}
 
 /* Botones */
