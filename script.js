@@ -140,7 +140,7 @@ if (y) { y.textContent = new Date().getFullYear(); }
       'sec.contact': 'Contacto',
 
       // HERO
-      'hero.h1': 'Soy Joaquín Mir Macías<br><span class="accent-line"> Ingeniero Matemático e Inteligencia Artificial</span><br><span class="accent-line"> Máster en Inteligencia Artificial Avanzada.</span>',
+      'hero.h1': 'Soy Joaquín Mir Macías<br> Ingeniero Matemático e Inteligencia Artificial</span><br> Máster en Inteligencia Artificial Avanzada.</span>',
       'hero.lead': 'Me apasiona transformar datos en soluciones inteligentes. He participado en proyectos de <em>Computer Vision</em> para la detección de tumores, en el desarrollo de una <em>silla de ruedas autónoma</em> y en prácticas de análisis de datos en <strong>Redsys</strong> y <strong>BBVA</strong>. Busco mi primera experiencia a tiempo completo donde aportar mis conocimientos en <span class="accent">Machine Learning, análisis de datos y desarrollo de sistemas inteligentes</span>, mientras sigo aprendiendo y creando impacto real.',
       'cta.cv': 'Ver CV',
       'cta.carta': 'Carta de Recomendación BBVA',
@@ -239,7 +239,7 @@ if (y) { y.textContent = new Date().getFullYear(); }
       'sec.contact': 'Contact',
 
       // HERO
-      'hero.h1': "I'm Joaquín Mir Macías<br><span class=\"accent-line\"> Mathematical & Artificial Intelligence Engineer</span><br><span class=\"accent-line\"> MSc in Advanced Artificial Intelligence.</span>",
+      'hero.h1': "I'm Joaquín Mir Macías<br> Mathematical & Artificial Intelligence Engineer</span><br> MSc in Advanced Artificial Intelligence.</span>",
       'hero.lead': 'I love turning data into intelligent solutions. I have worked on <em>Computer Vision</em> for tumor detection, built an <em>autonomous wheelchair</em>, and completed data analytics internships at <strong>Redsys</strong> and <strong>BBVA</strong>. I am seeking my first full-time role to contribute in <span class="accent">Machine Learning, data analysis, and intelligent systems</span> while continuing to learn and create real impact.',
       'cta.cv': 'View CV',
       'cta.carta': 'BBVA Letter of Recommendation',
