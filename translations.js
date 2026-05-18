@@ -212,6 +212,54 @@ const portfolioDataTranslations = {
         ],
         projects: [
             {
+                title: "Algebraic Reasoning Distiller",
+                tech: "Qwen2.5-7B, LoRA, SFT + GRPO, RAG, Symbolic Reasoning",
+                description: "Multi-agent system for the SAIR Mathematics Distillation Challenge. Decides whether an equational law implies another over all magmas, combining a symbolic prover (term rewriting + finite magma search), a Chroma+SBERT RAG retriever and a Qwen2.5-7B distiller fine-tuned via SFT → GRPO. All heavy computation is offline; at evaluation only a ≤10 KB cheat sheet and a single LLM call are used.",
+                link: "https://github.com/joaquinmaciias/Algebraic-Reasoning-Distiller",
+                image: "assets/projects/algebraic_arch.png",
+                imageId: "algebraic"
+            },
+            {
+                title: "R2-Dreamer — World Models for Continuous Control",
+                tech: "PyTorch, World Models, RSSM, Actor-Critic, Imagination Learning",
+                description: "Implementation of R2-Dreamer (ICLR 2026), a World Model agent that learns a latent dynamics model and trains its policy entirely in imagination, without a pixel decoder. Evaluated on CarRacing-v3, Hopper-v5 and Walker Walk with strong sample efficiency.",
+                link: "https://github.com/joaquinmaciias/driving-world-model",
+                image: "assets/projects/car_racing.gif",
+                imageId: "world-model"
+            },
+            {
+                title: "DQN & Rainbow DQN — Pixel Control in MuJoCo",
+                tech: "PyTorch, Deep Reinforcement Learning, DQN, Rainbow, CNNs",
+                description: "DQN and Rainbow DQN agents trained on continuous-control MuJoCo tasks (Hopper, Walker2d, Humanoid) from raw 84×84 pixel observations. Modular Rainbow extensions (Double, Dueling, PER, NoisyNets, C51, n-step) toggled via config. Rainbow achieves ~4× the reward of vanilla DQN on Hopper.",
+                link: "https://github.com/joaquinmaciias/DQN-Rainbow-Pixel-Control",
+                image: "assets/projects/rainbow_walker2d.gif",
+                imageId: "dqn-rainbow"
+            },
+            {
+                title: "SimCLR — Self-Supervised Learning",
+                tech: "PyTorch, Contrastive Learning, ResNet-50, LARS, NT-Xent",
+                description: "PyTorch implementation and extension of SimCLR on CIFAR-10. Self-supervised pre-training with NT-Xent loss, linear-probe evaluation, latent-space analysis via t-SNE/PCA, plus advanced add-ons: LARS optimizer, synchronized batch norm, square-root LR scaling and extended augmentations (Sobel, solarization, motion blur).",
+                link: "https://github.com/joaquinmaciias/Self-Supervised-Learning-with-SiMCLR",
+                image: "https://camo.githubusercontent.com/7ca27709a7db7084598e180f824abf04ee60ca438979c06068268a38d7af8ff1/68747470733a2f2f737468616c6c65732e6769746875622e696f2f6173736574732f636f6e74726173746976652d73656c662d737570657276697365642f636f7665722e706e67",
+                imageId: "simclr"
+            },
+            {
+                title: "Uncertainty-Aware Brain Tumor Segmentation",
+                tech: "PyTorch, U-Net, Bayesian DL, MC Dropout, Deep Ensembles, Laplace",
+                description: "Probabilistic deep learning for brain tumor segmentation on BraTS 2018 with explicit uncertainty quantification. Compares deterministic U-Net, Attention Residual U-Net, MC Dropout, Deep Ensembles, Multi-Head U-Net (MH/VIMH), Stochastic Segmentation Networks and last-layer Laplace under a common training and inference pipeline (WT / TC / ET regions).",
+                link: "https://github.com/joaquinmaciias/Uncertainty-Aware-BrainTumor-Segmentation",
+                image: "assets/projects/brain_tumor.png",
+                imageId: "brain-tumor"
+            },
+            {
+                title: "Neural Networks on Riemannian Manifolds",
+                tech: "PyTorch, Geometric Deep Learning, SPDNet, GrNet, Riemannian Optimization",
+                description: "Geometric deep learning on Riemannian manifolds: SPDNet for Symmetric Positive Definite matrices and GrNet for the Grassmann manifold. Applied to skeleton-based action recognition on the HDM05 motion-capture dataset. Includes natural-gradient optimization and a comparison against Euclidean baselines.",
+                link: "https://github.com/joaquinmaciias/riemannian_geometry",
+                image: "assets/projects/skeleton_rotation.gif",
+                imageId: "riemannian"
+            },
+            {
                 title: "Kidney Tumor Detection (CT)",
                 tech: "PyTorch, CNNs, Computer Vision, Medical Imaging",
                 description: "Automatic segmentation of kidney tumors on CT scans using Convolutional Neural Networks. Pipeline covers preprocessing, model training and quantitative evaluation on medical imaging benchmarks.",
@@ -357,6 +405,54 @@ const portfolioDataTranslations = {
             }
         ],
         projects: [
+            {
+                title: "Algebraic Reasoning Distiller",
+                tech: "Qwen2.5-7B, LoRA, SFT + GRPO, RAG, Razonamiento Simbólico",
+                description: "Sistema multi-agente para el SAIR Mathematics Distillation Challenge. Decide si una ley ecuacional implica a otra sobre todos los magmas, combinando un demostrador simbólico (term rewriting + búsqueda finita de magmas), un retriever RAG con Chroma+SBERT y un distilador Qwen2.5-7B fine-tuneado vía SFT → GRPO. Todo el cómputo pesado es offline; en evaluación solo se usa un cheat-sheet de ≤10 KB y una única llamada al LLM.",
+                link: "https://github.com/joaquinmaciias/Algebraic-Reasoning-Distiller",
+                image: "assets/projects/algebraic_arch.png",
+                imageId: "algebraic"
+            },
+            {
+                title: "R2-Dreamer — World Models para Control Continuo",
+                tech: "PyTorch, World Models, RSSM, Actor-Critic, Imagination Learning",
+                description: "Implementación de R2-Dreamer (ICLR 2026), un agente de World Models que aprende un modelo de dinámica latente y entrena su política íntegramente en imaginación, sin decoder de píxeles. Evaluado en CarRacing-v3, Hopper-v5 y Walker Walk con alta eficiencia muestral.",
+                link: "https://github.com/joaquinmaciias/driving-world-model",
+                image: "assets/projects/car_racing.gif",
+                imageId: "world-model"
+            },
+            {
+                title: "DQN y Rainbow DQN — Control desde Píxeles en MuJoCo",
+                tech: "PyTorch, Aprendizaje por Refuerzo Profundo, DQN, Rainbow, CNNs",
+                description: "Agentes DQN y Rainbow DQN entrenados en tareas de control continuo de MuJoCo (Hopper, Walker2d, Humanoid) a partir de observaciones en píxeles 84×84. Extensiones Rainbow modulares (Double, Dueling, PER, NoisyNets, C51, n-step) activables por configuración. Rainbow obtiene ~4× la recompensa de DQN clásico en Hopper.",
+                link: "https://github.com/joaquinmaciias/DQN-Rainbow-Pixel-Control",
+                image: "assets/projects/rainbow_walker2d.gif",
+                imageId: "dqn-rainbow"
+            },
+            {
+                title: "SimCLR — Aprendizaje Auto-Supervisado",
+                tech: "PyTorch, Aprendizaje Contrastivo, ResNet-50, LARS, NT-Xent",
+                description: "Implementación y extensión de SimCLR en PyTorch sobre CIFAR-10. Pre-entrenamiento auto-supervisado con pérdida NT-Xent, evaluación con linear probing, análisis del espacio latente con t-SNE/PCA, y mejoras: optimizador LARS, BatchNorm sincronizado, escalado raíz-cuadrada del LR y aumentos extendidos (Sobel, solarización, motion blur).",
+                link: "https://github.com/joaquinmaciias/Self-Supervised-Learning-with-SiMCLR",
+                image: "https://camo.githubusercontent.com/7ca27709a7db7084598e180f824abf04ee60ca438979c06068268a38d7af8ff1/68747470733a2f2f737468616c6c65732e6769746875622e696f2f6173736574732f636f6e74726173746976652d73656c662d737570657276697365642f636f7665722e706e67",
+                imageId: "simclr"
+            },
+            {
+                title: "Segmentación de Tumores Cerebrales con Incertidumbre",
+                tech: "PyTorch, U-Net, DL Bayesiano, MC Dropout, Deep Ensembles, Laplace",
+                description: "Deep learning probabilístico para la segmentación de tumores cerebrales en BraTS 2018, cuantificando explícitamente la incertidumbre. Comparativa de U-Net determinista, Attention Residual U-Net, MC Dropout, Deep Ensembles, Multi-Head U-Net (MH/VIMH), Stochastic Segmentation Networks y aproximación de Laplace en la última capa, todo bajo un mismo pipeline (regiones WT / TC / ET).",
+                link: "https://github.com/joaquinmaciias/Uncertainty-Aware-BrainTumor-Segmentation",
+                image: "assets/projects/brain_tumor.png",
+                imageId: "brain-tumor"
+            },
+            {
+                title: "Redes Neuronales en Variedades Riemannianas",
+                tech: "PyTorch, Geometric Deep Learning, SPDNet, GrNet, Optimización Riemanniana",
+                description: "Deep learning geométrico sobre variedades Riemannianas: SPDNet para matrices simétricas definidas positivas y GrNet sobre la variedad de Grassmann. Aplicado al reconocimiento de acciones basado en esqueletos sobre el dataset HDM05 de motion capture. Incluye optimización con gradiente natural y comparativa contra baselines euclídeos.",
+                link: "https://github.com/joaquinmaciias/riemannian_geometry",
+                image: "assets/projects/skeleton_rotation.gif",
+                imageId: "riemannian"
+            },
             {
                 title: "Detección de Tumores Renales (TC)",
                 tech: "PyTorch, CNNs, Visión por Computador, Imagen Médica",
