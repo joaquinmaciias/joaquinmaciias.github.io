@@ -1,272 +1,190 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Web personal de Joaquín Mir Macias. Perfil junior orientado a IA, Ciencia de Datos y Desarrollo." />
-  <title>Joaquín Mir Macias — Web Personal</title>
-
-  <!-- Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=job-hero-1">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Joaquín Mir Macías — MSc student in Advanced Artificial Intelligence @ ICAI. Machine Learning, Computer Vision and NLP.">
+    <title>Joaquín Mir Macías — Advanced AI Graduate Student</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body id="top">
-  <!-- Header -->
-  <header>
-    <div class="wrap container">
-      <button id="langToggle" class="btn sm lang-toggle" aria-label="Cambiar idioma">ES</button>
-      <nav aria-label="Principal">
-        <ul>
-          <li><a href="#sobre-mi">Sobre mí</a></li>
-          <li><a href="#proyectos">Proyectos</a></li>
-          <li><a href="#experiencia">Experiencia</a></li>
-          <li><a href="#educacion">Educación</a></li>
-          <li><a href="#habilidades">Habilidades</a></li>
-          <li><a href="#contacto">Contacto</a></li>
-        </ul>
-      </nav>
-      <button id="menuToggle" class="menu-toggle" aria-label="Abrir menú">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-    </div>
-  </header>
-
-  <main>
-    <!-- HERO -->
-    <section id="sobre-mi" class="section">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-        <h1 id="heroTitle">
-          Soy Joaquín Mir Macías<br> Ingeniero Matemático e Inteligencia Artificial</span><br> Máster en Inteligencia Artificial Avanzada.</span>
-        </h1>
-        <p class="lead">
-        Me apasiona transformar datos en soluciones inteligentes. He participado en proyectos de <em>Computer Vision</em> para la detección de tumores, en el desarrollo de una <em>silla de ruedas autónoma</em> y en prácticas de análisis de datos en <strong>Redsys</strong> y <strong>BBVA</strong>. 
-        Busco mi primera experiencia a tiempo completo donde aportar mis conocimientos en <strong>Machine Learning, Computer Vision y NLP</strong>, mientras sigo aprendiendo y creando impacto real.
-        </p>
-        <div class="cta">
-          <a class="btn ghost" href="CV_Joaquin_Mir_Macias.pdf" target="_blank" rel="noopener">Ver CV</a>
-          <a class="btn ghost" href="Carta_recomendación_JMM.pdf" target="_blank" rel="noopener">Carta de Recomendación BBVA</a>
-          <a class="btn ghost" href="TFG - Mir Macias, Joaquin.pdf" target="_blank" rel="noopener">Trabajo Fin de Grado</a>
-          </div>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">JMM</a>
+            <ul class="nav-links">
+                <li><a href="#about" data-i18n="nav.about">Sobre mí</a></li>
+                <li><a href="#journey" data-i18n="nav.journey">Trayectoria</a></li>
+                <li><a href="#experience" data-i18n="nav.experience">Experiencia</a></li>
+                <li><a href="#education" data-i18n="nav.education">Educación</a></li>
+                <li><a href="#projects" data-i18n="nav.projects">Proyectos</a></li>
+                <li><a href="#skills" data-i18n="nav.skills">Habilidades</a></li>
+            </ul>
+            <div class="language-switcher">
+                <button class="cmdk-trigger" onclick="window.openCmdk && window.openCmdk()" aria-label="Open command palette">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                    <kbd class="cmdk-kbd">⌘K</kbd>
+                </button>
+                <button class="lang-btn" data-lang="en" aria-label="Switch to English">
+                    <img src="assets/icons/flags/uk.png" alt="UK flag" class="flag">
+                    <span class="lang-code">EN</span>
+                </button>
+                <span class="lang-divider">/</span>
+                <button class="lang-btn active" data-lang="es" aria-label="Cambiar a Español">
+                    <img src="assets/icons/flags/spain.png" alt="Spain flag" class="flag">
+                    <span class="lang-code">ES</span>
+                </button>
+            </div>
         </div>
-      </div>
-    </section>
+    </nav>
 
-    <!-- BIO -->
-    <section id="bio" class="section">
-      <div class="container">
-        <h2>Sobre mí</h2>
-        <p>
-          Soy <strong>Joaquín Mir</strong>, graduado en <em>Ingeniería Matemática e Inteligencia Artificial</em> y actualmente estudiante del 
-          <strong>Máster en Inteligencia Artificial Avanzada</strong> en la Universidad Pontificia Comillas – ICAI.
-          Mi formación combina una sólida base matemática con experiencia práctica en proyectos de <em>Machine Learning</em>, 
-          <em>Visión por Computador</em> y <em>Análisis de Datos</em>.
-        </p>
-        <p>
-          He trabajado en proyectos como la <strong>detección de tumores renales con Deep Learning</strong>, el desarrollo de una 
-          <strong>silla de ruedas autónoma</strong> y prácticas profesionales en <strong>Redsys</strong> y <strong>BBVA</strong>, 
-          donde apliqué análisis de datos y técnicas de auditoría interna.
-        </p>
-        <p>
-          Busco mi primera experiencia a tiempo completo en el ámbito de la <strong>Machine Learning, Computer Vision y NLP</strong>, con el objetivo de 
-          aportar soluciones innovadoras, crecer profesionalmente y generar impacto real en las organizaciones.
-        </p>
-      </div>
-    </section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Joaquín Mir Macías</h1>
+            <p class="subtitle">Máster en Inteligencia Artificial Avanzada @ ICAI</p>
+            <p class="hero-description">Ingeniero junior apasionado por transformar datos en soluciones inteligentes — Machine Learning, Visión por Computador y NLP.</p>
 
-    <!-- PROYECTS -->
-    <section id="proyectos" class="section">
-      <div class="container">
-        <h2>Proyectos</h2>
-
-        <div class="projects">
-          <!-- 1) Kidney Tumor Detection -->
-          <a class="project"
-            href="https://github.com/joaquinmaciias/Kidney-tumor-detection-in-CT-images"
-            target="_blank" rel="noopener"
-            aria-label="Segmentación automática de tumores renales en TC con CNNs.">
-            <figure class="thumb">
-              <img src="medical_img.png" alt="Kidney Tumor Detection in CT Images">
-            </figure>
-            <div class="body">
-              <h3>Kidney Tumor Detection (CT)</h3>
-              <p>Segmentación automática de tumores renales en TC con CNNs.</p>
+            <div class="cta-buttons">
+                <a href="mailto:joaquinmirma@gmail.com" class="btn btn-primary">Contactar</a>
+                <a href="CV_Joaquin_Mir_Macias.pdf" class="btn btn-secondary btn-cv" target="_blank" rel="noopener">Ver CV</a>
+                <a href="#projects" class="btn btn-secondary btn-projects">Ver Proyectos</a>
             </div>
-          </a>
 
-          <!-- 2) Initialization RNNs/LSTM -->
-          <a class="project"
-            href="https://github.com/joaquinmaciias/Initialization-RNNs-LSTM"
-            target="_blank" rel="noopener"
-            aria-label="Impacto de la inicialización de pesos en RNN/LSTM sobre estabilidad y convergencia.">
-            <figure class="thumb">
-              <img src="Ini_RNN_LSTM.png" alt="RNN and LSTM weights initialization">
-            </figure>
-            <div class="body">
-              <h3>Init RNNs &amp; LSTM</h3>
-              <p>Impacto de la inicialización de pesos en RNN/LSTM sobre estabilidad y convergencia.</p>
+            <div class="hero-extras">
+                <a href="TFG - Mir Macias, Joaquin.pdf" class="extra-link btn-tfg" target="_blank" rel="noopener">Trabajo Fin de Grado</a>
+                <a href="Carta_recomendación_JMM.pdf" class="extra-link btn-letter" target="_blank" rel="noopener">Carta de Recomendación BBVA</a>
             </div>
-          </a>
 
-          <!-- 3) Llama 3.1 Fine-Tuning -->
-          <a class="project"
-            href="https://github.com/joaquinmaciias/Llama-3.1---Fine_Tuning_for_Instruction_based"
-            target="_blank" rel="noopener"
-            aria-label="Fine-tuning de Llama 3.1 para tareas instruccionales con guías reproducibles.">
-            <figure class="thumb">
-              <img src="Fine_tuning.png" alt="Llama 3.1 Fine-Tuning for Instruction-based tasks">
-            </figure>
-            <div class="body">
-              <h3>Llama 3.1 Fine-Tuning</h3>
-              <p>Fine-tuning de Llama 3.1 para tareas instruccionales con guías reproducibles.</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/joaquin-mir-macias-59a9a2230/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/joaquinmaciias" target="_blank" rel="noopener" aria-label="GitHub">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    <span>GitHub</span>
+                </a>
+                <a href="mailto:joaquinmirma@gmail.com" aria-label="Email">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    <span>Email</span>
+                </a>
             </div>
-          </a>
-
-          <!-- 4) LDM with HF Diffusers -->
-          <a class="project"
-            href="https://github.com/joaquinmaciias/Laten_Diffusion_Models---Hugging_Face"
-            target="_blank" rel="noopener"
-            aria-label="Implementación del pipeline de Latent Diffusion con Diffusers paso a paso.">
-            <figure class="thumb">
-              <img src="LDM.png" alt="Latent Diffusion Models with Hugging Face Diffusers">
-            </figure>
-            <div class="body">
-              <h3>Latent Diffusion (LDM)</h3>
-              <p>Implementación del pipeline de Latent Diffusion con Diffusers paso a paso.</p>
-            </div>
-          </a>
-
-          <!-- 5) DDPM with HF Diffusers -->
-          <a class="project"
-            href="https://github.com/joaquinmaciias/Denoising_Diffusion_Probabilistic_Models---DDPM"
-            target="_blank" rel="noopener"
-            aria-label="Entrenamiento y muestreo con DDPM; comparación con DDIM y análisis de calidad.">
-            <figure class="thumb">
-              <img src="DDPM.png" alt="DDPM with Hugging Face Diffusers">
-            </figure>
-            <div class="body">
-              <h3>DDPM (Diffusers)</h3>
-              <p>Entrenamiento y muestreo con DDPM; comparación con DDIM y análisis de calidad.</p>
-            </div>
-          </a>
-          <!-- 6) Vision Transformer -->
-          <a class="project"
-            href="https://github.com/joaquinmaciias/VisionTransformer-PyTorch"
-            target="_blank" rel="noopener"
-            aria-label="Implementación desde cero de Vision Transformers (ViT) con PyTorch.">
-            <figure class="thumb">
-              <img src="ViT.png" alt="Vision Transformer (ViT) from Scratch with PyTorch">
-            </figure>
-            <div class="body">
-              <h3>Vision Transformer (ViT)</h3>
-              <p>Implementación desde cero de Vision Transformers (ViT) con PyTorch.</p>
-            </div>
-          </a>
         </div>
-      </div>
-    </section>
 
-
-    <!-- EXPERIENCE -->
-    <section id="experiencia" class="section">
-      <div class="container">
-        <h2>Experiencia</h2>
-
-        <p>
-          <strong>Universidad Pontificia de Comillas – ICAI</strong>, Madrid, España<br>
-          <em>Project Member – SocialTech Challenge</em> · Octubre 2023 – Junio 2024
-        </p>
-        <ul>
-          <li>Colaboración con el área de Sistemas Inteligentes en el diseño y fabricación de una silla de ruedas autónoma utilizando sistemas electrónicos y Machine Learning.</li>
-        </ul>
-
-        <p>
-          <strong>Redsys</strong>, Madrid, España<br>
-          <em>Internship – Data Analyst Department</em> · Junio 2024 – Agosto 2024
-        </p>
-        <ul>
-          <li>Extracción de datos con Hue, filtrado de información en bases de datos relacionales con QlikSense.</li>
-          <li>Creación de dashboards dirigidos para visualización de datos de empresas.</li>
-        </ul>
-
-        <p>
-          <strong>BBVA</strong>, Madrid, España<br>
-          <em>Internship – Internal Audit</em> · Febrero 2025 – Agosto 2025
-        </p>
-        <ul>
-          <li>Apoyo en la ejecución de auditorías internas en el área corporativa.</li>
-          <li>Participación en la evaluación de procesos clave, análisis de riesgos y controles.</li>
-          <li>Elaboración de informes con hallazgos y recomendaciones.</li>
-          <li>Uso de herramientas de análisis de datos y colaboración con distintas unidades para garantizar cumplimiento normativo y de políticas internas.</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section id="educacion" class="section">
-      <div class="container">
-        <h2>Educación</h2>
-
-        <p>
-          <a href="https://www.comillas.edu/postgrados/master-universitario-en-inteligencia-artificial/#plan" 
-            target="_blank" rel="noopener">
-            <strong>Máster de Inteligencia Artificial Avanzada</strong>
-          </a>
-        </p>
-
-        <p>
-          <a href="https://www.comillas.edu/grados/grado-en-ingenieria-matematica-e-inteligencia-artificial-imat/#planestudios" 
-            target="_blank" rel="noopener">
-            <strong>Ingeniería Matemática Inteligencia Artificial</strong>
-          </a>
-        </p>
-      </div>
-    </section>
-
-
-    <!-- HABILITIES -->
-    <section id="habilidades" class="section">
-      <div class="container">
-        <h2>Habilidades</h2>
-        <ul class="skills">
-          <li><strong>Lenguajes:</strong> Python, SQL, R, HTML/CSS/JS.</li>
-          <li><strong>ML/DL:</strong> NumPy, pandas, scikit-learn, PyTorch, OpenCV.</li>
-          <li><strong>Datos:</strong> MySQL, MongoDB, ETL, APIs.</li>
-          <li><strong>BI:</strong> Power BI, Tableau.</li>
-          <li><strong>Otros:</strong> Git, Linux, control de versiones, comunicación y trabajo en equipo.</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contacto" class="section">
-      <div class="container">
-        <h2>Contacto</h2>
-        <div class="links-list">
-          <a href="mailto:joaquinmirma@gmail.com"><span>Correo</span> <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          <a href="https://www.linkedin.com/in/joaquin-mir-macias-59a9a2230/" target="_blank" rel="noopener"><span>LinkedIn</span> <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          <a href="https://github.com/joaquinmaciias" target="_blank" rel="noopener"><span>Github</span> <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        <div class="hero-image">
+            <div class="profile-pic">
+                <img src="assets/pictures/profile.png" alt="Joaquín Mir Macías" onerror="this.style.display='none'; this.parentElement.classList.add('profile-pic-empty'); this.parentElement.innerHTML='<span class=&quot;profile-initials&quot;>JMM</span>';">
+            </div>
         </div>
-      </div>
     </section>
-  </main>
 
-  <footer>
-    <div class="wrap container">
-      <small>© <span id="year"></span> Joaquín Mir Macias</small>
-      <a class="btn ghost sm" href="#top">Volver arriba</a>
-    </div>
-  </footer>
+    <!-- Timeline / Journey Section -->
+    <section id="journey" class="journey-section">
+        <div class="journey-inner">
+            <h2 class="section-title">Mi Trayectoria</h2>
+            <p class="journey-subtitle">Un mapa visual de mi trayectoria académica y profesional.</p>
 
-  <!-- Custom cursor -->
-  <div class="cursor-dot" aria-hidden="true"></div>
+            <div class="timeline-legend">
+                <span class="legend-item"><span class="legend-dot legend-academic"></span><span data-i18n="journey.academic">Académico</span></span>
+                <span class="legend-item"><span class="legend-dot legend-professional"></span><span data-i18n="journey.professional">Profesional</span></span>
+                <span class="legend-item"><span class="legend-dot legend-exchange"></span><span data-i18n="journey.exchange">Estancia / Internacional</span></span>
+            </div>
 
-  <script src="script.js"></script>
+            <div class="timeline-scroll">
+                <div class="timeline" id="timeline-container">
+                    <!-- Timeline dynamically rendered from translations.js -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">Sobre mí</h2>
+        <div class="card">
+            <p class="card-description">
+                ¡Hola! Soy Joaquín, estudiante de Máster en Inteligencia Artificial Avanzada en la <strong>Universidad Pontificia Comillas – ICAI</strong>.
+            </p>
+            <p class="card-description">
+                Mi formación combina una sólida base matemática con experiencia práctica en Machine Learning, Visión por Computador y Análisis de Datos.
+            </p>
+            <p class="card-description">
+                Busco mi primera oportunidad full-time en ML / CV / NLP.
+            </p>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title">Experiencia</h2>
+        <div class="experience-grid" id="experience-container">
+            <!-- Experience cards will be dynamically loaded from translations.js -->
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2 class="section-title">Educación</h2>
+        <div class="education-grid" id="education-container">
+            <!-- Education cards will be dynamically loaded from translations.js -->
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Proyectos Destacados</h2>
+        <div class="projects-grid" id="projects-container">
+            <!-- Project cards will be dynamically loaded from translations.js -->
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Habilidades y Tecnologías</h2>
+        <div class="skills-grid" id="skills-container">
+            <!-- Skills will be dynamically loaded from translations.js -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="currently" id="currently-block">
+                <h4 class="currently-title">Ahora mismo</h4>
+                <div class="currently-items">
+                    <div class="currently-item">
+                        <span class="currently-label">Leyendo</span>
+                        <span class="currently-value" data-currently="reading">—</span>
+                    </div>
+                    <div class="currently-item">
+                        <span class="currently-label">Construyendo</span>
+                        <span class="currently-value" data-currently="building">—</span>
+                    </div>
+                    <div class="currently-item">
+                        <span class="currently-label">Enfocado en</span>
+                        <span class="currently-value" data-currently="focus">—</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/joaquin-mir-macias-59a9a2230/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="https://github.com/joaquinmaciias" target="_blank" rel="noopener">GitHub</a>
+                <a href="mailto:joaquinmirma@gmail.com">Email</a>
+            </div>
+            <p>&copy; 2025 Joaquín Mir Macías. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="translations.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

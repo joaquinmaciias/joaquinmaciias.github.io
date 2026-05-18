@@ -1,489 +1,907 @@
-// Menú hamburguesa (con aria-label traducible)
-const menuToggle = document.getElementById('menuToggle');
-const navUl = document.querySelector('header nav ul');
-menuToggle.addEventListener('click', () => {
-  navUl.classList.toggle('open');
-  const isOpen = navUl.classList.contains('open');
-  // Si el i18n ya está cargado usamos sus textos; si no, fallback.
-  const label = (window.__t ? window.__t(isOpen ? 'menu.close' : 'menu.open') : (isOpen ? 'Cerrar menú' : 'Abrir menú'));
-  menuToggle.setAttribute('aria-label', label);
+// ===================================
+// DOM Content Loaded
+// ===================================
+document.addEventListener('DOMContentLoaded', () => {
+    initializeLanguage();
+    initializePortfolio();
+    setupSmoothScrolling();
+    setupNavbarScroll();
+    setupLanguageSwitcher();
+    setupScrollAnimations();
+    setupReadingProgress();
+    setupCommandPalette();
 });
 
+// ===================================
+// Language Management
+// ===================================
+let currentLanguage = 'es';
 
-// Año en el footer
-const y = document.getElementById('year');
-if (y) { y.textContent = new Date().getFullYear(); }
-
-// ===== Cursor seguidor con retardo y crecimiento al mantener click =====
-(() => {
-  const dot = document.querySelector('.cursor-dot');
-  if (!dot) return;
-
-  // Respeta "reducir movimiento"
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduceMotion) {
-    dot.style.display = 'none';
-    return;
-  }
-
-  let targetX = window.innerWidth / 2;
-  let targetY = window.innerHeight / 2;
-  let currentX = targetX;
-  let currentY = targetY;
-  let scale = 1.3;
-  const easing = 0.25; // menor = más lento
-
-  window.addEventListener('mousemove', (e) => {
-    targetX = e.clientX;
-    targetY = e.clientY;
-  });
-
-  window.addEventListener('mousedown', (e) => {
-    if (e.button === 0) scale = 2.3; // crece al mantener click izq.
-  });
-  window.addEventListener('mouseup', (e) => {
-    if (e.button === 0) scale = 1.3; // vuelve a tamaño normal
-  });
-
-  window.addEventListener('mouseleave', () => { dot.style.opacity = '0'; });
-  window.addEventListener('mouseenter', () => { dot.style.opacity = '0.95'; });
-
-  function tick(){
-    currentX += (targetX - currentX) * easing;
-    currentY += (targetY - currentY) * easing;
-    dot.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) scale(${scale})`;
-    requestAnimationFrame(tick);
-  }
-  tick();
-})();
-
-// ==== Iluminación de bordes de proyectos al acercar el cursor ====
-(() => {
-  const cards = document.querySelectorAll('.project');
-  const THRESH_OUT = 120; // radio de activación cuando el cursor está fuera
-  const THRESH_IN  = 80;  // distancia al borde (desde dentro) para activar
-
-  const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
-
-  window.addEventListener('mousemove', (e) => {
-    const mx = e.clientX;
-    const my = e.clientY;
-
-    cards.forEach(card => {
-      const r = card.getBoundingClientRect();
-      const inside = mx >= r.left && mx <= r.right && my >= r.top && my <= r.bottom;
-
-      // Punto del borde más cercano (en coords del elemento)
-      let px = clamp(mx, r.left, r.right) - r.left;
-      let py = clamp(my, r.top, r.bottom) - r.top;
-
-      let opacity;
-
-      if (inside) {
-        // Distancias a cada borde (desde dentro)
-        const dL = mx - r.left;
-        const dR = r.right - mx;
-        const dT = my - r.top;
-        const dB = r.bottom - my;
-        const minD = Math.min(dL, dR, dT, dB);
-
-        // Proyecta el foco al borde más cercano
-        if (minD === dL) px = 0;
-        else if (minD === dR) px = r.width;
-        else if (minD === dT) py = 0;
-        else if (minD === dB) py = r.height;
-
-        // Intensidad en función de lo cerca que esté del borde
-        opacity = Math.max(0, 1 - (minD / THRESH_IN));
-      } else {
-        // Distancia mínima al rectángulo cuando el cursor está fuera
-        const dx = Math.max(r.left - mx, 0, mx - r.right);
-        const dy = Math.max(r.top - my, 0, my - r.bottom);
-        const dist = Math.hypot(dx, dy);
-        opacity = Math.max(0, 1 - (dist / THRESH_OUT));
-      }
-
-      card.style.setProperty('--gx', `${px}px`);
-      card.style.setProperty('--gy', `${py}px`);
-      card.style.setProperty('--gopacity', opacity.toFixed(3));
-    });
-  });
-})();
-
-// ===================== I18N (ES / EN) =====================
-(function(){
-  const i18n = {
-    es: {
-      // Meta
-      title: 'Joaquín Mir Macias — Web Personal',
-      metaDesc: 'Web personal de Joaquín Mir Macias. Perfil junior orientado a IA, Ciencia de Datos y Desarrollo.',
-      
-      // UI & navegación
-      'nav.aria': 'Principal',
-      'nav.sobreMi': 'Sobre mí',
-      'nav.proyectos': 'Proyectos',
-      'nav.experiencia': 'Experiencia',
-      'nav.educacion': 'Educación',
-      'nav.habilidades': 'Habilidades',
-      'nav.contacto': 'Contacto',
-      'menu.open': 'Abrir menú',
-      'menu.close': 'Cerrar menú',
-      'ui.switchToEN': 'Cambiar a inglés',
-      'ui.switchToES': 'Cambiar a español',
-
-      // Secciones
-      'sec.about': 'Sobre mí',
-      'sec.projects': 'Proyectos',
-      'sec.experience': 'Experiencia',
-      'sec.education': 'Educación',
-      'sec.skills': 'Habilidades',
-      'sec.contact': 'Contacto',
-
-      // HERO
-      'hero.h1': 'Soy Joaquín Mir Macías<br> Ingeniero en Inteligencia Artificial/ Machine Learning ',
-      'hero.lead': 'Me apasiona transformar datos en soluciones inteligentes. He participado en proyectos de <em>Computer Vision</em> para la detección de tumores, en el desarrollo de una <em>silla de ruedas autónoma</em> y en prácticas de análisis de datos en <strong>Redsys</strong> y <strong>BBVA</strong>. Busco mi primera experiencia a tiempo completo donde aportar mis conocimientos en <strong>Machine Learning, Computer Vision y NLP</strong>, mientras sigo aprendiendo y creando impacto real.',
-      'cta.cv': 'Ver CV',
-      'cta.carta': 'Carta de Recomendación BBVA',
-      'cta.tfg': 'Trabajo Fin de Grado',
-      'img.altPerfil': 'Foto de Joaquín Mir Macias',
-
-      // BIO
-      'bio.h2': 'Sobre mí',
-      'bio.p1': 'Soy <strong>Joaquín Mir</strong>, graduado en <em>Ingeniería Matemática e Inteligencia Artificial</em> y actualmente estudiante del <strong>Máster en Inteligencia Artificial Avanzada</strong> en la Universidad Pontificia Comillas – ICAI. Mi formación combina una sólida base matemática con experiencia práctica en proyectos de <em>Machine Learning</em>, <em>Visión por Computador</em> y <em>Análisis de Datos</em>.',
-      'bio.p2': 'He trabajado en proyectos como la <strong>detección de tumores renales con Deep Learning</strong>, el desarrollo de una <strong>silla de ruedas autónoma</strong> y prácticas profesionales en <strong>Redsys</strong> y <strong>BBVA</strong>, donde apliqué análisis de datos y técnicas de auditoría interna.',
-      'bio.p3': 'Busco mi primera experiencia a tiempo completo en el ámbito de la <strong>IA y Ciencia de Datos</strong>, con el objetivo de aportar soluciones innovadoras, crecer profesionalmente y generar impacto real en las organizaciones.',
-
-      // PROYECTOS
-      'projects.1.title': 'Kidney Tumor Detection (CT)',
-      'projects.1.desc':  'Segmentación automática de tumores renales en TC con CNNs.',
-      'projects.1.aria':  'Segmentación automática de tumores renales en TC con CNNs.',
-
-      'projects.2.title': 'Init RNNs & LSTM',
-      'projects.2.desc':  'Impacto de la inicialización de pesos en RNN/LSTM sobre estabilidad y convergencia.',
-      'projects.2.aria':  'Impacto de la inicialización de pesos en RNN/LSTM sobre estabilidad y convergencia.',
-
-      'projects.3.title': 'Llama 3.1 Fine-Tuning',
-      'projects.3.desc':  'Fine-tuning de Llama 3.1 para tareas instruccionales con guías reproducibles.',
-      'projects.3.aria':  'Fine-tuning de Llama 3.1 para tareas instruccionales con guías reproducibles.',
-
-      'projects.4.title': 'Latent Diffusion (LDM)',
-      'projects.4.desc':  'Implementación del pipeline de Latent Diffusion con Diffusers paso a paso.',
-      'projects.4.aria':  'Implementación del pipeline de Latent Diffusion con Diffusers paso a paso.',
-
-      'projects.5.title': 'DDPM (Diffusers)',
-      'projects.5.desc':  'Entrenamiento y muestreo con DDPM; comparación con DDIM y análisis de calidad.',
-      'projects.5.aria':  'Entrenamiento y muestreo con DDPM; comparación con DDIM y análisis de calidad.',
-
-      'projects.6.title': 'Vision Transformer (ViT)',
-      'projects.6.desc':  'Implementación desde cero de Vision Transformers (ViT) con PyTorch.',
-      'projects.6.aria':  'Implementación desde cero de Vision Transformers (ViT) con PyTorch.',
-
-      // EXPERIENCIA
-      'exp.h2': 'Experiencia',
-      'exp.p1': '<strong>Universidad Pontificia de Comillas – ICAI</strong>, Madrid, España<br><em>Project Member – SocialTech Challenge</em> · Octubre 2023 – Junio 2024',
-      'exp.p1.li1': 'Colaboración con el área de Sistemas Inteligentes en el diseño y fabricación de una silla de ruedas autónoma utilizando sistemas electrónicos y Machine Learning.',
-      'exp.p2': '<strong>Redsys</strong>, Madrid, España<br><em>Internship – Data Analyst Department</em> · Junio 2024 – Agosto 2024',
-      'exp.p2.li1': 'Extracción de datos con Hue, filtrado de información en bases de datos relacionales con QlikSense.',
-      'exp.p2.li2': 'Creación de dashboards dirigidos para visualización de datos de empresas.',
-      'exp.p3': '<strong>BBVA</strong>, Madrid, España<br><em>Internship – Internal Audit</em> · Febrero 2025 – Agosto 2025',
-      'exp.p3.li1': 'Apoyo en la ejecución de auditorías internas en el área corporativa.',
-      'exp.p3.li2': 'Participación en la evaluación de procesos clave, análisis de riesgos y controles.',
-      'exp.p3.li3': 'Elaboración de informes con hallazgos y recomendaciones.',
-      'exp.p3.li4': 'Uso de herramientas de análisis de datos y colaboración con distintas unidades para garantizar cumplimiento normativo y de políticas internas.',
-
-      // EDUCACIÓN
-      'edu.h2': 'Educación',
-      'edu.master': 'Máster de Inteligencia Artificial Avanzada',
-      'edu.degree': 'Ingeniería Matemática Inteligencia Artificial',
-
-      // HABILIDADES
-      'skills.h2': 'Habilidades',
-      'skills.l1': '<strong>Lenguajes:</strong> Python, SQL, R, HTML/CSS/JS.',
-      'skills.l2': '<strong>ML/DL:</strong> NumPy, pandas, scikit-learn, PyTorch, OpenCV.',
-      'skills.l3': '<strong>Datos:</strong> MySQL, MongoDB, ETL, APIs.',
-      'skills.l4': '<strong>BI:</strong> Power BI, Tableau.',
-      'skills.l5': '<strong>Otros:</strong> Git, Linux, control de versiones, comunicación y trabajo en equipo.',
-
-      // CONTACTO
-      'contact.h2': 'Contacto',
-      'contact.email': 'Correo',
-      'contact.linkedin': 'LinkedIn',
-      'contact.github': 'Github',
-
-      // FOOTER
-      'footer.back': 'Volver arriba'
-    },
-    en: {
-      // Meta
-      title: 'Joaquín Mir Macias — Personal Website',
-      metaDesc: 'Personal website of Joaquín Mir Macias. Junior profile focused on AI, Data Science and Development.',
-      // UI & navegación
-      'nav.aria': 'Main',
-      'nav.sobreMi': 'About',
-      'nav.proyectos': 'Projects',
-      'nav.experiencia': 'Experience',
-      'nav.educacion': 'Education',
-      'nav.habilidades': 'Skills',
-      'nav.contacto': 'Contact',
-      'menu.open': 'Open menu',
-      'menu.close': 'Close menu',
-      'ui.switchToEN': 'Switch to English',
-      'ui.switchToES': 'Cambiar a español',
-
-      // Secciones
-      'sec.about': 'About',
-      'sec.projects': 'Projects',
-      'sec.experience': 'Experience',
-      'sec.education': 'Education',
-      'sec.skills': 'Skills',
-      'sec.contact': 'Contact',
-
-      // HERO
-      'hero.h1': "I'm Joaquín Mir Macías<br> Artificial Intelligence/ Machine Learning Engineer",
-      'hero.lead': 'I love turning data into intelligent solutions. I have worked on <em>Computer Vision</em> for tumor detection, built an <em>autonomous wheelchair</em>, and completed data analytics internships at <strong>Redsys</strong> and <strong>BBVA</strong>. I am seeking my first full-time role to contribute in <strong>Machine Learning, Computer Vision y NLP</strong> while continuing to learn and create real impact.',
-      'cta.cv': 'View CV',
-      'cta.carta': 'BBVA Letter of Recommendation',
-      'cta.tfg': 'Bachelor Thesis',
-      'img.altPerfil': 'Photo of Joaquín Mir Macias',
-
-      // BIO
-      'bio.h2': 'About',
-      'bio.p1': 'I am <strong>Joaquín Mir</strong>, graduate in <em>Mathematical Engineering and Artificial Intelligence</em> and currently a student of the <strong>MSc in Advanced Artificial Intelligence</strong> at Universidad Pontificia Comillas – ICAI. My background combines a solid mathematical foundation with hands-on experience in <em>Machine Learning</em>, <em>Computer Vision</em>, and <em>Data Analysis</em> projects.',
-      'bio.p2': 'I have worked on <strong>kidney tumor detection with Deep Learning</strong>, developed an <strong>autonomous wheelchair</strong>, and completed internships at <strong>Redsys</strong> and <strong>BBVA</strong>, applying data analysis and internal audit techniques.',
-      'bio.p3': 'I am looking for my first full-time opportunity in <strong>AI and Data Science</strong> to deliver innovative solutions, grow professionally, and generate real impact.',
-
-      // PROJECTS
-      'projects.1.title': 'Kidney Tumor Detection (CT)',
-      'projects.1.desc':  'Automatic kidney tumor segmentation in CT using CNNs.',
-      'projects.1.aria':  'Automatic kidney tumor segmentation in CT using CNNs.',
-
-      'projects.2.title': 'Init RNNs & LSTM',
-      'projects.2.desc':  'Impact of weight initialization in RNN/LSTM on stability and convergence.',
-      'projects.2.aria':  'Impact of weight initialization in RNN/LSTM on stability and convergence.',
-
-      'projects.3.title': 'Llama 3.1 Fine-Tuning',
-      'projects.3.desc':  'Fine-tuning Llama 3.1 for instruction-based tasks with reproducible guides.',
-      'projects.3.aria':  'Fine-tuning Llama 3.1 for instruction-based tasks with reproducible guides.',
-
-      'projects.4.title': 'Latent Diffusion (LDM)',
-      'projects.4.desc':  'Step-by-step implementation of the Latent Diffusion pipeline with Diffusers.',
-      'projects.4.aria':  'Step-by-step implementation of the Latent Diffusion pipeline with Diffusers.',
-
-      'projects.5.title': 'DDPM (Diffusers)',
-      'projects.5.desc':  'Training and sampling with DDPM; comparison with DDIM and quality analysis.',
-      'projects.5.aria':  'Training and sampling with DDPM; comparison with DDIM and quality analysis.',
-
-      'projects.6.title': 'Vision Transformer (ViT)',
-      'projects.6.desc':  'Vision Transformer (ViT) built from scratch using PyTorch.',
-      'projects.6.aria':  'Vision Transformer (ViT) built from scratch using PyTorch.',
-
-      // EXPERIENCE
-      'exp.h2': 'Experience',
-      'exp.p1': '<strong>Universidad Pontificia de Comillas – ICAI</strong>, Madrid, Spain<br><em>Project Member – SocialTech Challenge</em> · October 2023 – June 2024',
-      'exp.p1.li1': 'Worked with the Intelligent Systems area to design and build an autonomous wheelchair using electronics and Machine Learning.',
-      'exp.p2': '<strong>Redsys</strong>, Madrid, Spain<br><em>Internship – Data Analyst Department</em> · June 2024 – August 2024',
-      'exp.p2.li1': 'Data extraction with Hue and filtering of information in relational databases using QlikSense.',
-      'exp.p2.li2': 'Built targeted dashboards for enterprise data visualization.',
-      'exp.p3': '<strong>BBVA</strong>, Madrid, Spain<br><em>Internship – Internal Audit</em> · February 2025 – August 2025',
-      'exp.p3.li1': 'Supported the execution of internal audits in the corporate area.',
-      'exp.p3.li2': 'Contributed to assessment of key processes, risk analysis and controls.',
-      'exp.p3.li3': 'Prepared reports with findings and recommendations.',
-      'exp.p3.li4': 'Used data analysis tools and collaborated across units to ensure compliance with regulations and internal policies.',
-
-      // EDUCATION
-      'edu.h2': 'Education',
-      'edu.master': 'Master in Advanced Artificial Intelligence',
-      'edu.degree': 'BSc in Mathematical Engineering & Artificial Intelligence',
-
-      // SKILLS
-      'skills.h2': 'Skills',
-      'skills.l1': '<strong>Languages:</strong> Python, SQL, R, HTML/CSS/JS.',
-      'skills.l2': '<strong>ML/DL:</strong> NumPy, pandas, scikit-learn, PyTorch, OpenCV.',
-      'skills.l3': '<strong>Data:</strong> MySQL, MongoDB, ETL, APIs.',
-      'skills.l4': '<strong>BI:</strong> Power BI, Tableau.',
-      'skills.l5': '<strong>Other:</strong> Git, Linux, version control, communication & teamwork.',
-
-      // CONTACT
-      'contact.h2': 'Contact',
-      'contact.email': 'Email',
-      'contact.linkedin': 'LinkedIn',
-      'contact.github': 'Github',
-
-      // FOOTER
-      'footer.back': 'Back to top'
-    }
-  };
-
-  // Exponer un pequeño helper para otros handlers
-  window.__t = (k) => {
-    const lang = window.__lang || 'es';
-    return (i18n[lang] && i18n[lang][k]) || i18n.es[k] || '';
-  };
-
-  function applyTranslations(lang){
-    window.__lang = lang;
-    // <html lang="">
-    document.documentElement.setAttribute('lang', lang);
-
-    // <title> y <meta name="description">
-    document.title = __t('title');
-    const md = document.querySelector('meta[name="description"]');
-    if (md) md.setAttribute('content', __t('metaDesc'));
-
-    // Nav y controles ARIA
-    const navEl = document.querySelector('header nav');
-    if (navEl) navEl.setAttribute('aria-label', __t('nav.aria'));
-
-    const menuBtn = document.getElementById('menuToggle');
-    if (menuBtn) {
-      const isOpen = document.querySelector('header nav ul').classList.contains('open');
-      menuBtn.setAttribute('aria-label', __t(isOpen ? 'menu.close' : 'menu.open'));
-    }
-
-    // Botón de idioma
-    const langBtn = ensureLangButton();
-    if (langBtn) {
-      langBtn.textContent = (lang === 'es') ? 'English' : 'Español';
-      langBtn.setAttribute('aria-label', __t(lang === 'es' ? 'ui.switchToEN' : 'ui.switchToES'));
+function initializeLanguage() {
+    // Check for saved language preference
+    const savedLang = localStorage.getItem('preferredLanguage');
+    if (savedLang && (savedLang === 'en' || savedLang === 'es')) {
+        currentLanguage = savedLang;
+    } else {
+        // Detect browser language; default to ES otherwise.
+        const browserLang = navigator.language.slice(0, 2);
+        currentLanguage = (browserLang === 'en') ? 'en' : 'es';
     }
     
-    // ===== Mapeo de selectores -> claves =====
-    const map = [
-      // Menú
-      {sel:'header nav ul li:nth-child(1) a', key:'nav.sobreMi'},
-      {sel:'header nav ul li:nth-child(2) a', key:'nav.proyectos'},
-      {sel:'header nav ul li:nth-child(3) a', key:'nav.experiencia'},
-      {sel:'header nav ul li:nth-child(4) a', key:'nav.educacion'},
-      {sel:'header nav ul li:nth-child(5) a', key:'nav.habilidades'},
-      {sel:'header nav ul li:nth-child(6) a', key:'nav.contacto'},
+    // Update active button
+    updateLanguageButtons();
+}
 
-      // HERO
-      {sel:'#sobre-mi h1', key:'hero.h1', html:true},
-      {sel:'#sobre-mi .lead', key:'hero.lead', html:true},
-      {sel:'.cta a:nth-child(1)', key:'cta.cv'},
-      {sel:'.cta a:nth-child(2)', key:'cta.carta'},
-      {sel:'.cta a:nth-child(3)', key:'cta.tfg'},
-      {sel:'.perfil', key:'img.altPerfil', attr:'alt'},
+function setupLanguageSwitcher() {
+    const langButtons = document.querySelectorAll('.lang-btn');
+    
+    langButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.dataset.lang;
+            if (lang !== currentLanguage) {
+                currentLanguage = lang;
+                localStorage.setItem('preferredLanguage', lang);
+                updateLanguageButtons();
+                updatePageLanguage();
+            }
+        });
+    });
+}
 
-      // Encabezados de secciones
-      {sel:'#bio h2', key:'bio.h2'},
-      {sel:'#proyectos h2', key:'projects.h2'},
-      {sel:'#experiencia h2', key:'exp.h2'},
-      {sel:'#educacion h2', key:'edu.h2'},
-      {sel:'#habilidades h2', key:'skills.h2'},
-      {sel:'#contacto h2', key:'contact.h2'},
+function updateLanguageButtons() {
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        if (btn.dataset.lang === currentLanguage) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+}
 
-      // BIO párrafos
-      {sel:'#bio p:nth-of-type(1)', key:'bio.p1', html:true},
-      {sel:'#bio p:nth-of-type(2)', key:'bio.p2', html:true},
-      {sel:'#bio p:nth-of-type(3)', key:'bio.p3', html:true},
+function updatePageLanguage() {
+    // Update static translations
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.dataset.i18n;
+        const translation = getTranslation(key);
+        if (translation) {
+            element.textContent = translation;
+        }
+    });
+    
+    // Re-render dynamic content
+    clearContainers();
+    renderTimeline();
+    renderExperience();
+    renderEducation();
+    renderProjects();
+    renderSkills();
+    
+    // Update hero section
+    updateHeroSection();
+    
+    // Update about section
+    updateAboutSection();
+    
+    // Update journey section
+    updateJourneySection();
+    
+    // Update section titles
+    updateSectionTitles();
+    
+    // Update footer
+    updateFooter();
+    updateCurrently();
 
-      // PROYECTOS (5 tarjetas) – títulos, descripciones y aria-labels
-      {sel: '.projects a:nth-child(1) h3', key: 'projects.1.title'},
-      {sel: '.projects a:nth-child(1) p',  key: 'projects.1.desc'},
-      {sel: '.projects a:nth-child(1)',    key: 'projects.1.aria', attr: 'aria-label'},
+    // Re-bind scroll reveals for newly rendered cards
+    reobserveReveals();
+}
 
-      {sel: '.projects a:nth-child(2) h3', key: 'projects.2.title'},
-      {sel: '.projects a:nth-child(2) p',  key: 'projects.2.desc'},
-      {sel: '.projects a:nth-child(2)',    key: 'projects.2.aria', attr: 'aria-label'},
-
-      {sel: '.projects a:nth-child(3) h3', key: 'projects.3.title'},
-      {sel: '.projects a:nth-child(3) p',  key: 'projects.3.desc'},
-      {sel: '.projects a:nth-child(3)',    key: 'projects.3.aria', attr: 'aria-label'},
-
-      {sel: '.projects a:nth-child(4) h3', key: 'projects.4.title'},
-      {sel: '.projects a:nth-child(4) p',  key: 'projects.4.desc'},
-      {sel: '.projects a:nth-child(4)',    key: 'projects.4.aria', attr: 'aria-label'},
-
-      {sel: '.projects a:nth-child(5) h3', key: 'projects.5.title'},
-      {sel: '.projects a:nth-child(5) p',  key: 'projects.5.desc'},
-      {sel: '.projects a:nth-child(5)',    key: 'projects.5.aria', attr: 'aria-label'},
-
-      {sel: '.projects a:nth-child(6) h3', key: 'projects.6.title'},
-      {sel: '.projects a:nth-child(6) p',  key: 'projects.6.desc'},
-      {sel: '.projects a:nth-child(6)',    key: 'projects.6.aria', attr: 'aria-label'},
-
-      // EXPERIENCIA (tres bloques p + sus listas)
-      {sel:'#experiencia p:nth-of-type(1)', key:'exp.p1', html:true},
-      {sel:'#experiencia ul:nth-of-type(1) li:nth-child(1)', key:'exp.p1.li1'},
-
-      {sel:'#experiencia p:nth-of-type(2)', key:'exp.p2', html:true},
-      {sel:'#experiencia ul:nth-of-type(2) li:nth-child(1)', key:'exp.p2.li1'},
-      {sel:'#experiencia ul:nth-of-type(2) li:nth-child(2)', key:'exp.p2.li2'},
-
-      {sel:'#experiencia p:nth-of-type(3)', key:'exp.p3', html:true},
-      {sel:'#experiencia ul:nth-of-type(3) li:nth-child(1)', key:'exp.p3.li1'},
-      {sel:'#experiencia ul:nth-of-type(3) li:nth-child(2)', key:'exp.p3.li2'},
-      {sel:'#experiencia ul:nth-of-type(3) li:nth-child(3)', key:'exp.p3.li3'},
-      {sel:'#experiencia ul:nth-of-type(3) li:nth-child(4)', key:'exp.p3.li4'},
-
-      // EDUCACIÓN (texto de los <strong> dentro de los <a>)
-      {sel:'#educacion p:nth-of-type(1) a strong', key:'edu.master'},
-      {sel:'#educacion p:nth-of-type(2) a strong', key:'edu.degree'},
-
-      // HABILIDADES (5 elementos)
-      {sel:'#habilidades .skills li:nth-child(1)', key:'skills.l1', html:true},
-      {sel:'#habilidades .skills li:nth-child(2)', key:'skills.l2', html:true},
-      {sel:'#habilidades .skills li:nth-child(3)', key:'skills.l3', html:true},
-      {sel:'#habilidades .skills li:nth-child(4)', key:'skills.l4', html:true},
-      {sel:'#habilidades .skills li:nth-child(5)', key:'skills.l5', html:true},
-
-      // CONTACTO (texto visible de los <span>)
-      {sel:'#contacto .links-list a:nth-child(1) span', key:'contact.email'},
-      {sel:'#contacto .links-list a:nth-child(2) span', key:'contact.linkedin'},
-      {sel:'#contacto .links-list a:nth-child(3) span', key:'contact.github'},
-
-      // FOOTER
-      {sel:'footer a.btn.sm', key:'footer.back'}
-    ];
-
-    // Aplicar todas las traducciones
-    for (const item of map){
-      const el = document.querySelector(item.sel);
-      if (!el) continue;
-      if (item.attr){
-        el.setAttribute(item.attr, __t(item.key));
-      } else if (item.html){
-        el.innerHTML = __t(item.key);
-      } else {
-        el.textContent = __t(item.key);
-      }
+function getTranslation(key) {
+    const keys = key.split('.');
+    let value = translations[currentLanguage];
+    
+    for (const k of keys) {
+        if (value && value[k]) {
+            value = value[k];
+        } else {
+            return null;
+        }
     }
-  }
+    
+    return value;
+}
 
-  function ensureLangButton(){
-    let btn = document.getElementById('langToggle');
-    if (!btn){
-      // Si no existe (por si no se tocó el HTML), lo creamos en .logo
-      const logo = document.querySelector('.logo');
-      if (!logo) return null;
-      btn = document.createElement('button');
-      btn.id = 'langToggle';
-      btn.className = 'btn sm lang-toggle';
-      logo.innerHTML = '';
-      logo.appendChild(btn);
+function clearContainers() {
+    document.getElementById('timeline-container').innerHTML = '';
+    document.getElementById('experience-container').innerHTML = '';
+    document.getElementById('education-container').innerHTML = '';
+    document.getElementById('projects-container').innerHTML = '';
+    document.getElementById('skills-container').innerHTML = '';
+}
+
+function updateHeroSection() {
+    const t = translations[currentLanguage].hero;
+    document.querySelector('.hero-content .subtitle').textContent = t.subtitle;
+    document.querySelector('.hero-content .hero-description').textContent = t.description;
+    document.querySelector('.btn-primary').textContent = t.contactBtn;
+    document.querySelector('.btn-cv').textContent = t.cvBtn;
+    document.querySelector('.btn-projects').textContent = t.projectsBtn;
+    const tfgBtn = document.querySelector('.btn-tfg');
+    if (tfgBtn) tfgBtn.textContent = t.tfgBtn;
+    const letterBtn = document.querySelector('.btn-letter');
+    if (letterBtn) letterBtn.textContent = t.letterBtn;
+}
+
+function updateAboutSection() {
+    const about = translations[currentLanguage].about;
+    const descriptions = document.querySelectorAll('#about .card-description');
+    descriptions[0].innerHTML = about.p1;
+    descriptions[1].innerHTML = about.p2;
+    descriptions[2].innerHTML = about.p3;
+}
+
+function updateSectionTitles() {
+    const sections = translations[currentLanguage].sections;
+    document.querySelector('#journey .section-title').textContent = sections.journey;
+    document.querySelector('#about .section-title').textContent = sections.about;
+    document.querySelector('#experience .section-title').textContent = sections.experience;
+    document.querySelector('#education .section-title').textContent = sections.education;
+    document.querySelector('#projects .section-title').textContent = sections.projects;
+    document.querySelector('#skills .section-title').textContent = sections.skills;
+}
+
+function updateJourneySection() {
+    const j = translations[currentLanguage].journey;
+    const subtitleEl = document.querySelector('.journey-subtitle');
+    if (subtitleEl) subtitleEl.textContent = j.subtitle;
+    document.querySelectorAll('[data-i18n="journey.academic"]').forEach(el => el.textContent = j.academic);
+    document.querySelectorAll('[data-i18n="journey.professional"]').forEach(el => el.textContent = j.professional);
+    document.querySelectorAll('[data-i18n="journey.exchange"]').forEach(el => el.textContent = j.exchange);
+}
+
+function updateFooter() {
+    const year = new Date().getFullYear();
+    const rights = translations[currentLanguage].footer.rights;
+    document.querySelector('footer p').textContent = `© ${year} Joaquín Mir Macías. ${rights}`;
+}
+
+function updateCurrently() {
+    const t = translations[currentLanguage].currently;
+    const data = currentlyData[currentLanguage] || currentlyData.en;
+    const titleEl = document.querySelector('.currently-title');
+    if (titleEl) titleEl.textContent = t.title;
+    const labels = document.querySelectorAll('.currently-label');
+    if (labels.length >= 3) {
+        labels[0].textContent = t.reading;
+        labels[1].textContent = t.building;
+        labels[2].textContent = t.focus;
     }
-    // Click para alternar
-    if (!btn.__bound){
-      btn.addEventListener('click', () => {
-        const next = (window.__lang === 'es') ? 'en' : 'es';
-        setLang(next);
-      });
-      btn.__bound = true;
+    const readingEl = document.querySelector('[data-currently="reading"]');
+    const buildingEl = document.querySelector('[data-currently="building"]');
+    const focusEl = document.querySelector('[data-currently="focus"]');
+    if (readingEl) readingEl.textContent = data.reading;
+    if (buildingEl) buildingEl.textContent = data.building;
+    if (focusEl) focusEl.textContent = data.focus;
+}
+
+// ===================================
+// Initialize Portfolio Content
+// ===================================
+function initializePortfolio() {
+    renderTimeline();
+    renderExperience();
+    renderEducation();
+    renderProjects();
+    renderSkills();
+    updatePageLanguage();
+}
+
+// ===================================
+// Render Timeline (Journey Section)
+// ===================================
+function parseYearMonth(ym) {
+    // Accepts "YYYY-MM" or "present"
+    if (ym === 'present') {
+        const now = new Date();
+        return { year: now.getFullYear(), month: now.getMonth() + 1 };
     }
-    return btn;
-  }
+    const [y, m] = ym.split('-').map(Number);
+    return { year: y, month: m };
+}
 
-  function setLang(lang){
-    localStorage.setItem('lang', lang);
-    applyTranslations(lang);
-  }
+function monthsBetween(a, b) {
+    // Returns the number of months from date a to date b (can be fractional-free integer).
+    return (b.year - a.year) * 12 + (b.month - a.month);
+}
 
-  // Inicialización
-  document.addEventListener('DOMContentLoaded', () => {
-    const userPref = localStorage.getItem('lang');
-    const fallback = (navigator.language || 'es').toLowerCase().startsWith('es') ? 'es' : 'en';
-    const startLang = userPref || fallback;
-    setLang(startLang);
-  });
-})();
+function renderTimeline() {
+    const container = document.getElementById('timeline-container');
+    if (!container) return;
+
+    const rangeStart = parseYearMonth(timelineData.rangeStart);
+    const rangeEnd = parseYearMonth(timelineData.rangeEnd);
+    const totalMonths = monthsBetween(rangeStart, rangeEnd);
+    if (totalMonths <= 0) return;
+
+    const events = timelineData.events[currentLanguage] || timelineData.events.en;
+
+    // Build year markers (every January that falls in range, plus endpoints)
+    const years = [];
+    for (let y = rangeStart.year; y <= rangeEnd.year; y++) {
+        years.push(y);
+    }
+
+    const yearsHTML = years.map(y => {
+        const pos = monthsBetween(rangeStart, { year: y, month: 1 });
+        const pct = Math.max(0, Math.min(100, (pos / totalMonths) * 100));
+        return `<div class="timeline-year" style="left: ${pct}%;"><span>${y}</span></div>`;
+    }).join('');
+
+    // Separate events by lane (academic/exchange above, professional below)
+    const topEvents = events.filter(e => e.type === 'academic' || e.type === 'exchange');
+    const bottomEvents = events.filter(e => e.type === 'professional');
+
+    // Card min-width in px (must match CSS .tl-card min-width)
+    const CARD_MIN_PX = 150;
+    const CARD_GAP_PX = 16;
+
+    // The real timeline pixel width we'll measure after first render.
+    // For the initial DOM build we use an estimate (900 is our CSS min-width).
+    // After render, we re-measure and re-layout if needed.
+    const estimatedPxWidth = Math.max(900, (container.parentElement?.clientWidth || 900));
+
+    const stackEvents = (list, pxWidth) => {
+        const pxPerMonth = pxWidth / totalMonths;
+        const minMonthGap = (CARD_MIN_PX + CARD_GAP_PX) / pxPerMonth;
+
+        const prepared = list.map(e => {
+            const s = parseYearMonth(e.start);
+            const endRaw = e.end === 'present' ? timelineData.rangeEnd : e.end;
+            const en = parseYearMonth(endRaw);
+            return {
+                ...e,
+                _start: monthsBetween(rangeStart, s),
+                _end: monthsBetween(rangeStart, en)
+            };
+        }).sort((a, b) => a._start - b._start);
+
+        const lanes = [];
+        prepared.forEach(ev => {
+            // The card for this event visually occupies from _start to at least _start + minMonthGap
+            const effectiveEnd = Math.max(ev._end, ev._start + minMonthGap);
+            let placed = false;
+            for (let i = 0; i < lanes.length; i++) {
+                if (ev._start >= lanes[i]) {
+                    ev._lane = i;
+                    lanes[i] = effectiveEnd;
+                    placed = true;
+                    break;
+                }
+            }
+            if (!placed) {
+                ev._lane = lanes.length;
+                lanes.push(effectiveEnd);
+            }
+        });
+        return { prepared, laneCount: Math.max(1, lanes.length) };
+    };
+
+    const top = stackEvents(topEvents, estimatedPxWidth);
+    const bottom = stackEvents(bottomEvents, estimatedPxWidth);
+
+    const buildBarHTML = (ev, side) => {
+        const leftPct = (ev._start / totalMonths) * 100;
+        const widthPct = Math.max(1.5, ((ev._end - ev._start) / totalMonths) * 100);
+        const typeClass = `tl-${ev.type}`;
+        const sideClass = `tl-${side}`;
+        // Lane offset within the half (pushes bars away from center line)
+        const laneOffset = ev._lane * 82; // px per lane (reduced since no title anymore)
+        const styleSide = side === 'top'
+            ? `bottom: ${laneOffset}px;`
+            : `top: ${laneOffset}px;`;
+
+        const logoHTML = buildTlLogo(ev.logo, ev.institution, ev.fallback);
+
+        const endLabel = ev.end === 'present'
+            ? translations[currentLanguage].journey.present
+            : formatMonthYear(ev.end);
+
+        // Each event links to the matching section:
+        // academic + exchange -> #education, professional -> #experience
+        const target = ev.type === 'professional' ? '#experience' : '#education';
+        const ariaLabel = `${ev.institution}, ${formatMonthYear(ev.start)} — ${endLabel}`;
+
+        return `
+            <a class="tl-event ${typeClass} ${sideClass}" href="${target}" aria-label="${ariaLabel}" style="left: ${leftPct}%; width: ${widthPct}%; ${styleSide}">
+                <div class="tl-bar">
+                    <div class="tl-bar-fill"></div>
+                </div>
+                <div class="tl-card">
+                    <div class="tl-card-header">
+                        ${logoHTML}
+                        <div class="tl-card-text">
+                            <div class="tl-institution">${ev.institution}</div>
+                            <div class="tl-dates">${formatMonthYear(ev.start)} — ${endLabel}</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        `;
+    };
+
+    const topBarsHTML = top.prepared.map(ev => buildBarHTML(ev, 'top')).join('');
+    const bottomBarsHTML = bottom.prepared.map(ev => buildBarHTML(ev, 'bottom')).join('');
+
+    // Height of each half derived from number of lanes
+    const topHeight = 20 + top.laneCount * 82;
+    const bottomHeight = 20 + bottom.laneCount * 82;
+
+    container.innerHTML = `
+        <div class="tl-half tl-half-top" style="height: ${topHeight}px;">
+            ${topBarsHTML}
+        </div>
+        <div class="tl-axis">
+            ${yearsHTML}
+        </div>
+        <div class="tl-half tl-half-bottom" style="height: ${bottomHeight}px;">
+            ${bottomBarsHTML}
+        </div>
+    `;
+}
+
+function formatMonthYear(ym) {
+    if (ym === 'present') return translations[currentLanguage].journey.present;
+    const { year, month } = parseYearMonth(ym);
+    const monthsEn = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const monthsEs = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+    const arr = currentLanguage === 'es' ? monthsEs : monthsEn;
+    return `${arr[month - 1]} ${year}`;
+}
+
+// ===================================
+// Card logo helper — falls back to an initials chip when the PNG is missing
+// ===================================
+function escapeHtml(s) {
+    return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+}
+
+function buildCardLogo(src, alt, fallback) {
+    const fb = escapeHtml(fallback || (alt || '?').split(/\s+/).map(w => w.charAt(0)).join('').slice(0, 3));
+    if (!src) {
+        return `<div class="card-logo-placeholder" aria-hidden="true">${fb}</div>`;
+    }
+    // If the image fails to load, swap it with the initials chip in place.
+    const altEsc = escapeHtml(alt || '');
+    return `<img src="${src}" alt="${altEsc}" class="card-logo" onerror="this.outerHTML='<div class=\\'card-logo-placeholder\\' aria-hidden=\\'true\\'>${fb}</div>';">`;
+}
+
+function buildTlLogo(src, alt, fallback) {
+    const fb = escapeHtml(fallback || (alt || '?').split(/\s+/).map(w => w.charAt(0)).join('').slice(0, 3));
+    if (!src) {
+        return `<div class="tl-logo-placeholder" aria-hidden="true">${fb}</div>`;
+    }
+    const altEsc = escapeHtml(alt || '');
+    return `<img src="${src}" alt="${altEsc}" class="tl-logo" onerror="this.outerHTML='<div class=\\'tl-logo-placeholder\\' aria-hidden=\\'true\\'>${fb}</div>';">`;
+}
+
+// ===================================
+// Render Experience Section
+// ===================================
+function renderExperience() {
+    const container = document.getElementById('experience-container');
+    const data = portfolioDataTranslations[currentLanguage].experience;
+    
+    data.forEach((exp, index) => {
+        const card = createExperienceCard(exp);
+        card.classList.add('reveal');
+        container.appendChild(card);
+    });
+}
+
+function createExperienceCard(exp) {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const linkText = translations[currentLanguage].links.viewWebsite;
+    const linkHTML = exp.link
+        ? `<a href="${exp.link}" class="project-link" target="_blank" rel="noopener">${linkText}</a>`
+        : '';
+
+    const logoHTML = buildCardLogo(exp.logo, exp.company, exp.fallback);
+    
+    card.innerHTML = `
+        <div class="card-header">
+            <div class="card-header-content">
+                ${logoHTML}
+                <div>
+                    <h3 class="card-title">${exp.title}</h3>
+                    <p class="card-subtitle">${exp.company}</p>
+                </div>
+            </div>
+            <span class="card-date">${exp.date}</span>
+        </div>
+        <p class="card-description">${exp.description}</p>
+        ${linkHTML}
+    `;
+    
+    return card;
+}
+
+// ===================================
+// Render Education Section
+// ===================================
+function renderEducation() {
+    const container = document.getElementById('education-container');
+    const data = portfolioDataTranslations[currentLanguage].education;
+    
+    data.forEach((edu, index) => {
+        const card = createEducationCard(edu);
+        card.classList.add('reveal');
+        container.appendChild(card);
+    });
+}
+
+function createEducationCard(edu) {
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const linkText = translations[currentLanguage].links.viewProgram;
+    const linkHTML = edu.link
+        ? `<a href="${edu.link}" class="project-link" target="_blank" rel="noopener">${linkText}</a>`
+        : '';
+
+    const logoHTML = buildCardLogo(edu.logo, edu.institution, edu.fallback);
+    
+    // Handle honors section separately if it exists
+    const honorsHTML = edu.honors 
+        ? `<p class="card-description card-honors"> ${edu.honors}</p>`
+        : '';
+    
+    card.innerHTML = `
+        <div class="card-header">
+            <div class="card-header-content">
+                ${logoHTML}
+                <div>
+                    <h3 class="card-title">${edu.degree}</h3>
+                    <p class="card-subtitle">${edu.institution}</p>
+                </div>
+            </div>
+            <span class="card-date">${edu.date}</span>
+        </div>
+        <p class="card-description">${edu.description}</p>
+        ${honorsHTML}
+        ${linkHTML}
+    `;
+    
+    return card;
+}
+
+// ===================================
+// Render Projects Section
+// ===================================
+const INITIAL_PROJECTS_COUNT = 4;
+
+function renderProjects() {
+    const container = document.getElementById('projects-container');
+    const data = portfolioDataTranslations[currentLanguage].projects;
+
+    data.forEach((project, index) => {
+        const card = createProjectCard(project);
+        card.classList.add('reveal');
+        if (index >= INITIAL_PROJECTS_COUNT) {
+            card.classList.add('project-card-hidden');
+        }
+        container.appendChild(card);
+    });
+
+    // Remove any previously inserted button (e.g. after language switch re-render)
+    const existingBtn = document.getElementById('show-all-projects-btn');
+    if (existingBtn) existingBtn.remove();
+
+    // Add the "Show all" button only if there are more projects than initially shown
+    if (data.length > INITIAL_PROJECTS_COUNT) {
+        const btn = document.createElement('button');
+        btn.id = 'show-all-projects-btn';
+        btn.type = 'button';
+        btn.className = 'btn btn-secondary show-all-projects-btn';
+        btn.textContent = translations[currentLanguage].links.showAllProjects;
+        btn.addEventListener('click', () => {
+            const hiddenCards = container.querySelectorAll('.project-card-hidden');
+            hiddenCards.forEach((card, i) => {
+                card.classList.remove('project-card-hidden');
+                // Trigger the reveal animation with a small stagger so the
+                // newly shown cards fade/slide in instead of popping in.
+                card.style.transitionDelay = `${Math.min(i, 6) * 60}ms`;
+                // Next frame so the transition actually runs
+                requestAnimationFrame(() => {
+                    card.classList.add('is-visible');
+                });
+            });
+            btn.remove();
+        });
+        // Insert the button after the projects grid, inside the same section
+        container.parentElement.appendChild(btn);
+    }
+}
+
+function createProjectCard(project) {
+    const card = document.createElement('div');
+    card.className = 'project-card';
+    
+    const linkText = translations[currentLanguage].links.viewProject;
+    const linkHTML = project.link 
+        ? `<a href="${project.link}" class="project-link" target="_blank" rel="noopener">${linkText}</a>`
+        : '';
+    
+    // Projects don't use icons anymore, only images
+    const imageHTML = project.image 
+        ? `<img src="${project.image}" alt="${project.title}">`
+        : `<div class="project-placeholder"></div>`;
+    
+    card.innerHTML = `
+        <div class="project-image">${imageHTML}</div>
+        <div class="project-content">
+            <h3 class="project-title">${project.title}</h3>
+            <p class="project-tech">${project.tech}</p>
+            <p class="project-description">${project.description}</p>
+            ${linkHTML}
+        </div>
+    `;
+    
+    return card;
+}
+
+// ===================================
+// Render Skills Section
+// ===================================
+function renderSkills() {
+    const container = document.getElementById('skills-container');
+    const data = portfolioDataTranslations[currentLanguage].skills;
+    
+    Object.entries(data).forEach(([category, skills], index) => {
+        const skillCard = createSkillCard(category, skills);
+        skillCard.classList.add('reveal');
+        container.appendChild(skillCard);
+    });
+}
+
+// Mapping: skill name (normalized) -> simpleicons slug + official brand color.
+// All entries below are verified against the simple-icons npm package.
+// Skills not in this map render as plain text tags — that's intentional for
+// abstract concepts (Deep Learning, Linear Algebra, Robotics, PINNs, etc.)
+// and for technologies without an official simple-icons logo (MATLAB, C#).
+const SKILL_ICONS = {
+    "python":      { slug: "python",    color: "3776AB" },
+    "r":           { slug: "r",         color: "276DC3" },
+    "sql":         { slug: "mysql",     color: "4479A1" },
+    "pytorch":     { slug: "pytorch",   color: "EE4C2C" },
+    "ros":         { slug: "ros",       color: "22314E" },
+    "opencv":      { slug: "opencv",    color: "5C3EE8" },
+    "git":         { slug: "git",       color: "F05032" },
+    "docker":      { slug: "docker",    color: "2496ED" },
+    "n8n":         { slug: "n8n",       color: "EA4B71" }
+};
+
+function getSkillIcon(skillName) {
+    const lower = skillName.toLowerCase().trim();
+    // Match either exact, or with a space/parenthesis/number right after the key.
+    // This prevents false positives like "Robotics" matching "ros", or
+    // "Python (Advanced)" still matching "python".
+    const keys = Object.keys(SKILL_ICONS).sort((a, b) => b.length - a.length);
+    for (const key of keys) {
+        if (lower === key) {
+            const meta = SKILL_ICONS[key];
+            return `https://cdn.simpleicons.org/${meta.slug}/${meta.color}`;
+        }
+        // Allow: "python (advanced)", "ros 2", "sql (postgres)"
+        // Disallow: "robotics" matching "ros"
+        const nextChar = lower.charAt(key.length);
+        if (lower.startsWith(key) && (nextChar === ' ' || nextChar === '(' || /[0-9]/.test(nextChar))) {
+            const meta = SKILL_ICONS[key];
+            return `https://cdn.simpleicons.org/${meta.slug}/${meta.color}`;
+        }
+    }
+    return null;
+}
+
+function createSkillCard(category, skills) {
+    const card = document.createElement('div');
+    card.className = 'skill-category';
+
+    const skillTags = skills
+        .map(skill => {
+            const iconUrl = getSkillIcon(skill);
+            const iconHTML = iconUrl
+                ? `<img src="${iconUrl}" alt="" class="skill-tag-icon" onerror="this.style.display='none'">`
+                : '';
+            return `<span class="skill-tag${iconUrl ? ' has-icon' : ''}">${iconHTML}${skill}</span>`;
+        })
+        .join('');
+
+    card.innerHTML = `
+        <h3>${category}</h3>
+        <div class="skill-tags">
+            ${skillTags}
+        </div>
+    `;
+
+    return card;
+}
+
+// ===================================
+// Smooth Scrolling for Navigation
+// ===================================
+function setupSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            
+            if (targetId === '#') {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+                return;
+            }
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const navHeight = document.querySelector('nav').offsetHeight;
+                const targetPosition = targetElement.offsetTop - navHeight - 20;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// ===================================
+// Navbar Scroll Effect
+// ===================================
+function setupNavbarScroll() {
+    const navbar = document.getElementById('navbar');
+    let lastScroll = 0;
+    
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        
+        // Add shadow when scrolled
+        if (currentScroll > 0) {
+            navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        } else {
+            navbar.style.boxShadow = 'none';
+        }
+        
+        lastScroll = currentScroll;
+    });
+}
+
+// ===================================
+// Utility Functions
+// ===================================
+
+// Scroll to top functionality (optional, can be called from a button)
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// Intersection Observer for scroll animations — adds "is-visible"
+// to any element carrying the "reveal" class when it enters the viewport.
+function setupScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.08,
+        rootMargin: '0px 0px -40px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const parent = entry.target.parentElement;
+                const siblings = parent ? [...parent.children].filter(c => c.classList.contains('reveal')) : [];
+                const idx = siblings.indexOf(entry.target);
+                entry.target.style.transitionDelay = `${Math.min(idx, 6) * 60}ms`;
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Observe any element flagged as .reveal
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Safety: if for any reason the observer never fires for some elements
+    // (e.g., print view, headless screenshot, prefers-reduced-motion already applied),
+    // reveal anything still hidden after 1.5s.
+    setTimeout(() => {
+        document.querySelectorAll('.reveal:not(.is-visible)').forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 1.2) {
+                el.classList.add('is-visible');
+            }
+        });
+    }, 1500);
+}
+
+// Re-run on language change because clearContainers / renderX rebuild DOM
+function reobserveReveals() {
+    setupScrollAnimations();
+}
+
+// ===================================
+// Reading progress bar
+// ===================================
+function setupReadingProgress() {
+    const bar = document.createElement('div');
+    bar.className = 'reading-progress';
+    document.body.appendChild(bar);
+
+    const update = () => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const pct = height > 0 ? (scrollTop / height) * 100 : 0;
+        bar.style.width = `${pct}%`;
+    };
+
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+}
+
+// ===================================
+// Command palette  (⌘K / Ctrl+K)
+// ===================================
+function setupCommandPalette() {
+    // Build the overlay once
+    const overlay = document.createElement('div');
+    overlay.className = 'cmdk-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Command palette');
+    overlay.innerHTML = `
+        <div class="cmdk-panel">
+            <div class="cmdk-input-wrap">
+                <svg class="cmdk-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                <input class="cmdk-input" type="text" autocomplete="off" spellcheck="false" placeholder="Type a command or search…" />
+                <kbd class="cmdk-esc">ESC</kbd>
+            </div>
+            <ul class="cmdk-list" role="listbox"></ul>
+            <div class="cmdk-footer">
+                <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+                <span><kbd>↵</kbd> open</span>
+                <span><kbd>esc</kbd> close</span>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(overlay);
+
+    const input = overlay.querySelector('.cmdk-input');
+    const list = overlay.querySelector('.cmdk-list');
+    let activeIndex = 0;
+
+    // Build command list dynamically from the current page
+    const buildCommands = () => {
+        const t = translations[currentLanguage].cmdk || {};
+        return [
+            { label: t.goAbout || 'About',           hint: t.section || 'Section', action: () => go('#about') },
+            { label: t.goJourney || 'Journey',       hint: t.section || 'Section', action: () => go('#journey') },
+            { label: t.goExperience || 'Experience', hint: t.section || 'Section', action: () => go('#experience') },
+            { label: t.goEducation || 'Education',   hint: t.section || 'Section', action: () => go('#education') },
+            { label: t.goProjects || 'Projects',     hint: t.section || 'Section', action: () => go('#projects') },
+            { label: t.goSkills || 'Skills',         hint: t.section || 'Section', action: () => go('#skills') },
+            { label: t.openCv || 'Open CV',          hint: t.action || 'Action',   action: () => window.open('CV_Joaquin_Mir_Macias.pdf', '_blank') },
+            { label: t.openTfg || 'Open Thesis',     hint: t.action || 'Action',   action: () => window.open('TFG - Mir Macias, Joaquin.pdf', '_blank') },
+            { label: t.openLetter || 'Open Letter',  hint: t.action || 'Action',   action: () => window.open('Carta_recomendación_JMM.pdf', '_blank') },
+            { label: t.sendEmail || 'Send Email',    hint: t.action || 'Action',   action: () => location.href = 'mailto:joaquinmirma@gmail.com' },
+            { label: t.openGithub || 'GitHub',       hint: t.action || 'Action',   action: () => window.open('https://github.com/joaquinmaciias', '_blank') },
+            { label: t.openLinkedin || 'LinkedIn',   hint: t.action || 'Action',   action: () => window.open('https://www.linkedin.com/in/joaquin-mir-macias-59a9a2230/', '_blank') },
+            { label: t.switchEn || 'Switch to English', hint: t.action || 'Action', action: () => switchLang('en') },
+            { label: t.switchEs || 'Switch to Spanish', hint: t.action || 'Action', action: () => switchLang('es') }
+        ];
+    };
+
+    const go = (hash) => {
+        close();
+        const el = document.querySelector(hash);
+        if (!el) return;
+        const navH = document.querySelector('nav').offsetHeight;
+        window.scrollTo({ top: el.offsetTop - navH - 20, behavior: 'smooth' });
+    };
+
+    const switchLang = (lang) => {
+        close();
+        if (lang !== currentLanguage) {
+            currentLanguage = lang;
+            localStorage.setItem('preferredLanguage', lang);
+            updateLanguageButtons();
+            updatePageLanguage();
+        }
+    };
+
+    const render = (filter = '') => {
+        const commands = buildCommands();
+        const f = filter.trim().toLowerCase();
+        const filtered = f
+            ? commands.filter(c => c.label.toLowerCase().includes(f) || c.hint.toLowerCase().includes(f))
+            : commands;
+        activeIndex = 0;
+        list.innerHTML = filtered.length
+            ? filtered.map((c, i) => `
+                <li class="cmdk-item ${i === 0 ? 'is-active' : ''}" role="option" data-idx="${i}">
+                    <span class="cmdk-label">${c.label}</span>
+                    <span class="cmdk-hint">${c.hint}</span>
+                </li>`).join('')
+            : `<li class="cmdk-empty">${(translations[currentLanguage].cmdk && translations[currentLanguage].cmdk.empty) || 'No results'}</li>`;
+        list._filtered = filtered;
+    };
+
+    const setActive = (i) => {
+        const items = list.querySelectorAll('.cmdk-item');
+        if (!items.length) return;
+        activeIndex = (i + items.length) % items.length;
+        items.forEach(el => el.classList.remove('is-active'));
+        items[activeIndex].classList.add('is-active');
+        items[activeIndex].scrollIntoView({ block: 'nearest' });
+    };
+
+    const execActive = () => {
+        const f = list._filtered || [];
+        if (f[activeIndex]) f[activeIndex].action();
+    };
+
+    const open = () => {
+        const t = (translations[currentLanguage].cmdk || {});
+        input.placeholder = t.placeholder || 'Type a command or search…';
+        render('');
+        overlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        input.value = '';
+        setTimeout(() => input.focus(), 50);
+    };
+
+    const close = () => {
+        overlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+    };
+
+    // Keyboard shortcut: Cmd+K / Ctrl+K
+    document.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            overlay.classList.contains('is-open') ? close() : open();
+            return;
+        }
+        if (!overlay.classList.contains('is-open')) return;
+        if (e.key === 'Escape') { e.preventDefault(); close(); }
+        else if (e.key === 'ArrowDown') { e.preventDefault(); setActive(activeIndex + 1); }
+        else if (e.key === 'ArrowUp')   { e.preventDefault(); setActive(activeIndex - 1); }
+        else if (e.key === 'Enter')     { e.preventDefault(); execActive(); }
+    });
+
+    input.addEventListener('input', (e) => render(e.target.value));
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
+    list.addEventListener('click', (e) => {
+        const item = e.target.closest('.cmdk-item');
+        if (!item) return;
+        activeIndex = Number(item.dataset.idx);
+        execActive();
+    });
+    list.addEventListener('mousemove', (e) => {
+        const item = e.target.closest('.cmdk-item');
+        if (item) setActive(Number(item.dataset.idx));
+    });
+
+    // Expose trigger hook (e.g. a visible button can call window.openCmdk())
+    window.openCmdk = open;
+}
