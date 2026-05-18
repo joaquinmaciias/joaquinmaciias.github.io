@@ -186,7 +186,7 @@ nav {
     margin: 0 auto;
     padding: 9rem 2rem 4rem;
     display: grid;
-    grid-template-columns: 1.3fr 0.7fr;
+    grid-template-columns: 1fr;
     gap: 3rem;
     align-items: center;
 }

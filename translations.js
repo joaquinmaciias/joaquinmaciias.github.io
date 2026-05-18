@@ -173,7 +173,7 @@ const portfolioDataTranslations = {
                 location: "Madrid, Spain",
                 date: "Jun 2024 – Aug 2024",
                 description: "Data extraction with Hue and information filtering on relational databases with QlikSense. Built tailored dashboards for the visualization of company data.",
-                link: "https://www.redsys.es/en/",
+                link: "https://redsys.es/",
                 logo: "assets/icons/experience/redsys.png",
                 fallback: "RDS"
             },
@@ -272,7 +272,7 @@ const portfolioDataTranslations = {
                 "Deep Learning",
                 "Computer Vision",
                 "Natural Language Processing",
-                "Generative Models (Diffusion)",
+                "Generative Models",
                 "Transformers"
             ],
             "Tools & Frameworks": [
@@ -319,7 +319,7 @@ const portfolioDataTranslations = {
                 location: "Madrid, España",
                 date: "Jun 2024 – Ago 2024",
                 description: "Extracción de datos con Hue y filtrado de información en bases de datos relacionales con QlikSense. Creación de dashboards dirigidos para la visualización de datos de empresas.",
-                link: "https://www.redsys.es/",
+                link: "https://redsys.es/",
                 logo: "assets/icons/experience/redsys.png",
                 fallback: "RDS"
             },
@@ -418,7 +418,7 @@ const portfolioDataTranslations = {
                 "Deep Learning",
                 "Visión por Computador",
                 "Procesamiento del Lenguaje Natural (NLP)",
-                "Modelos Generativos (Difusión)",
+                "Modelos Generativos",
                 "Transformers"
             ],
             "Herramientas y Frameworks": [
