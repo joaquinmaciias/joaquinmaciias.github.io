@@ -264,7 +264,7 @@ const portfolioDataTranslations = {
                 tech: "PyTorch, CNNs, Computer Vision, Medical Imaging",
                 description: "Automatic segmentation of kidney tumors on CT scans using Convolutional Neural Networks. Pipeline covers preprocessing, model training and quantitative evaluation on medical imaging benchmarks.",
                 link: "https://github.com/joaquinmaciias/Kidney-tumor-detection-in-CT-images",
-                image: "assets/projects/medical_img.png",
+                image: "assets/projects/kidney_demo.png",
                 imageId: "kidney"
             },
             {
@@ -272,7 +272,7 @@ const portfolioDataTranslations = {
                 tech: "PyTorch, Transformers, Computer Vision",
                 description: "From-scratch implementation of Vision Transformers (ViT) in PyTorch. Covers patch embeddings, multi-head attention, training loop and evaluation on image-classification benchmarks.",
                 link: "https://github.com/joaquinmaciias/VisionTransformer-PyTorch",
-                image: "assets/projects/ViT.png",
+                image: "assets/projects/vit_architecture.png",
                 imageId: "vit"
             },
             {
@@ -288,7 +288,7 @@ const portfolioDataTranslations = {
                 tech: "PyTorch, Hugging Face Diffusers, Generative AI",
                 description: "Step-by-step implementation of the Latent Diffusion Model pipeline using Hugging Face Diffusers. Studies the VAE + diffusion architecture for efficient image generation.",
                 link: "https://github.com/joaquinmaciias/Laten_Diffusion_Models---Hugging_Face",
-                image: "assets/projects/LDM.png",
+                image: "assets/projects/LDM_img.png",
                 imageId: "ldm"
             },
             {
@@ -296,7 +296,7 @@ const portfolioDataTranslations = {
                 tech: "PyTorch, DDPM, Diffusion Models",
                 description: "Training and sampling with Denoising Diffusion Probabilistic Models; comparison with DDIM and quality analysis of generated samples.",
                 link: "https://github.com/joaquinmaciias/Denoising_Diffusion_Probabilistic_Models---DDPM",
-                image: "assets/projects/DDPM.png",
+                image: "assets/projects/DDPM_image.png",
                 imageId: "ddpm"
             },
             {
@@ -304,7 +304,7 @@ const portfolioDataTranslations = {
                 tech: "PyTorch, RNN, LSTM, Optimization",
                 description: "Study of the impact of weight initialization on RNN/LSTM stability and convergence. Reproducible experiments comparing initialization schemes.",
                 link: "https://github.com/joaquinmaciias/Initialization-RNNs-LSTM",
-                image: "assets/projects/Ini_RNN_LSTM.png",
+                image: "assets/projects/LSTM_models2.png",
                 imageId: "rnn-init"
             }
         ],
@@ -458,7 +458,7 @@ const portfolioDataTranslations = {
                 tech: "PyTorch, CNNs, Visión por Computador, Imagen Médica",
                 description: "Segmentación automática de tumores renales en imágenes de TC usando redes neuronales convolucionales. El pipeline cubre preprocesado, entrenamiento y evaluación cuantitativa sobre benchmarks de imagen médica.",
                 link: "https://github.com/joaquinmaciias/Kidney-tumor-detection-in-CT-images",
-                image: "assets/projects/medical_img.png",
+                image: "assets/projects/kidney_demo.png",
                 imageId: "kidney"
             },
             {
@@ -466,7 +466,7 @@ const portfolioDataTranslations = {
                 tech: "PyTorch, Transformers, Visión por Computador",
                 description: "Implementación desde cero de Vision Transformers (ViT) en PyTorch. Cubre patch embeddings, atención multi-cabeza, bucle de entrenamiento y evaluación en benchmarks de clasificación de imágenes.",
                 link: "https://github.com/joaquinmaciias/VisionTransformer-PyTorch",
-                image: "assets/projects/ViT.png",
+                image: "assets/projects/vit_architecture.png",
                 imageId: "vit"
             },
             {
@@ -482,7 +482,7 @@ const portfolioDataTranslations = {
                 tech: "PyTorch, Hugging Face Diffusers, IA Generativa",
                 description: "Implementación paso a paso del pipeline de Latent Diffusion con Hugging Face Diffusers. Estudia la arquitectura VAE + difusión para una generación de imágenes más eficiente.",
                 link: "https://github.com/joaquinmaciias/Laten_Diffusion_Models---Hugging_Face",
-                image: "assets/projects/LDM.png",
+                image: "assets/projects/LDM_img.png",
                 imageId: "ldm"
             },
             {
@@ -490,7 +490,7 @@ const portfolioDataTranslations = {
                 tech: "PyTorch, DDPM, Modelos de Difusión",
                 description: "Entrenamiento y muestreo con Denoising Diffusion Probabilistic Models; comparación con DDIM y análisis de la calidad de las muestras generadas.",
                 link: "https://github.com/joaquinmaciias/Denoising_Diffusion_Probabilistic_Models---DDPM",
-                image: "assets/projects/DDPM.png",
+                image: "assets/projects/DDPM_image.png",
                 imageId: "ddpm"
             },
             {
@@ -498,7 +498,7 @@ const portfolioDataTranslations = {
                 tech: "PyTorch, RNN, LSTM, Optimización",
                 description: "Estudio del impacto de la inicialización de pesos sobre la estabilidad y convergencia de RNN/LSTM. Experimentos reproducibles comparando esquemas de inicialización.",
                 link: "https://github.com/joaquinmaciias/Initialization-RNNs-LSTM",
-                image: "assets/projects/Ini_RNN_LSTM.png",
+                image: "assets/projects/LSTM_models2.png",
                 imageId: "rnn-init"
             }
         ],
