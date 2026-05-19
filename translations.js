@@ -312,7 +312,7 @@ const portfolioDataTranslations = {
             "Programming Languages": [
                 "Python (Advanced)",
                 "SQL",
-                "R",
+                "JavaScript",
                 "HTML/CSS/JS"
             ],
             "AI & Machine Learning": [
@@ -321,17 +321,20 @@ const portfolioDataTranslations = {
                 "Computer Vision",
                 "Natural Language Processing",
                 "Generative Models",
-                "Transformers"
+                "Geometric AI",
+                "Probabilistic AI",
+                "Explainable AI",
+                "AI Agents"
             ],
             "Tools & Frameworks": [
                 "PyTorch",
                 "NumPy",
-                "pandas",
-                "scikit-learn",
+                "Pandas",
+                "Scikit_learn",
                 "OpenCV",
                 "Hugging Face",
-                "Git",
-                "Linux"
+                "LangChain",
+                "Git"
             ],
             "Data & BI": [
                 "MySQL",
@@ -506,7 +509,7 @@ const portfolioDataTranslations = {
             "Lenguajes de Programación": [
                 "Python (Avanzado)",
                 "SQL",
-                "R",
+                "JavaScript",
                 "HTML/CSS/JS"
             ],
             "IA y Machine Learning": [
@@ -515,17 +518,20 @@ const portfolioDataTranslations = {
                 "Visión por Computador",
                 "Procesamiento del Lenguaje Natural (NLP)",
                 "Modelos Generativos",
-                "Transformers"
+                "IA Geométrica",
+                "IA Probabilística",
+                "IA Explicable",
+                "Agentes de IA"
             ],
             "Herramientas y Frameworks": [
                 "PyTorch",
                 "NumPy",
-                "pandas",
-                "scikit-learn",
+                "Pandas",
+                "Scikit_learn",
                 "OpenCV",
                 "Hugging Face",
-                "Git",
-                "Linux"
+                "LangChain",
+                "Git"
             ],
             "Datos y BI": [
                 "MySQL",
