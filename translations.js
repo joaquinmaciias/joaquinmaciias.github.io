@@ -158,7 +158,7 @@ const portfolioDataTranslations = {
     en: {
         experience: [
             {
-                title: "Internal Audit Intern",
+                title: "AI & Data Analytics Intern",
                 company: "BBVA",
                 location: "Madrid, Spain",
                 date: "Feb 2025 – Aug 2025",
@@ -355,7 +355,7 @@ const portfolioDataTranslations = {
     es: {
         experience: [
             {
-                title: "Becario – Auditoría Interna",
+                title: "Becario – IA y Análisis de Datos",
                 company: "BBVA",
                 location: "Madrid, España",
                 date: "Feb 2025 – Ago 2025",
@@ -600,7 +600,7 @@ const timelineData = {
             },
             {
                 type: "professional",
-                title: "Internal Audit Intern",
+                title: "AI & Data Analytics Intern",
                 institution: "BBVA",
                 start: "2025-02",
                 end: "2025-08",
@@ -647,7 +647,7 @@ const timelineData = {
             },
             {
                 type: "professional",
-                title: "Becario – Auditoría Interna",
+                title: "Becario – IA y Análisis de Datos",
                 institution: "BBVA",
                 start: "2025-02",
                 end: "2025-08",
