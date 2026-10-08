@@ -178,6 +178,16 @@ const portfolioDataTranslations = {
                 fallback: "BBVA"
             },
             {
+                title: "Research Collaboration – Bachelor's Thesis",
+                company: "SYCAI Medical",
+                location: "Barcelona, Spain",
+                date: "Sep 2024 – May 2025",
+                description: "Built and evaluated 8 deep learning architectures (2D/3D U-Net, nnU-Net 2D/3D/cascade, Rel-UNet, MONAI Auto3DSeg) for automatic kidney-tumor segmentation on 1,299 CT scans (KiTS19/21/23). The best model (nnU-Net cascade) reached a tumor Dice of 0.85, with uncertainty quantification and Grad-CAM explainability to flag low-confidence regions for clinical review. Grade: 9.5/10.",
+                link: "https://www.sycaimedical.com/",
+                logo: "assets/icons/experience/sycai.png",
+                fallback: "SYC"
+            },
+            {
                 title: "Data Analyst Intern",
                 company: "Redsys",
                 location: "Madrid, Spain",
@@ -322,8 +332,7 @@ const portfolioDataTranslations = {
             "Programming Languages": [
                 "Python (Advanced)",
                 "SQL",
-                "JavaScript",
-                "MATLAB"
+                "JavaScript"
             ],
             "AI & Machine Learning": [
                 "Machine Learning",
@@ -380,6 +389,16 @@ const portfolioDataTranslations = {
                 link: "https://www.bbva.com/",
                 logo: "assets/icons/experience/bbva.png",
                 fallback: "BBVA"
+            },
+            {
+                title: "Colaboración de Investigación – Trabajo Fin de Grado",
+                company: "SYCAI Medical",
+                location: "Barcelona, España",
+                date: "Sep 2024 – May 2025",
+                description: "Desarrollo y evaluación de 8 arquitecturas de deep learning (U-Net 2D/3D, nnU-Net 2D/3D/cascade, Rel-UNet, MONAI Auto3DSeg) para la segmentación automática de tumores renales en 1.299 TC (KiTS19/21/23). El mejor modelo (nnU-Net cascade) alcanzó un Dice tumoral de 0,85, con cuantificación de incertidumbre y explicabilidad (Grad-CAM) para señalar regiones de baja confianza a revisión clínica. Nota: 9,5/10.",
+                link: "https://www.sycaimedical.com/",
+                logo: "assets/icons/experience/sycai.png",
+                fallback: "SYC"
             },
             {
                 title: "Becario – Departamento de Análisis de Datos",
@@ -526,8 +545,7 @@ const portfolioDataTranslations = {
             "Lenguajes de Programación": [
                 "Python (Avanzado)",
                 "SQL",
-                "JavaScript",
-                "MATLAB"
+                "JavaScript"
             ],
             "IA y Machine Learning": [
                 "Machine Learning",
@@ -605,6 +623,15 @@ const timelineData = {
             },
             {
                 type: "professional",
+                title: "Research Collaboration",
+                institution: "SYCAI Medical",
+                start: "2024-09",
+                end: "2025-05",
+                logo: "assets/icons/experience/sycai.png",
+                fallback: "SYC"
+            },
+            {
+                type: "professional",
                 title: "Data Analyst Intern",
                 institution: "Redsys",
                 start: "2024-06",
@@ -658,6 +685,15 @@ const timelineData = {
                 end: "2024-06",
                 logo: "assets/icons/experience/comillas.png",
                 fallback: "ICAI"
+            },
+            {
+                type: "professional",
+                title: "Colaboración de Investigación",
+                institution: "SYCAI Medical",
+                start: "2024-09",
+                end: "2025-05",
+                logo: "assets/icons/experience/sycai.png",
+                fallback: "SYC"
             },
             {
                 type: "professional",

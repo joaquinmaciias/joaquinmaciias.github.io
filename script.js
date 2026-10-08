@@ -231,7 +231,9 @@ function renderTimeline() {
         years.push(y);
     }
 
-    const yearsHTML = years.map(y => {
+    // Skip years whose January falls before the range start (they'd be clamped
+    // onto the next year's marker)
+    const yearsHTML = years.filter(y => monthsBetween(rangeStart, { year: y, month: 1 }) >= 0).map(y => {
         const pos = monthsBetween(rangeStart, { year: y, month: 1 });
         const pct = Math.max(0, Math.min(100, (pos / totalMonths) * 100));
         return `<div class="timeline-year" style="left: ${pct}%;"><span>${y}</span></div>`;
@@ -258,29 +260,31 @@ function renderTimeline() {
             const s = parseYearMonth(e.start);
             const endRaw = e.end === 'present' ? timelineData.rangeEnd : e.end;
             const en = parseYearMonth(endRaw);
-            return {
-                ...e,
-                _start: monthsBetween(rangeStart, s),
-                _end: monthsBetween(rangeStart, en)
-            };
-        }).sort((a, b) => a._start - b._start);
+            const _start = monthsBetween(rangeStart, s);
+            const _end = monthsBetween(rangeStart, en);
+            // Cards that would overflow the right edge are anchored to the bar's end
+            // and grow leftwards instead.
+            const _anchorEnd = _start + minMonthGap > totalMonths;
+            // Horizontal span the bar + card visually occupy (used for lane stacking)
+            const _visStart = _anchorEnd ? Math.min(_start, _end - minMonthGap) : _start;
+            const _visEnd = _anchorEnd ? _end : Math.max(_end, _start + minMonthGap);
+            return { ...e, _start, _end, _anchorEnd, _visStart, _visEnd };
+        }).sort((a, b) => a._visStart - b._visStart);
 
         const lanes = [];
         prepared.forEach(ev => {
-            // The card for this event visually occupies from _start to at least _start + minMonthGap
-            const effectiveEnd = Math.max(ev._end, ev._start + minMonthGap);
             let placed = false;
             for (let i = 0; i < lanes.length; i++) {
-                if (ev._start >= lanes[i]) {
+                if (ev._visStart >= lanes[i]) {
                     ev._lane = i;
-                    lanes[i] = effectiveEnd;
+                    lanes[i] = ev._visEnd;
                     placed = true;
                     break;
                 }
             }
             if (!placed) {
                 ev._lane = lanes.length;
-                lanes.push(effectiveEnd);
+                lanes.push(ev._visEnd);
             }
         });
         return { prepared, laneCount: Math.max(1, lanes.length) };
@@ -294,6 +298,11 @@ function renderTimeline() {
         const widthPct = Math.max(1.5, ((ev._end - ev._start) / totalMonths) * 100);
         const typeClass = `tl-${ev.type}`;
         const sideClass = `tl-${side}`;
+        // End-anchored events are positioned from the right so min-width grows leftwards
+        const anchorClass = ev._anchorEnd ? ' tl-anchor-end' : '';
+        const styleX = ev._anchorEnd
+            ? `right: ${100 - (ev._end / totalMonths) * 100}%;`
+            : `left: ${leftPct}%;`;
         // Lane offset within the half (pushes bars away from center line)
         const laneOffset = ev._lane * 82; // px per lane (reduced since no title anymore)
         const styleSide = side === 'top'
@@ -312,7 +321,7 @@ function renderTimeline() {
         const ariaLabel = `${ev.institution}, ${formatMonthYear(ev.start)} — ${endLabel}`;
 
         return `
-            <a class="tl-event ${typeClass} ${sideClass}" href="${target}" aria-label="${ariaLabel}" style="left: ${leftPct}%; width: ${widthPct}%; ${styleSide}">
+            <a class="tl-event ${typeClass} ${sideClass}${anchorClass}" href="${target}" aria-label="${ariaLabel}" style="${styleX} width: ${widthPct}%; ${styleSide}">
                 <div class="tl-bar">
                     <div class="tl-bar-fill"></div>
                 </div>
