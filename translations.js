@@ -741,12 +741,12 @@ const currentlyData = {
     en: {
         reading: "—",
         building: "Master's Thesis: Digital Twin with LLMs",
-        focus: "Working on Applied AI projects — LLM agents at Accenture"
+        focus: "Working on Applied AI projects"
     },
     es: {
         reading: "—",
         building: "Trabajo Fin de Máster: Digital Twin con LLMs",
-        focus: "Trabajando en proyectos de IA Aplicada — agentes LLM en Accenture"
+        focus: "Trabajando en proyectos de IA Aplicada"
     }
 };
 
