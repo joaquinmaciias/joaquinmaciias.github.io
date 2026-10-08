@@ -318,7 +318,9 @@ function renderTimeline() {
         // Each event links to the matching section:
         // academic + exchange -> #education, professional -> #experience
         const target = ev.type === 'professional' ? '#experience' : '#education';
-        const ariaLabel = `${ev.institution}, ${formatMonthYear(ev.start)} — ${endLabel}`;
+        // Optional short `label` overrides the institution name on the card
+        const cardName = ev.label || ev.institution;
+        const ariaLabel = `${cardName}, ${formatMonthYear(ev.start)} — ${endLabel}`;
 
         return `
             <a class="tl-event ${typeClass} ${sideClass}${anchorClass}" href="${target}" aria-label="${ariaLabel}" style="${styleX} width: ${widthPct}%; ${styleSide}">
@@ -329,7 +331,7 @@ function renderTimeline() {
                     <div class="tl-card-header">
                         ${logoHTML}
                         <div class="tl-card-text">
-                            <div class="tl-institution">${ev.institution}</div>
+                            <div class="tl-institution">${cardName}</div>
                             <div class="tl-dates">${formatMonthYear(ev.start)} — ${endLabel}</div>
                         </div>
                     </div>

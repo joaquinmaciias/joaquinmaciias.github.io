@@ -588,6 +588,7 @@ const portfolioDataTranslations = {
 // ===================================
 // Dates use YYYY-MM format.
 // type: "academic" | "professional" | "exchange"
+// label (optional): short name shown on the card instead of the institution
 // Use end: "present" for ongoing events.
 const timelineData = {
     rangeStart: "2021-09",
@@ -597,6 +598,7 @@ const timelineData = {
             {
                 type: "academic",
                 title: "BE Mathematical Engineering & AI",
+                label: "BE IMAT · ICAI",
                 institution: "Comillas ICAI",
                 start: "2021-09",
                 end: "2025-05",
@@ -606,6 +608,7 @@ const timelineData = {
             {
                 type: "academic",
                 title: "MSc Advanced Artificial Intelligence",
+                label: "MSc AI · ICAI",
                 institution: "Comillas ICAI",
                 start: "2025-09",
                 end: "present",
@@ -615,6 +618,7 @@ const timelineData = {
             {
                 type: "professional",
                 title: "Project Member — SocialTech Challenge",
+                label: "SocialTech · ICAI",
                 institution: "Comillas ICAI",
                 start: "2023-10",
                 end: "2024-06",
@@ -662,6 +666,7 @@ const timelineData = {
             {
                 type: "academic",
                 title: "Grado en Ingeniería Matemática e IA",
+                label: "Grado IMAT · ICAI",
                 institution: "Comillas ICAI",
                 start: "2021-09",
                 end: "2025-05",
@@ -671,6 +676,7 @@ const timelineData = {
             {
                 type: "academic",
                 title: "Máster en Inteligencia Artificial Avanzada",
+                label: "Máster IA · ICAI",
                 institution: "Comillas ICAI",
                 start: "2025-09",
                 end: "present",
@@ -680,6 +686,7 @@ const timelineData = {
             {
                 type: "professional",
                 title: "Project Member — SocialTech Challenge",
+                label: "SocialTech · ICAI",
                 institution: "Comillas ICAI",
                 start: "2023-10",
                 end: "2024-06",
