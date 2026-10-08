@@ -13,8 +13,8 @@ const translations = {
             skills: "Skills"
         },
         hero: {
-            subtitle: "MSc in Advanced Artificial Intelligence @ ICAI",
-            description: "Junior engineer passionate about turning data into intelligent solutions — Machine Learning, Computer Vision and NLP.",
+            subtitle: "Forward Deployed Engineer @ Accenture · MSc in Advanced AI @ ICAI",
+            description: "Mathematical and AI Engineer building LLM-based agents and applied AI solutions — from prototype to production.",
             contactBtn: "Get in Touch",
             projectsBtn: "View Projects",
             cvBtn: "View CV",
@@ -37,9 +37,9 @@ const translations = {
             present: "Present"
         },
         about: {
-            p1: "Hi! I'm Joaquín, MSc student in Advanced Artificial Intelligence at <strong>Comillas Pontifical University – ICAI</strong> (Madrid), with a BE in Mathematical Engineering and Artificial Intelligence. My background combines solid mathematical foundations with hands-on experience in <strong>Machine Learning</strong>, <strong>Computer Vision</strong> and <strong>Data Analysis</strong>.",
-            p2: "I've worked on <strong>kidney tumor detection with Deep Learning</strong>, contributed to the development of an <strong>autonomous wheelchair</strong>, and completed professional internships at <strong>Redsys</strong> (Data Analysis) and <strong>BBVA</strong> (Internal Audit), where I applied data techniques and worked on internal compliance processes.",
-            p3: "I'm looking for my first full-time opportunity in <strong>Machine Learning, Computer Vision and NLP</strong>, where I can deliver innovative solutions, grow professionally, and generate real impact in the organization."
+            p1: "Hi! I'm Joaquín, a Mathematical and AI Engineer currently working as a <strong>Forward Deployed Engineer at Accenture</strong>, where I design and implement <strong>LLM-based agents</strong> for enterprise clients. I'm also pursuing an <strong>MSc in Advanced Artificial Intelligence</strong> at <strong>Comillas Pontifical University – ICAI</strong> (Madrid).",
+            p2: "Previously I led an <strong>internal Generative-AI pilot at BBVA</strong> (Internal Audit), worked on payments analytics at <strong>Redsys</strong>, and built <strong>kidney tumor segmentation models</strong> with Deep Learning for my Bachelor's Thesis (9.5/10) in collaboration with SYCAI Medical.",
+            p3: "I'm passionate about <strong>Applied AI</strong>: AI Agents, Generative Models and Deep Learning, with a special interest in financial technology and AI for healthcare."
         },
         links: {
             viewWebsite: "Visit Website →",
@@ -87,8 +87,8 @@ const translations = {
             skills: "Habilidades"
         },
         hero: {
-            subtitle: "Máster en Inteligencia Artificial Avanzada @ ICAI",
-            description: "Ingeniero junior apasionado por transformar datos en soluciones inteligentes — Machine Learning, Visión por Computador y NLP.",
+            subtitle: "Forward Deployed Engineer @ Accenture · Máster en IA Avanzada @ ICAI",
+            description: "Ingeniero Matemático y de IA construyendo agentes basados en LLMs y soluciones de IA aplicada — del prototipo a producción.",
             contactBtn: "Contactar",
             projectsBtn: "Ver Proyectos",
             cvBtn: "Ver CV",
@@ -111,9 +111,9 @@ const translations = {
             present: "Actualidad"
         },
         about: {
-            p1: "¡Hola! Soy Joaquín, estudiante de Máster en Inteligencia Artificial Avanzada en la <strong>Universidad Pontificia Comillas – ICAI</strong> (Madrid), con un Grado en Ingeniería Matemática e Inteligencia Artificial. Mi formación combina una sólida base matemática con experiencia práctica en <strong>Machine Learning</strong>, <strong>Visión por Computador</strong> y <strong>Análisis de Datos</strong>.",
-            p2: "He trabajado en proyectos como la <strong>detección de tumores renales con Deep Learning</strong>, el desarrollo de una <strong>silla de ruedas autónoma</strong>, y prácticas profesionales en <strong>Redsys</strong> (Análisis de Datos) y <strong>BBVA</strong> (Auditoría Interna), donde apliqué técnicas de análisis de datos y procesos de cumplimiento interno.",
-            p3: "Busco mi primera experiencia a tiempo completo en el ámbito del <strong>Machine Learning, Computer Vision y NLP</strong>, donde aportar soluciones innovadoras, crecer profesionalmente y generar impacto real en las organizaciones."
+            p1: "¡Hola! Soy Joaquín, Ingeniero Matemático y de IA. Actualmente trabajo como <strong>Forward Deployed Engineer en Accenture</strong>, donde diseño e implemento <strong>agentes basados en LLMs</strong> para clientes empresariales. Además, curso el <strong>Máster en Inteligencia Artificial Avanzada</strong> en la <strong>Universidad Pontificia Comillas – ICAI</strong> (Madrid).",
+            p2: "Anteriormente lideré un <strong>piloto interno de IA Generativa en BBVA</strong> (Auditoría Interna), trabajé en analítica de pagos en <strong>Redsys</strong> y desarrollé <strong>modelos de segmentación de tumores renales</strong> con Deep Learning en mi Trabajo Fin de Grado (9,5/10), en colaboración con SYCAI Medical.",
+            p3: "Me apasiona la <strong>IA Aplicada</strong>: Agentes de IA, Modelos Generativos y Deep Learning, con especial interés en tecnología financiera e IA para la salud."
         },
         links: {
             viewWebsite: "Visitar Web →",
@@ -158,11 +158,21 @@ const portfolioDataTranslations = {
     en: {
         experience: [
             {
+                title: "AI Native Software Engineer – Forward Deployed Engineer",
+                company: "Accenture",
+                location: "Madrid, Spain",
+                date: "Sep 2026 – Present",
+                description: "Design and implement LLM-based agents for enterprise clients: tool use, retrieval (RAG), orchestration and evaluation, from prototype to production.",
+                link: "https://www.accenture.com/",
+                logo: "assets/icons/experience/accenture.png",
+                fallback: "ACN"
+            },
+            {
                 title: "AI & Data Analytics Intern",
                 company: "BBVA",
                 location: "Madrid, Spain",
                 date: "Feb 2025 – Aug 2025",
-                description: "Supported the execution of internal audits in the corporate area. Participated in the evaluation of key processes, risk and control analysis, and the preparation of reports with findings and recommendations. Used data analysis tools and collaborated with different units to ensure regulatory and internal-policy compliance.",
+                description: "Led the internal pilot of Generative-AI tools (GPT-4-class assistants, Gemini) within Internal Audit: identified concrete audit use cases, drafted a risk-evaluation framework for AI adoption in banking, and raised cross-team awareness of AI-specific risks. Automated recurring control tests with Python data pipelines, reducing manual workload on quarterly reviews.",
                 link: "https://www.bbva.com/en/",
                 logo: "assets/icons/experience/bbva.png",
                 fallback: "BBVA"
@@ -172,7 +182,7 @@ const portfolioDataTranslations = {
                 company: "Redsys",
                 location: "Madrid, Spain",
                 date: "Jun 2024 – Aug 2024",
-                description: "Data extraction with Hue and information filtering on relational databases with QlikSense. Built tailored dashboards for the visualization of company data.",
+                description: "Processed large-scale payments data using SQL and Hue, and delivered an interactive Qlik Sense dashboard for acquiring and issuing transactions, defining KPIs with stakeholders and training key users.",
                 link: "https://redsys.es/",
                 logo: "assets/icons/experience/redsys.png",
                 fallback: "RDS"
@@ -193,7 +203,7 @@ const portfolioDataTranslations = {
                 degree: "MSc in Advanced Artificial Intelligence",
                 institution: "Comillas Pontifical University, ETSI ICAI",
                 location: "Madrid, Spain",
-                date: "Sep 2024 – Present",
+                date: "Sep 2025 – Present",
                 description: "Master's programme focused on Deep Learning, Computer Vision, NLP, Generative Models and Advanced AI techniques.",
                 link: "https://www.comillas.edu/postgrados/master-universitario-en-inteligencia-artificial/#plan",
                 logo: "assets/icons/education/comillas.png",
@@ -203,8 +213,8 @@ const portfolioDataTranslations = {
                 degree: "BE in Mathematical Engineering and AI",
                 institution: "Comillas Pontifical University, ETSI ICAI",
                 location: "Madrid, Spain",
-                date: "2020 – 2024",
-                description: "Five-year programme combining a strong mathematical foundation with applications in Artificial Intelligence. Final Thesis on Deep Learning for medical imaging.",
+                date: "2021 – 2025",
+                description: "Four-year programme combining a strong mathematical foundation with applications in Artificial Intelligence. Final Thesis on Deep Learning for medical imaging.",
                 link: "https://www.comillas.edu/grados/grado-en-ingenieria-matematica-e-inteligencia-artificial-imat/#planestudios",
                 logo: "assets/icons/education/comillas.png",
                 fallback: "ICAI"
@@ -313,7 +323,7 @@ const portfolioDataTranslations = {
                 "Python (Advanced)",
                 "SQL",
                 "JavaScript",
-                "HTML/CSS/JS"
+                "MATLAB"
             ],
             "AI & Machine Learning": [
                 "Machine Learning",
@@ -321,6 +331,7 @@ const portfolioDataTranslations = {
                 "Computer Vision",
                 "Natural Language Processing",
                 "Generative Models",
+                "Reinforcement Learning",
                 "Geometric AI",
                 "Probabilistic AI",
                 "Explainable AI",
@@ -328,38 +339,44 @@ const portfolioDataTranslations = {
             ],
             "Tools & Frameworks": [
                 "PyTorch",
-                "NumPy",
-                "Pandas",
-                "Scikit_learn",
-                "OpenCV",
                 "Hugging Face",
                 "LangChain",
-                "Git"
+                "Scikit-learn",
+                "NumPy",
+                "Pandas",
+                "OpenCV"
             ],
-            "Data & BI": [
-                "MySQL",
-                "MongoDB",
-                "ETL",
-                "APIs",
-                "Power BI",
-                "Tableau",
-                "QlikSense",
-                "Hue"
+            "MLOps & Infrastructure": [
+                "Docker",
+                "Git",
+                "MLflow",
+                "Kubernetes",
+                "Google Cloud"
             ],
             "Languages": [
                 "Spanish (Native)",
-                "English (Fluent)"
+                "English (C1 – TOEFL iBT)"
             ]
         }
     },
     es: {
         experience: [
             {
+                title: "AI Native Software Engineer – Forward Deployed Engineer",
+                company: "Accenture",
+                location: "Madrid, España",
+                date: "Sep 2026 – Actualidad",
+                description: "Diseño e implementación de agentes basados en LLMs para clientes empresariales: uso de herramientas, recuperación (RAG), orquestación y evaluación, del prototipo a producción.",
+                link: "https://www.accenture.com/es-es",
+                logo: "assets/icons/experience/accenture.png",
+                fallback: "ACN"
+            },
+            {
                 title: "Becario – IA y Análisis de Datos",
                 company: "BBVA",
                 location: "Madrid, España",
                 date: "Feb 2025 – Ago 2025",
-                description: "Apoyo en la ejecución de auditorías internas en el área corporativa. Participación en la evaluación de procesos clave, análisis de riesgos y controles, y elaboración de informes con hallazgos y recomendaciones. Uso de herramientas de análisis de datos y colaboración con distintas unidades para garantizar el cumplimiento normativo y de políticas internas.",
+                description: "Lideré el piloto interno de herramientas de IA Generativa (asistentes tipo GPT-4, Gemini) en Auditoría Interna: identificación de casos de uso concretos, elaboración de un marco de evaluación de riesgos para la adopción de IA en banca y concienciación sobre riesgos específicos de la IA. Automaticé pruebas de control recurrentes con pipelines de datos en Python, reduciendo la carga manual en las revisiones trimestrales.",
                 link: "https://www.bbva.com/",
                 logo: "assets/icons/experience/bbva.png",
                 fallback: "BBVA"
@@ -369,7 +386,7 @@ const portfolioDataTranslations = {
                 company: "Redsys",
                 location: "Madrid, España",
                 date: "Jun 2024 – Ago 2024",
-                description: "Extracción de datos con Hue y filtrado de información en bases de datos relacionales con QlikSense. Creación de dashboards dirigidos para la visualización de datos de empresas.",
+                description: "Procesamiento de datos de pagos a gran escala con SQL y Hue, y desarrollo de un dashboard interactivo en Qlik Sense para transacciones de adquirencia y emisión, definiendo KPIs con los stakeholders y formando a usuarios clave.",
                 link: "https://redsys.es/",
                 logo: "assets/icons/experience/redsys.png",
                 fallback: "RDS"
@@ -390,7 +407,7 @@ const portfolioDataTranslations = {
                 degree: "Máster en Inteligencia Artificial Avanzada",
                 institution: "Universidad Pontificia Comillas, ETSI ICAI",
                 location: "Madrid, España",
-                date: "Sep 2024 – Actualidad",
+                date: "Sep 2025 – Actualidad",
                 description: "Máster centrado en Deep Learning, Visión por Computador, NLP, Modelos Generativos y técnicas avanzadas de Inteligencia Artificial.",
                 link: "https://www.comillas.edu/postgrados/master-universitario-en-inteligencia-artificial/#plan",
                 logo: "assets/icons/education/comillas.png",
@@ -400,8 +417,8 @@ const portfolioDataTranslations = {
                 degree: "Grado en Ingeniería Matemática e Inteligencia Artificial",
                 institution: "Universidad Pontificia Comillas, ETSI ICAI",
                 location: "Madrid, España",
-                date: "2020 – 2024",
-                description: "Programa de cinco años combinando una sólida base matemática con aplicaciones en Inteligencia Artificial. Trabajo Fin de Grado sobre Deep Learning aplicado a imagen médica.",
+                date: "2021 – 2025",
+                description: "Programa de cuatro años combinando una sólida base matemática con aplicaciones en Inteligencia Artificial. Trabajo Fin de Grado sobre Deep Learning aplicado a imagen médica.",
                 link: "https://www.comillas.edu/grados/grado-en-ingenieria-matematica-e-inteligencia-artificial-imat/#planestudios",
                 logo: "assets/icons/education/comillas.png",
                 fallback: "ICAI"
@@ -510,7 +527,7 @@ const portfolioDataTranslations = {
                 "Python (Avanzado)",
                 "SQL",
                 "JavaScript",
-                "HTML/CSS/JS"
+                "MATLAB"
             ],
             "IA y Machine Learning": [
                 "Machine Learning",
@@ -518,6 +535,7 @@ const portfolioDataTranslations = {
                 "Visión por Computador",
                 "Procesamiento del Lenguaje Natural (NLP)",
                 "Modelos Generativos",
+                "Aprendizaje por Refuerzo",
                 "IA Geométrica",
                 "IA Probabilística",
                 "IA Explicable",
@@ -525,27 +543,23 @@ const portfolioDataTranslations = {
             ],
             "Herramientas y Frameworks": [
                 "PyTorch",
-                "NumPy",
-                "Pandas",
-                "Scikit_learn",
-                "OpenCV",
                 "Hugging Face",
                 "LangChain",
-                "Git"
+                "Scikit-learn",
+                "NumPy",
+                "Pandas",
+                "OpenCV"
             ],
-            "Datos y BI": [
-                "MySQL",
-                "MongoDB",
-                "ETL",
-                "APIs",
-                "Power BI",
-                "Tableau",
-                "QlikSense",
-                "Hue"
+            "MLOps e Infraestructura": [
+                "Docker",
+                "Git",
+                "MLflow",
+                "Kubernetes",
+                "Google Cloud"
             ],
             "Idiomas": [
                 "Español (Nativo)",
-                "Inglés (Avanzado)"
+                "Inglés (C1 – TOEFL iBT)"
             ]
         }
     }
@@ -558,16 +572,16 @@ const portfolioDataTranslations = {
 // type: "academic" | "professional" | "exchange"
 // Use end: "present" for ongoing events.
 const timelineData = {
-    rangeStart: "2020-09",
-    rangeEnd: "2026-09",
+    rangeStart: "2021-09",
+    rangeEnd: "2026-12",
     events: {
         en: [
             {
                 type: "academic",
                 title: "BE Mathematical Engineering & AI",
                 institution: "Comillas ICAI",
-                start: "2020-09",
-                end: "2024-06",
+                start: "2021-09",
+                end: "2025-05",
                 logo: "assets/icons/education/comillas.png",
                 fallback: "ICAI"
             },
@@ -575,7 +589,7 @@ const timelineData = {
                 type: "academic",
                 title: "MSc Advanced Artificial Intelligence",
                 institution: "Comillas ICAI",
-                start: "2024-09",
+                start: "2025-09",
                 end: "present",
                 logo: "assets/icons/education/comillas.png",
                 fallback: "ICAI"
@@ -606,6 +620,15 @@ const timelineData = {
                 end: "2025-08",
                 logo: "assets/icons/experience/bbva.png",
                 fallback: "BBVA"
+            },
+            {
+                type: "professional",
+                title: "Forward Deployed Engineer",
+                institution: "Accenture",
+                start: "2026-09",
+                end: "present",
+                logo: "assets/icons/experience/accenture.png",
+                fallback: "ACN"
             }
         ],
         es: [
@@ -613,8 +636,8 @@ const timelineData = {
                 type: "academic",
                 title: "Grado en Ingeniería Matemática e IA",
                 institution: "Comillas ICAI",
-                start: "2020-09",
-                end: "2024-06",
+                start: "2021-09",
+                end: "2025-05",
                 logo: "assets/icons/education/comillas.png",
                 fallback: "ICAI"
             },
@@ -622,7 +645,7 @@ const timelineData = {
                 type: "academic",
                 title: "Máster en Inteligencia Artificial Avanzada",
                 institution: "Comillas ICAI",
-                start: "2024-09",
+                start: "2025-09",
                 end: "present",
                 logo: "assets/icons/education/comillas.png",
                 fallback: "ICAI"
@@ -653,6 +676,15 @@ const timelineData = {
                 end: "2025-08",
                 logo: "assets/icons/experience/bbva.png",
                 fallback: "BBVA"
+            },
+            {
+                type: "professional",
+                title: "Forward Deployed Engineer",
+                institution: "Accenture",
+                start: "2026-09",
+                end: "present",
+                logo: "assets/icons/experience/accenture.png",
+                fallback: "ACN"
             }
         ]
     }
@@ -665,13 +697,13 @@ const timelineData = {
 const currentlyData = {
     en: {
         reading: "—",
-        building: "Master's Thesis on Advanced AI",
-        focus: "First full-time opportunity in ML / CV / NLP"
+        building: "Master's Thesis: Digital Twin with LLMs",
+        focus: "Working on Applied AI projects — LLM agents at Accenture"
     },
     es: {
         reading: "—",
-        building: "Trabajo Fin de Máster en IA Avanzada",
-        focus: "Primera oportunidad full-time en ML / CV / NLP"
+        building: "Trabajo Fin de Máster: Digital Twin con LLMs",
+        focus: "Trabajando en proyectos de IA Aplicada — agentes LLM en Accenture"
     }
 };
 
