@@ -340,7 +340,28 @@ function renderTimeline() {
         `;
     };
 
-    const topBarsHTML = top.prepared.map(ev => buildBarHTML(ev, 'top')).join('');
+    // Bridges join consecutive academic bars in the same lane so the
+    // academic path reads as one continuous line (e.g. BE → MSc gap)
+    const buildBridgesHTML = (prepared) => {
+        const html = [];
+        const byLane = {};
+        prepared.forEach(ev => (byLane[ev._lane] = byLane[ev._lane] || []).push(ev));
+        Object.values(byLane).forEach(laneEvents => {
+            laneEvents.sort((a, b) => a._start - b._start);
+            for (let i = 1; i < laneEvents.length; i++) {
+                const prev = laneEvents[i - 1];
+                const next = laneEvents[i];
+                if (next._start <= prev._end) continue;
+                const leftPct = (prev._end / totalMonths) * 100;
+                const widthPct = ((next._start - prev._end) / totalMonths) * 100;
+                html.push(`<div class="tl-bridge" style="left: ${leftPct}%; width: ${widthPct}%; bottom: ${prev._lane * 82}px;" aria-hidden="true"></div>`);
+            }
+        });
+        return html.join('');
+    };
+
+    const topBarsHTML = buildBridgesHTML(top.prepared.filter(ev => ev.type === 'academic'))
+        + top.prepared.map(ev => buildBarHTML(ev, 'top')).join('');
     const bottomBarsHTML = bottom.prepared.map(ev => buildBarHTML(ev, 'bottom')).join('');
 
     // Height of each half derived from number of lanes

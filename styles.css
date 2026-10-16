@@ -1243,6 +1243,17 @@ footer p {
     height: 6px;
 }
 
+/* Joins consecutive academic bars; same colour as the bars, slightly
+   faded so the gap between programmes is still readable */
+.tl-bridge {
+    position: absolute;
+    height: 8px;
+    background: var(--accent);
+    opacity: 0.45;
+    transform-origin: left center;
+    animation: tl-grow 1s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
 /* Events near the right edge: card and connector align to the bar's end */
 .tl-anchor-end .tl-card {
     left: auto;
