@@ -354,7 +354,8 @@ function renderTimeline() {
                 if (next._start <= prev._end) continue;
                 const leftPct = (prev._end / totalMonths) * 100;
                 const widthPct = ((next._start - prev._end) / totalMonths) * 100;
-                html.push(`<div class="tl-bridge" style="left: ${leftPct}%; width: ${widthPct}%; bottom: ${prev._lane * 82}px;" aria-hidden="true"></div>`);
+                // Extend 6px under each bar so the rounded bar ends leave no notch
+                html.push(`<div class="tl-bridge" style="left: calc(${leftPct}% - 6px); width: calc(${widthPct}% + 12px); bottom: ${prev._lane * 82}px;" aria-hidden="true"></div>`);
             }
         });
         return html.join('');
